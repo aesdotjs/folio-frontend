@@ -1,0 +1,88 @@
+<template>
+  <nav
+    id="header"
+    ref="header"
+    class="fixed top-0 z-40 w-full transition-all bg-bred navbar"
+    :class="{
+      'navbar--hidden': !showNavbar,
+      shadow: realScrollPosition > 0 || state.toggleMenu,
+    }"
+  >
+    <div
+      class="container flex flex-wrap items-center w-full p-4 mx-auto text-bwhite"
+    >
+      <div class="-ml-1">
+        <nuxt-link
+          :to="{ name: 'index' }"
+          class="flex flex-row items-center py-2 cursor-pointer endpos"
+          data-cursor-hover
+          @click.native="state.toggleMenu = false"
+        >
+          <img
+            src="~assets/img/logo.svg"
+            alt="Bluresca Logo"
+            width="70"
+            height="81"
+          />
+        </nuxt-link>
+      </div>
+      <div class="ml-auto lg:hidden">
+        <NavToggle />
+      </div>
+      <div
+        class="flex-grow w-full overflow-hidden text-lg lg:items-center lg:w-auto lg:block lg:p-0"
+      >
+        <NavContent class="hidden lg:flex" />
+        <CollapseTransition>
+          <NavContent v-show="state.toggleMenu" class="lg:hidden" />
+        </CollapseTransition>
+      </div>
+    </div>
+  </nav>
+</template>
+
+<style lang="postcss">
+.navbar {
+  transition: transform 100ms ease-out;
+  box-shadow: 5px 5px 20px rgba(255, 235, 227, 0.3);
+}
+.navbar.navbar--hidden {
+  transform: translate3d(0, -105%, 0);
+}
+</style>
+<script setup>
+import CollapseTransition from "@ivanv/vue-collapse-transition/src/CollapseTransition.vue";
+import { onClickOutside } from '@vueuse/core';
+const state = useGlobalState();
+const showNavbar = ref(true);
+const lastScrollPosition = ref(0);
+const realScrollPosition = ref(0);
+const header = ref(null);
+const away = function () {
+  state.toggleMenu = false;
+};
+onClickOutside(header, away);
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+});
+onMounted(() => {
+  window.removeEventListener("scroll", handleScroll);
+});
+const handleScroll = function () {
+  const currentScrollPosition =
+    window.pageYOffset || document.documentElement.scrollTop;
+  this.realScrollPosition = currentScrollPosition;
+  if (currentScrollPosition < 0) {
+    return;
+  }
+  // Stop executing this function if the difference between
+  // current scroll position and last scroll position is less than some offset
+  if (Math.abs(currentScrollPosition - lastScrollPosition) < 60) {
+    return;
+  }
+  showNavbar = currentScrollPosition < lastScrollPosition;
+  state.toggleMenu = false;
+  lastScrollPosition = currentScrollPosition;
+};
+</script>
+

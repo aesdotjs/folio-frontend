@@ -1,0 +1,31 @@
+@font-face {
+  font-family: "Georama";
+  src: url('~/assets/font/Georama/Georama-Regular.ttf') format('woff2');
+}
+@font-face {
+  font-family: "Georama";
+  src: url('~/assets/font/Georama/Georama-Bold.ttf') format('woff2');
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Georama";
+  src: url('~/assets/font/Georama/Georama-Light.ttf') format('woff2');
+  font-weight: 300;
+}
+@font-face {
+  font-family: "Georama";
+  src: url('~/assets/font/Georama/Georama-Medium.ttf') format('woff2');
+  font-weight: 500;
+}
+@font-face {
+  font-family: "Georama";
+  src: url('~/assets/font/Georama/Georama-SemiBold.ttf') format('woff2');
+  font-weight: 600;
+}
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html, body {
+  font-family: Georama, sans-serif;
+}
