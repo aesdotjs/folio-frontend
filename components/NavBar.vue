@@ -19,7 +19,8 @@
           @click.native="state.toggleMenu = false"
         >
           <img
-            src="~assets/img/logo.svg"
+            v-if="global.siteIcon"
+            :src="getMedia(global.siteIcon.data.attributes.url)"
             alt="Bluresca Logo"
             width="70"
             height="81"
@@ -33,9 +34,11 @@
         class="flex-grow w-full overflow-hidden text-lg lg:items-center lg:w-auto lg:block lg:p-0"
       >
         <NavContent class="hidden lg:flex" />
-        <CollapseTransition>
-          <NavContent v-show="state.toggleMenu" class="lg:hidden" />
-        </CollapseTransition>
+        <ClientOnly>
+          <CollapseTransition>
+            <NavContent v-show="state.toggleMenu" class="lg:hidden" />
+          </CollapseTransition>
+        </ClientOnly>
       </div>
     </div>
   </nav>
@@ -53,15 +56,14 @@
 <script setup>
 import CollapseTransition from "@ivanv/vue-collapse-transition/src/CollapseTransition.vue";
 import { onClickOutside } from '@vueuse/core';
+const getMedia = getStrapiMedia;
 const state = useGlobalState();
+const props = defineProps({ global: Object});
 const showNavbar = ref(true);
 const lastScrollPosition = ref(0);
 const realScrollPosition = ref(0);
 const header = ref(null);
-const away = function () {
-  state.toggleMenu = false;
-};
-onClickOutside(header, away);
+onClickOutside(header, () => state.value.toggleMenu = false);
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
 });
@@ -81,7 +83,7 @@ const handleScroll = function () {
     return;
   }
   showNavbar = currentScrollPosition < lastScrollPosition;
-  state.toggleMenu = false;
+  state.value.toggleMenu = false;
   lastScrollPosition = currentScrollPosition;
 };
 </script>

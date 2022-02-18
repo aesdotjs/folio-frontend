@@ -10,7 +10,8 @@
           data-cursor-hover
         >
           <img
-            src="~assets/img/logo.svg"
+            v-if="global.siteIcon"
+            :src="getMedia(global.siteIcon.data.attributes.url)"
             alt="Bluresca's Logo"
             width="50"
             height="58"
@@ -22,7 +23,7 @@
             class="flex flex-wrap items-end justify-end py-6 font-light list-reset sm:items-center lg:py-0"
           >
             <li
-              v-for="link in socials"
+              v-for="link in global.socials"
               :key="link.data.attributes.url"
               class="w-1/2 sm:w-auto p-1"
             >
@@ -48,5 +49,6 @@
   </footer>
 </template>
 <script setup>
-const props = defineProps({socials: Array});
+const props = defineProps({global: Object});
+const getMedia = getStrapiMedia;
 </script>

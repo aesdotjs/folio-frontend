@@ -6,6 +6,7 @@ const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
   css: ["@/assets/css/main.css"],
+  components: true,
   modules: [ 
     ['@nuxtjs/strapi',
     {

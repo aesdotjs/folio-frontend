@@ -1,20 +1,8 @@
 <template>
   <div class="w-full text-bwhite bg-bwhite">
-    <NavBar />
-    <!-- <div
-      v-if="!hasLoaded"
-      class="fixed inset-0 z-40 flex items-center justify-center w-screen h-screen loading"
-    >
-      <div class="absolute bottom-0 w-full loading-img -z-10">
-        <img
-          src="~assets/img/loading-img.svg"
-          class="object-cover"
-          alt="Loading image"
-        />
-      </div>
-    </div> -->
+    <NavBar :global="global" />
     <slot />
-    <Footer v-if="global.socials" :socials="global.socials" />
+    <Footer :global="global" />
   </div>
 </template>
 <style lang="postcss">
