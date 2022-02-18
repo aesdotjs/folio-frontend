@@ -14,7 +14,7 @@
       </div>
     </div> -->
     <slot />
-    <Footer :socials="global.socials" />
+    <Footer v-if="global.socials" :socials="global.socials" />
   </div>
 </template>
 <style lang="postcss">
