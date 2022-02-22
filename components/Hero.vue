@@ -3,6 +3,7 @@
     id="hero"
     class="bg-hero pb-[80%] min-h-screen w-full overflow-hidden relative"
     data-scroll-section>
+    <!-- <StarGL class="absolute top-0 h-1/2"></StarGL> -->
     <div class="clouds-back opacity-90"></div>
     <div class="absolute bottom-0">
       <img
