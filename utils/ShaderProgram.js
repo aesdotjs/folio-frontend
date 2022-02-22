@@ -2,7 +2,6 @@
 export default class ShaderProgram {
 
   constructor( holder, canvas, options = {} ) {
-
     options = Object.assign( {
       antialias: false,
       depthTest: false,

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full text-bwhite bg-bwhite">
+  <div class="w-full text-bwhite bg-aeswhite">
     <NavBar :global="global" />
     <slot />
     <Footer :global="global" />

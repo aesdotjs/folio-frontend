@@ -2,10 +2,9 @@
   <nav
     id="header"
     ref="header"
-    class="fixed top-0 z-40 w-full transition-all bg-bred navbar"
+    class="fixed top-0 z-40 w-full transition-all navbar"
     :class="{
       'navbar--hidden': !showNavbar,
-      shadow: realScrollPosition > 0 || state.toggleMenu,
     }"
   >
     <div
@@ -47,7 +46,6 @@
 <style lang="postcss">
 .navbar {
   transition: transform 100ms ease-out;
-  box-shadow: 5px 5px 20px rgba(255, 235, 227, 0.3);
 }
 .navbar.navbar--hidden {
   transform: translate3d(0, -105%, 0);

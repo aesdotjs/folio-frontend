@@ -6,14 +6,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        bred: {
-          DEFAULT: "#721626",
-        },
-        bwhite: {
-          DEFAULT: "#FFEBE3",
-        },
-        bgray: {
-          DEFAULT: "#5b5b5b",
+        aeswhite: {
+          DEFAULT: "#f3e9ec",
         },
       },
     },
