@@ -6,9 +6,12 @@ module.exports = {
     },
     extend: {
       colors: {
-        aeswhite: {
-          DEFAULT: "#f3e9ec",
-        },
+        aeswhite: "#FFF8F5",
+        aesgray: "#f3e9ec",
+        aesblue: "#200E4F",
+        aespurple1: "#500366",
+        aespurple2: "#820066",
+        aesorange:  "#DC3C00",
       },
     },
   },
@@ -19,5 +22,23 @@ module.exports = {
       addVariant("in-viewport", "&.in-viewport");
       addVariant("in-viewport-child", ".in-viewport &");
     }),
+    function({ addBase, theme }) {
+      function extractColorVars(colorObj, colorGroup = '') {
+        return Object.keys(colorObj).reduce((vars, colorKey) => {
+          const value = colorObj[colorKey];
+
+          const newVars =
+            typeof value === 'string'
+              ? { [`--color${colorGroup}-${colorKey}`]: value }
+              : extractColorVars(value, `-${colorKey}`);
+
+          return { ...vars, ...newVars };
+        }, {});
+      }
+
+      addBase({
+        ':root': extractColorVars(theme('colors')),
+      });
+    },
   ],
 };

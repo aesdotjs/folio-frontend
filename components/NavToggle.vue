@@ -43,7 +43,7 @@
   position: relative;
   width: 30px;
   height: 2px;
-  background-color: #ffebe3;
+  background-color: var(--color-aeswhite-DEFAULT);
   border-radius: 2px;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
@@ -54,7 +54,7 @@
   content: "";
   width: 30px;
   height: 2px;
-  background-color: #ffebe3;
+  background-color: var(--color-aeswhite-DEFAULT);
   border-radius: 2px;
   top: -8px;
   right: -5px;
@@ -69,7 +69,7 @@
   content: "";
   width: 30px;
   height: 2px;
-  background-color: #ffebe3;
+  background-color: var(--color-aeswhite-DEFAULT);
   border-radius: 2px;
   bottom: -8px;
   left: -5px;

@@ -8,7 +8,7 @@
     }"
   >
     <div
-      class="container flex flex-wrap items-center w-full p-4 mx-auto text-bwhite"
+      class="container flex flex-wrap items-center w-full p-4 mx-auto text-aeswhite"
     >
       <div class="-ml-1">
         <nuxt-link
@@ -61,6 +61,7 @@ const showNavbar = ref(true);
 const lastScrollPosition = ref(0);
 const realScrollPosition = ref(0);
 const header = ref(null);
+console.log(props.global.siteIcon.data.attributes.url)
 onClickOutside(header, () => state.value.toggleMenu = false);
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
