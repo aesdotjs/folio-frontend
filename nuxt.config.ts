@@ -72,4 +72,12 @@ export default defineNuxtConfig({
   vueuse: {
     ssrHandlers: true,
   },
+  build: {
+    postcss: {
+      plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+      },
+    },
+  }
 });

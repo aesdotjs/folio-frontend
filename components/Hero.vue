@@ -5,25 +5,12 @@
     data-scroll-section>
     <!-- <StarGL class="absolute top-0 h-1/2"></StarGL> -->
     <!-- <div class="clouds-back opacity-90"></div> -->
-    <div class="absolute bottom-0">
-      <img
-        src="~/assets/img/mountain.svg"
-        class="object-cover w-full"
-      />
+    <div class="mtn">
+    <div class="pl3"> </div>
     </div>
-    <div class="absolute bottom-0">
-      <img
-        src="~/assets/img/parallax3.svg"
-        class="object-cover w-full"
-      />
-    </div>
+    
     <div class="clouds"></div>
-    <div class="absolute bottom-0">
-      <img
-        src="~/assets/img/parallax2.svg"
-        class="object-cover w-full"
-      />
-    </div>
+    <div class="pl2"></div>
     <SnowGL
       :count="4000"
       :size="1"
@@ -39,16 +26,15 @@
       }"
       class="absolute inset-0 w-full h-full"
     ></SnowGL>
-    <div class="absolute bottom-0">
-      <img
-        src="~/assets/img/parallax1.svg"
-        class="object-cover w-full"
-      />
+    <div class="pl1">
     </div>
   </section>
 </template>
 
-<style>
+<style lang="postcss" scoped>
+.position-bottom {
+  object-position: bottom;
+}
 .bg-hero {
   background: linear-gradient(180deg, #200E4F 13.24%, #500366 30.66%, rgba(130, 0, 102, 0.88) 43.34%, #DC3C00 57.33%);
 }
@@ -77,5 +63,26 @@
   100% {
     background-position: -200000px 0%;
   }
+}
+
+.mtn, .pl1, .pl2, .pl3{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+.mtn {
+  background-image: url(~/assets/img/mountain.svg);
+}
+.pl1 {
+  background-image: url(~/assets/img/parallax1.svg);
+}
+.pl2 {
+  background-image: url(~/assets/img/parallax2.svg);
+}
+.pl3 {
+  background-image: url(~/assets/img/parallax3.svg);
 }
 </style>
