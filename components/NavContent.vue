@@ -84,11 +84,11 @@ li a {
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: transparent;
   position: relative;
-  color: var(--color-aeswhite-DEFAULT);
+  color: var(--color-aeswhite);
 }
 li:hover a {
-  -webkit-text-stroke-color: var(--color-aesorange-DEFAULT);
-  color: var(--color-aesorange-DEFAULT);
+  -webkit-text-stroke-color: var(--color-aesorange);
+  color: var(--color-aesorange);
 }
 li a::after {
   content: "";
@@ -97,7 +97,7 @@ li a::after {
   height: 3px;
   bottom: 0;
   left: 0;
-  background-color: var(--color-aesorange-DEFAULT);
+  background-color: var(--color-aesorange);
   transform: scaleX(0);
   transition: transform 0.3s;
   transform-origin: bottom right;
