@@ -4,7 +4,7 @@
     class="bg-hero pb-[80%] min-h-screen w-full overflow-hidden relative"
     data-scroll-section>
     <!-- <StarGL class="absolute top-0 h-1/2"></StarGL> -->
-    <div class="clouds-back opacity-90"></div>
+    <!-- <div class="clouds-back opacity-90"></div> -->
     <div class="absolute bottom-0">
       <img
         src="~/assets/img/mountain.svg"
@@ -17,7 +17,7 @@
         class="object-cover w-full"
       />
     </div>
-    <div class="clouds opacity-80"></div>
+    <div class="clouds"></div>
     <div class="absolute bottom-0">
       <img
         src="~/assets/img/parallax2.svg"
@@ -25,10 +25,18 @@
       />
     </div>
     <SnowGL
-      :count="2000"
+      :count="4000"
       :size="1"
       :depth="80"
       :gravity="30"
+      :wind="{
+        current: 0,
+        force: -0.1,
+        target: -0.05,
+        min: -0.01,
+        max: -0.1,
+        easing: 0.005,
+      }"
       class="absolute inset-0 w-full h-full"
     ></SnowGL>
     <div class="absolute bottom-0">
