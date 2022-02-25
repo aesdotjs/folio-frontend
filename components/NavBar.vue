@@ -2,11 +2,11 @@
   <nav
     id="header"
     ref="header"
+    class="fixed top-0 z-40 w-full transition-all navbar"
     :class="{
       'navbar--hidden': !showNavbar,
       'bg-aesblue' : realScrollPosition > 120 || state.toggleMenu
     }"
-    class="fixed top-0 z-40 w-full transition-all bg-transparent navbar"
   >
     <div
       class="container flex flex-wrap items-center w-full p-4 mx-auto text-aeswhite"
