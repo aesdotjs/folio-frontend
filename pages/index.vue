@@ -2,7 +2,7 @@
   <div>
     <SmoothScroll>
       <Hero />
-      <div class="h-screen"></div>
+      <div class="h-screen bg-aesgray -mt-1" data-scroll-section></div>
     </SmoothScroll>
   </div>
 </template>

@@ -1,5 +1,5 @@
 export default function (el, onScroll = false) {
-  const scroll = reactive({});
+  const scroll = shallowReactive({});
   const nuxtApp = useNuxtApp();
   onMounted(() => {
     nextTick(() => {
