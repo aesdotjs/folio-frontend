@@ -61,7 +61,6 @@ const showNavbar = ref(true);
 const lastScrollPosition = ref(0);
 const realScrollPosition = ref(0);
 const header = ref(null);
-console.log(props.global.siteIcon.data.attributes.url)
 onClickOutside(header, () => state.value.toggleMenu = false);
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);

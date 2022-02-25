@@ -17,10 +17,8 @@ module.exports = {
   },
   plugins: [
     plugin(function ({ addVariant }) {
-      addVariant("above-viewport", "&.above-viewport:not(.in-viewport)");
-      addVariant("below-viewport", "&.below-viewport:not(.in-viewport)");
-      addVariant("in-viewport", "&.in-viewport");
-      addVariant("in-viewport-child", ".in-viewport &");
+      addVariant("inview", "&.is-inview");
+      addVariant("inview-child", ".is-inview &");
     }),
     function({ addBase, theme }) {
       function extractColorVars(colorObj, colorGroup = '') {

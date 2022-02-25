@@ -1,16 +1,17 @@
 <template>
   <section 
     id="hero"
-    class="bg-hero pb-[80%] min-h-screen w-full overflow-hidden relative"
+    class="pb-[80%] min-h-screen w-full overflow-hidden relative parallax-container"
     data-scroll-section>
+    <div class="bg-hero absolute inset-0" data-scroll data-scroll-speed="-8"></div>
     <!-- <StarGL class="absolute top-0 h-1/2"></StarGL> -->
     <!-- <div class="clouds-back opacity-90"></div> -->
-    <div class="mtn">
-    <div class="pl3"> </div>
-    </div>
+    <div class="mtn" data-scroll data-scroll-speed="-8"></div>
+    <div class="pl3" data-scroll data-scroll-speed="-7"></div>
     
-    <div class="clouds"></div>
-    <div class="pl2"></div>
+    
+    <div class="clouds" data-scroll data-scroll-speed="-6"></div>
+    <div class="pl2" data-scroll data-scroll-speed="-4"></div>
     <SnowGL
       :count="4000"
       :size="1"
@@ -25,11 +26,33 @@
         easing: 0.005,
       }"
       class="absolute inset-0 w-full h-full"
+       data-scroll data-scroll-speed="-2"
     ></SnowGL>
     <div class="pl1">
     </div>
   </section>
 </template>
+
+<script setup>
+const { $bus } = useNuxtApp();
+onMounted(() => {
+  const preload = [
+    "/_nuxt/assets/img/clouds.png",
+    "/_nuxt/assets/img/mountain.svg",
+    "/_nuxt/assets/img/parallax1.svg",
+    "/_nuxt/assets/img/parallax2.svg",
+    "/_nuxt/assets/img/parallax3.svg",
+  ];
+  preload.forEach(el => {
+    let img = new Image ();
+    img.onload = function () { updateLoco ()};
+    img.src = el;
+  });
+})
+const updateLoco = function() {
+  $bus.$emit('update-locomotive');
+};
+</script>
 
 <style lang="postcss" scoped>
 .position-bottom {
@@ -73,6 +96,7 @@
   background-position: center bottom;
   background-repeat: no-repeat;
 }
+
 .mtn {
   background-image: url(~/assets/img/mountain.svg);
 }

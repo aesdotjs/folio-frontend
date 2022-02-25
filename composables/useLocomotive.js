@@ -1,16 +1,18 @@
-import locomotiveScroll  from "locomotive-scroll";
-export default function () {
+export default function (el, onScroll = false) {
   const scroll = reactive({});
+  const nuxtApp = useNuxtApp();
   onMounted(() => {
-    scroll = new locomotiveScroll({
-      el: document.querySelector('[data-scroll-container]'),
-      smooth: true,
-      getDirection: true
-    });
-    scroll.stop();
+    nextTick(() => {
+      scroll.value = new nuxtApp.$locomotiveScroll({
+        el: el.value,
+        smooth: true,
+        getDirection: true,
+      });
+      if(onScroll) scroll.value.on("scroll", onScroll)
+    });    
   });
   onUnmounted(() => {
-    scroll.destroy();
+    scroll.value.destroy();
   });
-  return {scroll};
+  return scroll;
 }
