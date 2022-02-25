@@ -1,6 +1,7 @@
 <template>
   <div>
     <SmoothScroll>
+      <div id="sticky-nav-target"></div>
       <Hero />
       <div class="h-screen bg-aesgray -mt-1" data-scroll-section></div>
     </SmoothScroll>

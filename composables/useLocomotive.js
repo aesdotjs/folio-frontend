@@ -7,6 +7,7 @@ export default function (el, onScroll = false) {
         el: el.value,
         smooth: true,
         getDirection: true,
+        multiplier: 0.8,
       });
       if(onScroll) scroll.value.on("scroll", onScroll)
     });    

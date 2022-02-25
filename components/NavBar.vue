@@ -2,10 +2,11 @@
   <nav
     id="header"
     ref="header"
-    class="fixed top-0 z-40 w-full transition-all navbar"
     :class="{
       'navbar--hidden': !showNavbar,
+      'bg-aesblue' : realScrollPosition > 120 || state.toggleMenu
     }"
+    class="fixed top-0 z-40 w-full transition-all bg-transparent navbar"
   >
     <div
       class="container flex flex-wrap items-center w-full p-4 mx-auto text-aeswhite"
@@ -44,9 +45,6 @@
 </template>
 
 <style lang="postcss">
-.navbar {
-  transition: transform 100ms ease-out;
-}
 .navbar.navbar--hidden {
   transform: translate3d(0, -105%, 0);
 }
@@ -62,27 +60,20 @@ const lastScrollPosition = ref(0);
 const realScrollPosition = ref(0);
 const header = ref(null);
 onClickOutside(header, () => state.value.toggleMenu = false);
-onMounted(() => {
-  window.addEventListener("scroll", handleScroll);
-});
-onMounted(() => {
-  window.removeEventListener("scroll", handleScroll);
-});
-const handleScroll = function () {
-  const currentScrollPosition =
-    window.pageYOffset || document.documentElement.scrollTop;
-  this.realScrollPosition = currentScrollPosition;
+const handleScroll = (currentScrollPosition) => {
+  realScrollPosition.value = currentScrollPosition;
   if (currentScrollPosition < 0) {
     return;
   }
   // Stop executing this function if the difference between
   // current scroll position and last scroll position is less than some offset
-  if (Math.abs(currentScrollPosition - lastScrollPosition) < 60) {
+  if (Math.abs(currentScrollPosition - lastScrollPosition.value) < 60) {
     return;
   }
-  showNavbar = currentScrollPosition < lastScrollPosition;
+  showNavbar.value = currentScrollPosition < lastScrollPosition.value;
   state.value.toggleMenu = false;
-  lastScrollPosition = currentScrollPosition;
+  lastScrollPosition.value = currentScrollPosition;
 };
+watch(() => state.value.scrollY, handleScroll);
 </script>
 

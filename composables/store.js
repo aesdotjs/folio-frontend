@@ -3,6 +3,7 @@ export const useGlobalState = createGlobalState(
   () => useStorage('vueuse-local-storage', {
     toggleMenu: false,
     hasLoaded: false,
+    scrollY: 0,
     sectionInViewport: "",
   }),
 )
