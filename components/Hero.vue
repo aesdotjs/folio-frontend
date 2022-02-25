@@ -34,16 +34,18 @@
 </template>
 
 <script setup>
+import cloud from "~/assets/img/clouds.png";
+import mountain from "~/assets/img/mountain.svg";
+import parallax1 from "~/assets/img/parallax1.svg";
+import parallax2 from "~/assets/img/parallax2.svg";
+import parallax3 from "~/assets/img/parallax3.svg";
 const { $bus } = useNuxtApp();
 onMounted(() => {
   const preload = [
-    "/_nuxt/assets/img/clouds.png",
-    "/_nuxt/assets/img/mountain.svg",
-    "/_nuxt/assets/img/parallax1.svg",
-    "/_nuxt/assets/img/parallax2.svg",
-    "/_nuxt/assets/img/parallax3.svg",
+    cloud, mountain, parallax1, parallax2, parallax3
   ];
   preload.forEach(el => {
+    
     let img = new Image ();
     img.onload = function () { updateLoco ()};
     img.src = el;
