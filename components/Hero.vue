@@ -3,8 +3,8 @@
     id="hero"
     class="pb-[80%] min-h-screen w-full overflow-hidden relative parallax-container"
     data-scroll-section>
-    <div class="bg-hero absolute inset-0" data-scroll data-scroll-speed="-8"></div>
-    <StarGL class="absolute top-0 h-2/3 w-full"></StarGL>
+    <div class="bg-hero absolute inset-0" data-scroll data-scroll-speed="-9"></div>
+    <StarGL class="absolute top-0 h-2/3 w-full" data-scroll data-scroll-speed="-9"></StarGL>
     <div class="mtn" data-scroll data-scroll-speed="-8"></div>
     <div class="pl3" data-scroll data-scroll-speed="-7"></div>
     
