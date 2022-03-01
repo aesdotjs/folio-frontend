@@ -6,8 +6,8 @@ module.exports = {
     },
     extend: {
       colors: {
-        aeswhite: "#FFF8F5",
-        aesgray: "#f3e9ec",
+        aeswhite: "#FFE3D8",
+        aesgray: "#C8B5B7",
         aesblue: "#200E4F",
         aespurple1: "#500366",
         aespurple2: "#820066",

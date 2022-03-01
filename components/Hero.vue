@@ -1,14 +1,18 @@
 <template>
-  <section 
+  <section
     id="hero"
     class="pb-[80%] min-h-screen w-full overflow-hidden relative parallax-container"
-    data-scroll-section>
+    data-scroll-section
+  >
     <div class="bg-hero absolute inset-0" data-scroll data-scroll-speed="-9"></div>
-    <StarGL class="absolute top-0 h-2/3 w-full" data-scroll data-scroll-speed="-9"></StarGL>
+    <StarGL
+      class="absolute top-0 h-2/3 w-full"
+      data-scroll
+      data-scroll-speed="-9"
+    ></StarGL>
     <div class="mtn" data-scroll data-scroll-speed="-8"></div>
     <div class="pl3" data-scroll data-scroll-speed="-7"></div>
-    
-    
+
     <div class="clouds" data-scroll data-scroll-speed="-6"></div>
     <div class="pl2" data-scroll data-scroll-speed="-4"></div>
     <SnowGL
@@ -25,10 +29,10 @@
         easing: 0.005,
       }"
       class="absolute inset-0 w-full h-full"
-       data-scroll data-scroll-speed="-2"
+      data-scroll
+      data-scroll-speed="-2"
     ></SnowGL>
-    <div class="pl1">
-    </div>
+    <div class="pl1"></div>
   </section>
 </template>
 
@@ -40,18 +44,17 @@ import parallax2 from "~/assets/img/parallax2.svg";
 import parallax3 from "~/assets/img/parallax3.svg";
 const { $bus } = useNuxtApp();
 onMounted(() => {
-  const preload = [
-    cloud, mountain, parallax1, parallax2, parallax3
-  ];
-  preload.forEach(el => {
-    
-    let img = new Image ();
-    img.onload = function () { updateLoco ()};
+  const preload = [cloud, mountain, parallax1, parallax2, parallax3];
+  preload.forEach((el) => {
+    let img = new Image();
+    img.onload = function () {
+      updateLoco();
+    };
     img.src = el;
   });
-})
-const updateLoco = function() {
-  $bus.$emit('update-locomotive');
+});
+const updateLoco = function () {
+  $bus.$emit("update-locomotive");
 };
 </script>
 
@@ -60,7 +63,13 @@ const updateLoco = function() {
   object-position: bottom;
 }
 .bg-hero {
-  background: linear-gradient(180deg, #200E4F 13.24%, #500366 30.66%, rgba(130, 0, 102, 0.88) 43.34%, #DC3C00 57.33%);
+  background: linear-gradient(
+    175.22deg,
+    #200e4f 16.26%,
+    #500366 32.71%,
+    rgba(130, 0, 102, 0.88) 44.68%,
+    #dc3c00 63.38%
+  );
 }
 .clouds {
   position: absolute;
@@ -71,7 +80,7 @@ const updateLoco = function() {
   background-image: url("~/assets/img/clouds.png");
   animation: cloud-animation 10000s linear infinite alternate;
 }
-.clouds-back{
+.clouds-back {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -82,14 +91,17 @@ const updateLoco = function() {
 
 @keyframes cloud-animation {
   0% {
-    background-position: 0% 0%;
+    background-position: 125% 0%;
   }
   100% {
     background-position: -200000px 0%;
   }
 }
 
-.mtn, .pl1, .pl2, .pl3{
+.mtn,
+.pl1,
+.pl2,
+.pl3 {
   position: absolute;
   width: 100%;
   height: 100%;
