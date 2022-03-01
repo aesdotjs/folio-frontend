@@ -1,15 +1,14 @@
 <template>
   <section
     id="hero"
-    class="pb-[60%] min-h-screen w-full overflow-hidden relative parallax-container"
+    class="pb-[80%] min-h-screen w-full overflow-hidden relative parallax-container"
     data-scroll-section
   >
     <div class="bg-hero absolute inset-0" data-scroll data-scroll-speed="-9"></div>
     <StarGL class="absolute inset-0" data-scroll data-scroll-speed="-9"></StarGL>
     <div class="mtn" data-scroll data-scroll-speed="-8"></div>
-    <div class="pl3" data-scroll data-scroll-speed="-7"></div>
-
-    <div class="clouds" data-scroll data-scroll-speed="-6"></div>
+    <div class="clouds" data-scroll data-scroll-speed="-7"></div>
+    <div class="pl3" data-scroll data-scroll-speed="-6"></div>
     <div class="pl2" data-scroll data-scroll-speed="-4"></div>
     <SnowGL
       :count="4000"
