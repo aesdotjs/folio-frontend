@@ -6,9 +6,14 @@
 <style scoped>
 canvas {
   width: 100%;
-  height: 100%;
+  height: 66.666667%;
   opacity: 0.8;
-  mask-image: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 74%, rgba(0,0,0,0) 100%)
+  mask-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0.5) 74%,
+    rgba(0, 0, 0, 0) 100%
+  );
 }
 </style>
 <script setup>
@@ -108,8 +113,7 @@ const fragment = `
   }`;
 onMounted(() => {
   const gl = canvas.value.getContext("webgl");
-  const programInfo = twgl.createProgramInfo(
-    gl, [vertex, fragment]);
+  const programInfo = twgl.createProgramInfo(gl, [vertex, fragment]);
   const arrays = {
     position: [-1, -1, 0, 1, -1, 0, -1, 1, 0, -1, 1, 0, 1, -1, 0, 1, 1, 0],
   };
@@ -117,20 +121,19 @@ onMounted(() => {
   function render(time) {
     twgl.resizeCanvasToDisplaySize(gl.canvas);
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
- 
+
     const uniforms = {
       time: time * 0.0001,
       resolution: [gl.canvas.width, gl.canvas.height],
     };
- 
+
     gl.useProgram(programInfo.program);
     twgl.setBuffersAndAttributes(gl, programInfo, bufferInfo);
     twgl.setUniforms(programInfo, uniforms);
     twgl.drawBufferInfo(gl, bufferInfo);
- 
+
     requestAnimationFrame(render);
   }
   requestAnimationFrame(render);
 });
 </script>
-
