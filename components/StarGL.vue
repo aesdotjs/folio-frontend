@@ -114,7 +114,6 @@ onMounted(() => {
     position: [-1, -1, 0, 1, -1, 0, -1, 1, 0, -1, 1, 0, 1, -1, 0, 1, 1, 0],
   };
   const bufferInfo = twgl.createBufferInfoFromArrays(gl, arrays);
-  console.log(programInfo);
   function render(time) {
     twgl.resizeCanvasToDisplaySize(gl.canvas);
     gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);

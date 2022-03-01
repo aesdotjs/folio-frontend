@@ -80,7 +80,4 @@ export default defineNuxtConfig({
       },
     },
   },
-  nitro: {
-    preset: 'browser',
-  }
 });
