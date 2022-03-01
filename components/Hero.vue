@@ -4,8 +4,7 @@
     class="pb-[80%] min-h-screen w-full overflow-hidden relative parallax-container"
     data-scroll-section>
     <div class="bg-hero absolute inset-0" data-scroll data-scroll-speed="-8"></div>
-    <!-- <StarGL class="absolute top-0 h-1/2"></StarGL> -->
-    <!-- <div class="clouds-back opacity-90"></div> -->
+    <StarGL class="absolute top-0 h-2/3 w-full"></StarGL>
     <div class="mtn" data-scroll data-scroll-speed="-8"></div>
     <div class="pl3" data-scroll data-scroll-speed="-7"></div>
     

@@ -181,7 +181,6 @@ export default class ShaderProgram {
 
     this.uniforms.resolution = [ width, height ]
     this.uniforms.projection = this.setProjection( aspect )
-
     this.onResize( width, height, dpi )
 
   }
@@ -490,7 +489,6 @@ export default class ShaderProgram {
     this.time.old = now
 
     this.uniforms.time = elapsed
-
     if ( this.count > 0 ) {
       gl.clear( gl.COLOR_BUFFER_BIT )
       gl.drawArrays( gl.POINTS, 0, this.count )
