@@ -75,14 +75,6 @@ const updateLoco = function () {
   background-image: url("~/assets/img/clouds.png");
   animation: cloud-animation 10000s linear infinite alternate;
 }
-.clouds-back {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  background-size: cover;
-  background-position: center;
-  background-image: url("~/assets/img/clouds-back.png");
-}
 
 @keyframes cloud-animation {
   0% {
