@@ -7,7 +7,7 @@
 canvas {
   width: 100%;
   height: 66.666667%;
-  opacity: 0.8;
+  opacity: 0.9;
   mask-image: linear-gradient(
     180deg,
     rgba(0, 0, 0, 1) 0%,
