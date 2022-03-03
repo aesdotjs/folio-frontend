@@ -5,7 +5,7 @@
     class="fixed top-0 z-40 w-full transition-all navbar"
     :class="{
       'navbar--hidden': !showNavbar,
-      'bg-aesblue' : realScrollPosition > 120 || state.toggleMenu
+      'bg-aesblue' : realScrollPosition > 120 || toggleMenu
     }"
   >
     <div
@@ -16,7 +16,7 @@
           :to="{ name: 'index' }"
           class="flex flex-row items-center py-2 cursor-pointer endpos"
           data-cursor-hover
-          @click.native="state.toggleMenu = false"
+          @click.native="toggleMenu = false"
         >
           <img
             v-if="global.siteIcon"
@@ -36,7 +36,7 @@
         <NavContent class="hidden lg:flex" />
         <ClientOnly>
           <CollapseTransition>
-            <NavContent v-show="state.toggleMenu" class="lg:hidden" />
+            <NavContent v-show="toggleMenu" class="lg:hidden" />
           </CollapseTransition>
         </ClientOnly>
       </div>
@@ -53,13 +53,14 @@
 import CollapseTransition from "@ivanv/vue-collapse-transition/src/CollapseTransition.vue";
 import { onClickOutside } from '@vueuse/core';
 const getMedia = getStrapiMedia;
-const state = useGlobalState();
 const props = defineProps({ global: Object});
 const showNavbar = ref(true);
 const lastScrollPosition = ref(0);
 const realScrollPosition = ref(0);
+const scrollY = useStateScrollY();
+const toggleMenu = useStateToggleMenu();
 const header = ref(null);
-onClickOutside(header, () => state.value.toggleMenu = false);
+onClickOutside(header, () => toggleMenu.value = false);
 const handleScroll = (currentScrollPosition) => {
   realScrollPosition.value = currentScrollPosition;
   if (currentScrollPosition < 0) {
@@ -71,9 +72,9 @@ const handleScroll = (currentScrollPosition) => {
     return;
   }
   showNavbar.value = currentScrollPosition < lastScrollPosition.value;
-  state.value.toggleMenu = false;
+  toggleMenu.value = false;
   lastScrollPosition.value = currentScrollPosition;
 };
-watch(() => state.value.scrollY, handleScroll);
+watch(scrollY, handleScroll);
 </script>
 

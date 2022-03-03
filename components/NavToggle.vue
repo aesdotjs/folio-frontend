@@ -4,7 +4,7 @@
     aria-label="Toggle Navigation Menu"
     class="ham-btn"
     data-cursor-hover
-    :class="{ active: state.toggleMenu }"
+    :class="{ active: toggleMenu }"
     @click="navToggle()"
   >
     <div class="ham">
@@ -107,9 +107,9 @@
 </style>
 
 <script setup>
-const state = useGlobalState();
+const toggleMenu = useStateToggleMenu();
 const navToggle = function() {
-  state.value.toggleMenu = !state.value.toggleMenu;
+  toggleMenu.value = !toggleMenu.value;
 };
 
 </script>

@@ -6,9 +6,9 @@
 <script setup>
 import "locomotive-scroll/dist/locomotive-scroll.css";
 const target = ref(null);
-const state = useGlobalState();
+const scrollY = useStateScrollY();
 const scroll = useLocomotive(target, (args) => {
-  state.value.scrollY = args.scroll.y;
+  scrollY.value = args.scroll.y;
   // const {currentElements} = args;
   // for (const elemName in currentElements){
   //   console.log(currentElements[elemName].el.style.transform);

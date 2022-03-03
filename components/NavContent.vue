@@ -111,13 +111,14 @@ li:hover a::after {
 }
 </style>
 <script setup>
-const state = useGlobalState();
+const toggleMenu = useStateToggleMenu();
+const sectionInViewport = useStateSectionInViewport();
 const route = useRoute();
 const routeName = computed(() => route.value.name);
 const isActive = function (page) {
-  return routeName === "index" && state.sectionInViewport === page;
+  return routeName === "index" && sectionInViewport === page;
 };
 const handleToggleMenu = function () {
-  state.toggleMenu = !state.toggleMenu;
+  toggleMenu.value = !toggleMenu.value;
 };
 </script>
