@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full text-bwhite bg-aeswhite">
+  <div class="w-full bg-aeswhite">
     <NavBar :global="global" />
     <slot />
     <Footer :global="global" />
@@ -17,8 +17,7 @@
 }
 </style>
 
-<script setup lang="ts">
+<script setup>
 const { data: globalData } = await useGetGlobal();
 const global = globalData.value.data.attributes;
-
 </script>
