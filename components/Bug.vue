@@ -162,6 +162,7 @@
 </template>
 <script setup>
 import bugTypes from "~/composables/bugTypes";
+const show = ref(true);
 const props = defineProps({ type: String, options: Object });
 const bug = reactive({ ...bugTypes[props.type], ...props.options, type: props.type });
 const bugsFound = reactive(useStateBugsFound());
