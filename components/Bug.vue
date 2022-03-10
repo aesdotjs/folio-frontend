@@ -105,7 +105,6 @@
         })`,
       }"
       @click="handleClick"
-      v-show="!bugsFound[type]"
     >
       <path
         :style="{ 'animation-duration': `${Math.random() * 10 + 10}s` }"
@@ -174,9 +173,6 @@ const handleClick = (e) => {
   additionalClasses.escaping = true;
   isToastVisible.value = false;
   showToast(bug);
-  setTimeout(() => {
-    bugsFound.value[props.type] = true;
-  }, 1000);
 };
 </script>
 <style lang="postcss">
