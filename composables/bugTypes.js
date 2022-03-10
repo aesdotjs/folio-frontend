@@ -1,13 +1,14 @@
 export default {
-  red: {
-    color: "#ff0000",
+  "hero's red": {
+    color: "#D01723",
     size: 1,
     orientation: "top",
   },
-  green: {
-    color: "#00ff00",
-    size: 1,
-    orientation: "top",
+  "hero's green": {
+    color: "#393B28",
+    size: 0.7,
+    orientation: "side",
+    rotate: "12deg",
   },
   blue: {
     color: "#0000ff",

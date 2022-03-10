@@ -5,8 +5,9 @@
       <Hero />
       <div class="min-h-screen bg-aeswhite" data-scroll-section>
         <div class="flex flex-wrap">
-          <Bug type="red"/>
-          <Bug type="blue"/>
+          <Bug type="red1"/>
+          <Bug type="blue1"/>
+          <Bug type="green1"/>
         </div>
       </div>
     </SmoothScroll>

@@ -10,9 +10,11 @@ export default function (el, onScroll = false) {
         multiplier: 0.8,
         mobile: {
           breakpoint: 0,
+          smooth: true,
         },
         tablet: {
           breakpoint: 0,
+          smooth: true,
         },
       });
       if(onScroll) scroll.value.on("scroll", onScroll)

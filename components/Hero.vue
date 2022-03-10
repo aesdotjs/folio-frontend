@@ -10,6 +10,12 @@
     <div class="clouds" data-scroll data-scroll-speed="-7"></div>
     <div class="pl3" data-scroll data-scroll-speed="-6"></div>
     <div class="pl2" data-scroll data-scroll-speed="-4"></div>
+    <div class="absolute bug-green" data-scroll data-scroll-speed="-4">
+      <Bug type="hero's green"/>
+    </div>
+    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2" data-scroll data-scroll-speed="2">
+      <Bug type="hero's red"/>
+    </div>
     <SnowGL
       :count="4000"
       :size="1"
@@ -23,7 +29,7 @@
         max: -0.1,
         easing: 0.005,
       }"
-      class="absolute inset-0 w-full h-full"
+      class="absolute inset-0 w-full h-full pointer-events-none"
       data-scroll
       data-scroll-speed="-2"
     ></SnowGL>
@@ -56,6 +62,10 @@ const updateLoco = function () {
 <style lang="postcss" scoped>
 .position-bottom {
   object-position: bottom;
+}
+.bug-green {
+  bottom: 65px;
+  left: calc(50% - 14px);
 }
 .bg-hero {
   background: linear-gradient(
@@ -95,6 +105,7 @@ const updateLoco = function () {
   background-size: cover;
   background-position: center bottom;
   background-repeat: no-repeat;
+  pointer-events: none;
 }
 
 .mtn {
