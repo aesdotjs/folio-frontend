@@ -1,7 +1,7 @@
 <template>
   <ClientOnly>
     <svg
-      v-if="bug.orientation === 'top'"
+      v-if="bug.orientation === 'top' && show"
       :width="bug.size * 38.7"
       :height="bug.size * 50"
       class="bug top"
@@ -16,7 +16,6 @@
         })`,
       }"
       @click="handleClick"
-      v-show="!bugsFound[type]"
     >
       <path
         d="M385.604 285.242C385.604 362.563 364.074 416.108 329.341 450.324C294.605 484.543 246.596 499.5 193.5 499.5C140.409 499.5 92.3984 483.922 57.6607 449.389C22.9251 414.859 1.39575 361.312 1.39575 285.242C1.39575 215.589 31.1947 153.712 77.3312 114.584C87.756 108.522 96.918 101.853 105.707 95.2701C106.967 94.3266 108.219 93.385 109.465 92.4473C116.934 86.8303 124.217 81.3524 131.901 76.4284C149.811 64.9517 169.875 56.4999 199.323 56.4999C228.764 56.4999 246.241 64.9467 261.394 76.4062C266.948 80.6063 272.182 85.2054 277.589 89.9556C279.579 91.7036 281.592 93.472 283.653 95.2486C291.295 101.837 299.568 108.513 309.666 114.582C355.804 153.71 385.604 215.588 385.604 285.242Z"
@@ -90,7 +89,7 @@
       </g>
     </svg>
     <svg
-      v-if="bug.orientation === 'side'"
+      v-if="bug.orientation === 'side' && show"
       :width="bug.size * 33.6"
       :height="bug.size * 20"
       class="bug side"
@@ -172,7 +171,11 @@ const handleClick = (e) => {
   if(!props.type) return;
   additionalClasses.escaping = true;
   isToastVisible.value = false;
+  bugsFound.value[props.type] = true;
   showToast(bug);
+  setTimeout(() => {
+    show.value = false;
+  }, 1000);
 };
 </script>
 <style lang="postcss">
