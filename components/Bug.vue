@@ -165,14 +165,16 @@ import bugTypes from "~/composables/bugTypes";
 const show = ref(true);
 const props = defineProps({ type: String, options: Object });
 const bug = reactive({ ...bugTypes[props.type], ...props.options, type: props.type });
-const bugsFound = reactive(useStateBugsFound());
+const bugsFound = useStateBugsFound();
+const showNavbar = useStateShowNavbar();
 const additionalClasses = reactive({ escaping : false});
 const { showToast, isToastVisible } = useBugToast();
 const handleClick = (e) => {
   if(!props.type) return;
   additionalClasses.escaping = true;
   isToastVisible.value = false;
-  bugsFound.value[props.type] = true;
+  bugsFound.value = [...bugsFound.value, bug];
+  showNavbar.value = true;
   showToast(bug);
   setTimeout(() => {
     show.value = false;

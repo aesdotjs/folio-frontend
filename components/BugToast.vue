@@ -80,18 +80,18 @@
           </g>
         </svg>
       </div>
-      <div class="toast-text mt-4 px-6 text-center text-5xl font-bold text-white">
+      <div class="toast-text mt-4 px-6 text-center text-4xl lg:text-5xl font-bold text-white">
         You have found the
         <div
           class="hero glitch layers"
-          :data-text="bug.type"
+          :data-text="`${bug.type} bug`"
           :style="{
             color: shadedColor,
             'text-shadow': `0 0 10px ${bug.color}`,
           }">
-          <span>{{ bug.type }}</span>
+          <span>{{ bug.type }} bug </span>
         </div>
-        bug !
+        !
       </div>
     </div>
   </Transition>

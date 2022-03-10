@@ -27,6 +27,7 @@
           />
         </nuxt-link>
       </div>
+      <NavBugs class="flex flex-wrap flex-1 mx-6"/>
       <div class="ml-auto lg:hidden">
         <NavToggle />
       </div>
@@ -54,7 +55,7 @@ import CollapseTransition from "@ivanv/vue-collapse-transition/src/CollapseTrans
 import { onClickOutside } from '@vueuse/core';
 const getMedia = getStrapiMedia;
 const props = defineProps({ global: Object});
-const showNavbar = ref(true);
+const showNavbar = useStateShowNavbar();
 const lastScrollPosition = ref(0);
 const realScrollPosition = ref(0);
 const scrollY = useStateScrollY();
