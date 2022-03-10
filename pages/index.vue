@@ -5,28 +5,12 @@
       <Hero />
       <div class="min-h-screen bg-aeswhite" data-scroll-section>
         <div class="flex flex-wrap">
-          <Bug 
-            v-for="id in [...Array(50).keys()]" 
-            :key="id"
-            :options="{
-              color: `rgb(${Math.random() * 254 + 1},${Math.random() * 254 + 1},${Math.random() * 254 + 1})`,
-              size: Math.random() * 3 + 2,
-              orientation: 'top',
-              rotate: `${Math.random() * 360 }deg`,
-            }"
-          />
-          <Bug 
-            v-for="id in [...Array(50).keys()]"
-            :key="id"
-            :options="{
-              color: `rgb(${Math.random() * 254 + 1},${Math.random() * 254 + 1},${Math.random() * 254 + 1})`,
-              size: Math.random() * 3 + 4,
-              orientation: 'side',
-            }"
-          />
+          <Bug type="red"/>
+          <Bug type="blue"/>
         </div>
       </div>
     </SmoothScroll>
+    <BugToast />
   </div>
 </template>
 

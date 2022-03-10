@@ -5,6 +5,7 @@
       :width="bug.size * 38.7"
       :height="bug.size * 50"
       class="bug top"
+      :class="additionalClasses"
       viewBox="0 0 387 500"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -14,6 +15,8 @@
           bug.rotate || 0
         })`,
       }"
+      @click="handleClick"
+      v-show="!bugsFound[type]"
     >
       <path
         d="M385.604 285.242C385.604 362.563 364.074 416.108 329.341 450.324C294.605 484.543 246.596 499.5 193.5 499.5C140.409 499.5 92.3984 483.922 57.6607 449.389C22.9251 414.859 1.39575 361.312 1.39575 285.242C1.39575 215.589 31.1947 153.712 77.3312 114.584C87.756 108.522 96.918 101.853 105.707 95.2701C106.967 94.3266 108.219 93.385 109.465 92.4473C116.934 86.8303 124.217 81.3524 131.901 76.4284C149.811 64.9517 169.875 56.4999 199.323 56.4999C228.764 56.4999 246.241 64.9467 261.394 76.4062C266.948 80.6063 272.182 85.2054 277.589 89.9556C279.579 91.7036 281.592 93.472 283.653 95.2486C291.295 101.837 299.568 108.513 309.666 114.582C355.804 153.71 385.604 215.588 385.604 285.242Z"
@@ -91,6 +94,7 @@
       :width="bug.size * 33.6"
       :height="bug.size * 20"
       class="bug side"
+      :class="additionalClasses"
       viewBox="0 0 336 200"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -100,6 +104,8 @@
           bug.rotate
         })`,
       }"
+      @click="handleClick"
+      v-show="!bugsFound[type]"
     >
       <path
         :style="{ 'animation-duration': `${Math.random() * 10 + 10}s` }"
@@ -157,25 +163,27 @@
   </ClientOnly>
 </template>
 <script setup>
-const bugType = {
-  red: {
-    color: "#f00",
-    size: 1,
-    orientation: "top",
-  },
-  blue: {
-    color: "#0f0",
-    size: 1,
-    orientation: "side",
-  },
-};
+import bugTypes from "~/composables/bugTypes";
 const props = defineProps({ type: String, options: Object });
-const bug = reactive({ ...bugType[props.type], ...props.options });
+const bug = reactive({ ...bugTypes[props.type], ...props.options, type: props.type });
+const bugsFound = reactive(useStateBugsFound());
+const additionalClasses = reactive({ escaping : false});
+const { showToast, isToastVisible } = useBugToast();
+const handleClick = (e) => {
+  if(!props.type) return;
+  additionalClasses.escaping = true;
+  isToastVisible.value = false;
+  showToast(bug);
+  setTimeout(() => {
+    bugsFound.value[props.type] = true;
+  }, 1000);
+};
 </script>
 <style lang="postcss">
 .bug {
   overflow: visible;
   cursor: pointer;
+  transition: all 1s ease-out;
 }
 .bug .eye {
   transition: fill 50ms;
@@ -184,19 +192,33 @@ const bug = reactive({ ...bugType[props.type], ...props.options });
 .bug.top .right-wing {
   transform-origin: top center;
 }
-.bug.top:hover .left-wing {
+.bug.top:hover .left-wing,
+.bug.top.escaping .left-wing,
+.bug.top.angry .left-wing {
   animation: flap-lwing 30ms infinite;
 }
-.bug.top:hover .right-wing {
+.bug.top.escaping {
+  transform: translateY(-500px)!important;
+  opacity: 0;
+}
+.bug.side.escaping {
+  transform: translateX(-500px);
+  opacity: 0;
+}
+.bug.top:hover .right-wing,
+.bug.top.escaping .right-wing,
+.bug.top.angry .right-wing {
   animation: flap-rwing 30ms infinite;
 }
 .bug.side .wing {
   transform-origin: center left;
 }
-.bug.side:hover .wing {
+.bug.side:hover .wing,
+.bug.side.escaping .wing {
   animation: flap-rwing 30ms infinite;
 }
-.bug:hover .eye {
+.bug:hover .eye,
+.bug.angry .eye {
   fill: #ff0000;
 }
 
@@ -213,6 +235,9 @@ const bug = reactive({ ...bugType[props.type], ...props.options });
 }
 .bug:hover .stroke {
   animation-duration: 0.5s!important;
+}
+.bug.escaping .stroke {
+  opacity: 0;
 }
 @keyframes periodicscale {
   0% {

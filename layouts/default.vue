@@ -3,6 +3,7 @@
     <NavBar :global="global" />
     <slot />
     <Footer :global="global" />
+    <BugSvg />
   </div>
 </template>
 <style lang="postcss">
