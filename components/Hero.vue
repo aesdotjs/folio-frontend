@@ -11,10 +11,14 @@
     <div class="pl3" data-scroll data-scroll-speed="-6"></div>
     <div class="pl2" data-scroll data-scroll-speed="-4"></div>
     <div class="absolute bug-green" data-scroll data-scroll-speed="-4">
-      <Bug type="hero's green"/>
+      <Bug type="hero's green" />
     </div>
-    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2" data-scroll data-scroll-speed="2">
-      <Bug type="hero's red"/>
+    <div
+      class="absolute bottom-0 left-1/2 transform -translate-x-1/2"
+      data-scroll
+      data-scroll-speed="2"
+    >
+      <Bug type="hero's red" />
     </div>
     <SnowGL
       :count="4000"
@@ -34,15 +38,40 @@
       data-scroll-speed="-2"
     ></SnowGL>
     <div class="pl1"></div>
+    <div class="hero-content">
+      <h1>
+        <span ref="shuffle1">{{ heroSection.title }}</span>
+        <span ref="shuffle2" class="text-aesorange hidden">{{ heroSection.title2 }}</span>
+      </h1>
+      <h2 ref="shuffle3" class="text-xl sm:text-3xl lg:text-5xl hidden">
+        {{ heroSection.subTitle }}
+      </h2>
+      <div class="mt-4 flex flex-row text-2xl sm:text-3xl lg:text-4xl">
+        <StrapiLink
+          v-for="(route, i) in heroSection.routes"
+          :route="route"
+          class="btn-hero"
+          :class="{ 'opacity-0': !showBtns }"
+          :style="{'transition-delay' : 1 + i * 500 + 'ms'}"
+        />
+      </div>
+    </div>
   </section>
 </template>
 
 <script setup>
+import shuffleLetters from "shuffle-letters/dist/shuffle-letters.esm";
 import clouds from "~/assets/img/clouds.png";
 import mountain from "~/assets/img/mountain.svg";
 import parallax1 from "~/assets/img/parallax1.svg";
 import parallax2 from "~/assets/img/parallax2.svg";
 import parallax3 from "~/assets/img/parallax3.svg";
+const props = defineProps({ heroSection: Object });
+const shuffle1 = ref(null);
+const shuffle2 = ref(null);
+const shuffle3 = ref(null);
+const showBtns = ref(false);
+console.log(props.heroSection);
 const { $bus } = useNuxtApp();
 onMounted(() => {
   const preload = [clouds, mountain, parallax1, parallax2, parallax3];
@@ -53,6 +82,21 @@ onMounted(() => {
     };
     img.src = el;
   });
+  shuffleLetters(shuffle1.value, {
+    onComplete: () => {
+      shuffle2.value.classList.remove("hidden");
+      shuffleLetters(shuffle2.value, {
+        onComplete: () => {
+          shuffle3.value.classList.remove("hidden");
+          shuffleLetters(shuffle3.value, {
+            onComplete: () => {
+              showBtns.value = true;
+            },
+          });
+        },
+      });
+    },
+  });
 });
 const updateLoco = function () {
   $bus.$emit("update-locomotive");
@@ -60,6 +104,16 @@ const updateLoco = function () {
 </script>
 
 <style lang="postcss" scoped>
+.hero-content {
+  @apply absolute inset-0 container mx-auto flex flex-col mt-40 px-4 text-4xl lg:text-6xl font-mono text-white;
+  text-shadow: 0 0 3px black;
+}
+.btn-hero {
+  @apply px-4 transition-all hover:text-aesorange border-2 hover:border-aesorange ml-4;
+}
+.btn-hero:first-child {
+  margin-left: 0;
+}
 .position-bottom {
   object-position: bottom;
 }

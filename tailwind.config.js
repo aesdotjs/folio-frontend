@@ -3,6 +3,7 @@ module.exports = {
   theme: {
     fontFamily: {
       georama: ["Georama"],
+      mono: ["monoVT"],
     },
     extend: {
       colors: {
@@ -11,7 +12,8 @@ module.exports = {
         aesblue: "#200E4F",
         aespurple1: "#500366",
         aespurple2: "#820066",
-        aesorange:  "#DC3C00",
+        // aesorange:  "#DC3C00",
+        aesorange:  "#ff5e21",
       },
     },
   },

@@ -2,14 +2,8 @@
   <div>
     <SmoothScroll>
       <div id="sticky-nav-target"></div>
-      <Hero />
-      <div class="min-h-screen bg-aeswhite" data-scroll-section>
-        <div class="flex flex-wrap">
-          <Bug type="red1"/>
-          <Bug type="blue1"/>
-          <Bug type="green1"/>
-        </div>
-      </div>
+      <Hero :hero-section="homepage.heroSection"/>
+      <About />
     </SmoothScroll>
     <BugToast />
   </div>

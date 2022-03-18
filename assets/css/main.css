@@ -1,4 +1,8 @@
 @font-face {
+  font-family: "monoVT";
+  src: url('~/assets/font/VT323-Regular.ttf') format('truetype');
+}
+@font-face {
   font-family: "Georama";
   src: url('~/assets/font/Georama/Georama-Regular.ttf') format('woff2');
 }
