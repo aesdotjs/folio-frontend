@@ -52,7 +52,6 @@
           :route="route"
           class="btn-hero"
           :class="{ 'opacity-0': !showBtns }"
-          :style="{'transition-delay' : 1 + i * 500 + 'ms'}"
         />
       </div>
     </div>
@@ -105,7 +104,7 @@ const updateLoco = function () {
 
 <style lang="postcss" scoped>
 .hero-content {
-  @apply absolute inset-0 container mx-auto flex flex-col mt-40 px-4 text-4xl lg:text-6xl font-mono text-white;
+  @apply absolute top-0 container mx-auto flex flex-col mt-40 px-4 text-4xl lg:text-6xl font-mono text-white;
   text-shadow: 0 0 3px black;
 }
 .btn-hero {
