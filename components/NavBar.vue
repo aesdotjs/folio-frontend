@@ -9,7 +9,7 @@
     }"
   >
     <div
-      class="container flex flex-wrap items-center w-full p-4 mx-auto text-aeswhite"
+      class="container flex flex-wrap items-center w-full p-4 mx-auto text-aeswhite font-retro"
     >
       <div class="-ml-1">
         <nuxt-link
@@ -19,8 +19,8 @@
           @click.native="toggleMenu = false"
         >
           <img
-            v-if="global.siteIcon"
-            :src="getMedia(global.siteIcon.data.attributes.url)"
+            v-if="site.siteIcon"
+            :src="site.siteIcon.filename"
             alt="Bluresca Logo"
             width="70"
             height="81"
@@ -34,10 +34,10 @@
       <div
         class="flex-grow w-full overflow-hidden text-lg lg:items-center lg:w-auto lg:block lg:p-0"
       >
-        <NavContent class="hidden lg:flex" />
+        <NavContent class="hidden lg:flex" :routes="routes"/>
         <ClientOnly>
           <CollapseTransition>
-            <NavContent v-show="toggleMenu" class="lg:hidden" />
+            <NavContent v-show="toggleMenu" class="lg:hidden" :routes="routes"/>
           </CollapseTransition>
         </ClientOnly>
       </div>
@@ -53,8 +53,7 @@
 <script setup>
 import CollapseTransition from "@ivanv/vue-collapse-transition/src/CollapseTransition.vue";
 import { onClickOutside } from '@vueuse/core';
-const getMedia = getStrapiMedia;
-const props = defineProps({ global: Object});
+const props = defineProps({ site: Object, routes: Array });
 const showNavbar = useStateShowNavbar();
 const lastScrollPosition = ref(0);
 const realScrollPosition = ref(0);

@@ -1,93 +1,29 @@
 <template>
   <ul
-    class="flex flex-col items-end justify-end p-4 text-lg font-thin list-reset lg:flex-row lg:items-center"
+    class="flex flex-col items-end justify-end p-4 text-lg list-reset lg:flex-row lg:items-center"
   >
     <li
+      v-for="route in routes"
       class="lg:mr-3"
       :class="{
         active: isActive('hero'),
       }"
     >
-      <nuxt-link
-        :to="{ name: 'index', hash: '#hero' }"
-        class="inline-block py-2 mx-4 transition-colors"
-        data-cursor-hover
-        @click.native="handleToggleMenu()"
-      >
-        Home
-      </nuxt-link>
-    </li>
-    <li
-      class="lg:mr-3"
-      :class="{
-        active: isActive('about'),
-      }"
-    >
-      <nuxt-link
-        :to="{ name: 'index', hash: '#about' }"
+      <StoryLink
+        :route="route"
         class="inline-block py-2 mx-4 transition-all"
         data-cursor-hover
         @click.native="handleToggleMenu()"
-      >
-        About
-      </nuxt-link>
-    </li>
-    <li
-      class="lg:mr-3"
-      :class="{
-        active: isActive('services'),
-      }"
-    >
-      <nuxt-link
-        :to="{ name: 'index', hash: '#services' }"
-        class="inline-block py-2 mx-4 transition-all"
-        data-cursor-hover
-        @click.native="handleToggleMenu()"
-      >
-        Services
-      </nuxt-link>
-    </li>
-    <li
-      class="lg:mr-3"
-      :class="{
-        active: isActive('models'),
-      }"
-    >
-      <nuxt-link
-        :to="{ name: 'index', hash: '#models' }"
-        class="inline-block py-2 mx-4 transition-all"
-        data-cursor-hover
-        @click.native="handleToggleMenu()"
-      >
-        Models
-      </nuxt-link>
-    </li>
-    <li
-      class="lg:mr-3"
-      :class="{
-        active: isActive('contact'),
-      }"
-    >
-      <nuxt-link
-        :to="{ name: 'index', hash: '#contact' }"
-        class="inline-block py-2 mx-4 transition-all"
-        data-cursor-hover
-        @click.native="handleToggleMenu()"
-      >
-        Contact
-      </nuxt-link>
+      />
     </li>
   </ul>
 </template>
 <style lang="postcss" scoped>
 li a {
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: transparent;
   position: relative;
   color: var(--color-aeswhite);
 }
 li:hover a {
-  -webkit-text-stroke-color: var(--color-aesorange);
   color: var(--color-aesorange);
 }
 li a::after {
@@ -111,6 +47,7 @@ li:hover a::after {
 }
 </style>
 <script setup>
+const props = defineProps({ routes: Array });
 const toggleMenu = useStateToggleMenu();
 const sectionInViewport = useStateSectionInViewport();
 const route = useRoute();

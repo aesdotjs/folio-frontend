@@ -10,9 +10,9 @@
           data-cursor-hover
         >
           <img
-            v-if="global.siteIcon"
-            :src="getMedia(global.siteIcon.data.attributes.url)"
-            alt="Bluresca's Logo"
+            v-if="global.site.siteIcon"
+            :src="global.site.siteIcon.filename"
+            alt="aes's Logo"
             width="50"
             height="58"
           />
@@ -24,22 +24,22 @@
           >
             <li
               v-for="link in global.socials"
-              :key="link.data.attributes.url"
+              :key="link._uid"
               class="w-1/2 sm:w-auto p-1"
             >
               <a
-                v-if="link.data.attributes.icon"
-                :href="link.data.attributes.url"
+                :href="link.url"
                 target="_blank"
                 class="w-full flex flex-wrap items-center justify-center px-4 py-1 sm:ml-3 text-sm transition-colors border rounded-full sm:w-auto border-bwhite hover:text-bred hover:bg-bwhite"
                 data-cursor-hover
               >
-                <div
-                  v-if="link.data.attributes.icon"
+                <img
+                  v-if="link.icon[0]"
+                  :src="link.icon[0].content.icon.filename"
+                  :alt="link.alt"
                   class="w-3 h-3 mr-2"
-                  v-html="link.data.attributes.icon.svgIcon"
-                ></div>
-                <span>{{ link.data.attributes.icon.name }}</span>
+                />
+                <span>{{ link.icon ? link.icon[0].content.name : link.url}}</span>
               </a>
             </li>
           </ul>
@@ -49,6 +49,5 @@
   </footer>
 </template>
 <script setup>
-const props = defineProps({global: Object});
-const getMedia = getStrapiMedia;
+const props = defineProps({ global: Object });
 </script>

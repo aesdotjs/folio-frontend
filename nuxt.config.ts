@@ -2,34 +2,13 @@ import { defineNuxtConfig } from 'nuxt3';
 import svgLoader from "vite-svg-loader";
 const strapiBaseUri = process.env.API_URL || "http://localhost:1337";
 const baseUrl = process.env.BASE_URL || "http://localhost:3000";
-
+const storyBlokToken = process.env.STORYBLOK_TOKEN || "eoi2cPdx8FrnWRRqRFaeTwtt";
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
   css: ["@/assets/css/main.css"],
   components: true,
-  modules: [ 
-    ['@nuxtjs/strapi',
-    {
-      url: strapiBaseUri,
-      entities: [
-        {
-          name: "models",
-          type: "collection",
-        },
-        {
-          name: "homepage",
-          type: "single",
-        },
-        {
-          name: "global",
-          type: "single",
-        },
-        {
-          name: "modelspage",
-          type: "single",
-        },
-      ],
-    }],
+  modules: [
+    ["@storyblok/nuxt", { accessToken: storyBlokToken, cacheProvider: "memory" }],
     '@vueuse/nuxt',
     '@nuxtjs/tailwindcss',
     ["@nuxtjs/pwa",
@@ -65,6 +44,7 @@ export default defineNuxtConfig({
   publicRuntimeConfig: {
     strapiBaseUri,
     baseUrl,
+    storyBlokToken,
   },
   vite: {
     plugins: [svgLoader()],
@@ -73,11 +53,6 @@ export default defineNuxtConfig({
     ssrHandlers: true,
   },
   build: {
-    postcss: {
-      plugins: {
-        tailwindcss: {},
-        autoprefixer: {},
-      },
-    },
+    transpile: ['#app'],
   },
 });

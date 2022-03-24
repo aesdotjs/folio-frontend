@@ -1,4 +1,3 @@
-import getStrapiMedia from "./getStrapiMedia";
 function removeHttp(url) {
   return url.replace(/^https?:\/\//, "");
 }
@@ -40,7 +39,7 @@ export default function(seo, path = "") {
     );
   }
   if (seo.shareImage) {
-    const imageUrl = getStrapiMedia(seo.shareImage.data.attributes.url);
+    const imageUrl = seo.shareImage.filename;
     tags.push(
       {
         hid: "image",

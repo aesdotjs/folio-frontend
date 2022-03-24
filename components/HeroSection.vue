@@ -38,21 +38,23 @@
       data-scroll-speed="-2"
     ></SnowGL>
     <div class="pl1"></div>
-    <div class="hero-content">
-      <h1>
-        <span ref="shuffle1">{{ heroSection.title }}</span>
-        <span ref="shuffle2" class="text-aesorange hidden">{{ heroSection.title2 }}</span>
-      </h1>
-      <h2 ref="shuffle3" class="text-xl sm:text-3xl lg:text-5xl hidden">
-        {{ heroSection.subTitle }}
-      </h2>
-      <div class="mt-4 flex flex-row text-2xl sm:text-3xl lg:text-4xl">
-        <StrapiLink
-          v-for="(route, i) in heroSection.routes"
-          :route="route"
-          class="btn-hero"
-          :class="{ 'opacity-0': !showBtns }"
-        />
+    <div class="absolute top-0 w-full">
+      <div class="hero-content">
+        <h1>
+          <span ref="shuffle1">{{ blok.title }}</span>
+          <span ref="shuffle2" class="text-aesorange whitespace-nowrap hidden">{{ blok.title2 }}</span>
+        </h1>
+        <h2 ref="shuffle3" class="text-base sm:text-xl lg:text-3xl hidden">
+          {{ blok.subTitle }}
+        </h2>
+        <div class="mt-4 flex flex-row text-sm sm:text-xl lg:text-2xl">
+          <StoryLink
+            v-for="(route, i) in blok.routes"
+            :route="route"
+            class="btn-hero"
+            :class="{ 'opacity-0': !showBtns }"
+          />
+        </div>
       </div>
     </div>
   </section>
@@ -65,12 +67,16 @@ import mountain from "~/assets/img/mountain.svg";
 import parallax1 from "~/assets/img/parallax1.svg";
 import parallax2 from "~/assets/img/parallax2.svg";
 import parallax3 from "~/assets/img/parallax3.svg";
-const props = defineProps({ heroSection: Object });
+const props = defineProps({
+  blok: {
+    type: Object,
+    required: true,
+  },
+})
 const shuffle1 = ref(null);
 const shuffle2 = ref(null);
 const shuffle3 = ref(null);
 const showBtns = ref(false);
-console.log(props.heroSection);
 const { $bus } = useNuxtApp();
 onMounted(() => {
   const preload = [clouds, mountain, parallax1, parallax2, parallax3];
@@ -104,11 +110,11 @@ const updateLoco = function () {
 
 <style lang="postcss" scoped>
 .hero-content {
-  @apply absolute top-0 container mx-auto flex flex-col mt-40 px-4 text-4xl lg:text-6xl font-mono text-white;
+  @apply container mx-auto flex flex-col mt-40 px-4 text-2xl lg:text-4xl font-retro text-white;
   text-shadow: 0 0 3px black;
 }
 .btn-hero {
-  @apply px-4 transition-all hover:text-aesorange border-2 hover:border-aesorange ml-4;
+  @apply px-4 py-2 transition-all hover:text-aesorange border-2 hover:border-aesorange ml-4;
 }
 .btn-hero:first-child {
   margin-left: 0;

@@ -2,17 +2,24 @@
   <div>
     <SmoothScroll>
       <div id="sticky-nav-target"></div>
-      <Hero :hero-section="homepage.heroSection"/>
-      <About />
+      <component
+        :is="home.story.content.component"
+        :key="home.story.content._uid"
+        :blok="home.story.content"
+      />
     </SmoothScroll>
     <BugToast />
   </div>
 </template>
 
 <script setup lang="ts">
-const { data: globalData } = await useGetGlobal();
-const global = globalData.value.data.attributes;
-const { data: homepageData } = await useGetHomePage();
-const homepage = homepageData.value.data.attributes;
-useSEO(global, homepage);
+const { layout } = await useGetLayout();
+const { home } = await useGetHomePage();
+onMounted(() => {
+  useStoryBridge(home.story.id, event => {
+    home.story = event
+  })
+});
+const pageSEO = home.story.content.body.find(i => i.component === "SEO");
+useSEO(layout.story.content, pageSEO);
 </script>

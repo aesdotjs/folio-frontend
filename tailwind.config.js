@@ -4,6 +4,7 @@ module.exports = {
     fontFamily: {
       georama: ["Georama"],
       mono: ["monoVT"],
+      retro: ["retro"],
     },
     extend: {
       colors: {

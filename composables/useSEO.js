@@ -1,18 +1,17 @@
-import getStrapiMedia from "./getStrapiMedia";
-export default function (global, page) {
-  const { seo } = page;
-  const { defaultSeo, favIcon, siteName } = global;
-  const fullSeo = {
-    ...defaultSeo,
-    ...seo
+export default function (layout, SEO) {
+  const { favIcon, siteName } = layout.site[0];
+  const { defaultSEO } = layout;
+  const fullSEO = {
+    ...defaultSEO[0],
+    ...SEO
   };
   return useMeta({
-    title: `${fullSeo.metaTitle} | ${siteName}`,
-    meta: getMetaTags(fullSeo),
+    title: `${fullSEO.metaTitle} | ${siteName}`,
+    meta: getMetaTags(fullSEO),
     link: [
       {
         rel: "favicon",
-        href: getStrapiMedia(favIcon.data.attributes.url),
+        href: favIcon.filename,
       },
     ],
   });

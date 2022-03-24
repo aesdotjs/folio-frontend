@@ -80,7 +80,7 @@
           </g>
         </svg>
       </div>
-      <div class="toast-text mt-4 px-6 text-center text-4xl lg:text-5xl font-mono text-white">
+      <div class="toast-text mt-4 px-6 text-center text-2xl lg:text-3xl font-retro text-white">
         You have found the
         <div
           class="hero glitch layers"

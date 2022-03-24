@@ -1,8 +1,8 @@
 <template>
   <div class="w-full bg-aeswhite">
-    <NavBar :global="global" />
+    <NavBar :site="layout.story.content.site[0]" :routes="layout.story.content.routes"/>
     <slot />
-    <Footer :global="global" />
+    <Footer :global="layout.story.content" />
     <div class="hidden">
       <BugSvg />
     </div>
@@ -21,6 +21,8 @@
 </style>
 
 <script setup>
-const { data: globalData } = await useGetGlobal();
-const global = globalData.value.data.attributes;
+const { layout } = await useGetLayout();
+onMounted(() => {
+  useStoryBridge(layout.story.id, story => (layout.story = story));
+});
 </script>
