@@ -62,11 +62,11 @@
 
 <script setup>
 import shuffleLetters from "shuffle-letters/dist/shuffle-letters.esm";
-import clouds from "~/assets/img/clouds.png";
-import mountain from "~/assets/img/mountain.svg";
-import parallax1 from "~/assets/img/parallax1.svg";
-import parallax2 from "~/assets/img/parallax2.svg";
-import parallax3 from "~/assets/img/parallax3.svg";
+// import clouds from "~/assets/img/clouds.png";
+// import mountain from "~/assets/img/mountain.svg";
+// import parallax1 from "~/assets/img/parallax1.svg";
+// import parallax2 from "~/assets/img/parallax2.svg";
+// import parallax3 from "~/assets/img/parallax3.svg";
 const props = defineProps({
   blok: {
     type: Object,
@@ -79,14 +79,15 @@ const shuffle3 = ref(null);
 const showBtns = ref(false);
 const { $bus } = useNuxtApp();
 onMounted(() => {
-  const preload = [clouds, mountain, parallax1, parallax2, parallax3];
-  preload.forEach((el) => {
-    let img = new Image();
-    img.onload = function () {
-      updateLoco();
-    };
-    img.src = el;
-  });
+  // const preload = [clouds, mountain, parallax1, parallax2, parallax3];
+  // preload.forEach((el) => {
+  //   let img = new Image();
+  //   img.onload = function () {
+  //     updateLoco();
+  //   };
+  //   img.src = el;
+  // });
+  updateLoco();
   shuffleLetters(shuffle1.value, {
     onComplete: () => {
       shuffle2.value.classList.remove("hidden");
