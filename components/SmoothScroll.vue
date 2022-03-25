@@ -7,7 +7,8 @@
 import "locomotive-scroll/dist/locomotive-scroll.css";
 const target = ref(null);
 const scrollY = useStateScrollY();
-const scroll = useLocomotive(target, (args) => {
+const { initLocomotive } = useLocomotive();
+const scroll = initLocomotive(target, (args) => {
   scrollY.value = args.scroll.y;
   // const {currentElements} = args;
   // for (const elemName in currentElements){

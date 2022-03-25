@@ -1,5 +1,5 @@
 <template>
-  <div ref="holder">
+  <div>
     <canvas ref="canvas"></canvas>
   </div>
 </template>
@@ -18,7 +18,6 @@ canvas {
 </style>
 <script setup>
 import * as twgl from "twgl.js/dist/4.x/twgl-full.js";
-const holder = ref(null);
 const canvas = ref(null);
 const vertex = `
 attribute vec4 position;

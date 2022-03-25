@@ -1,7 +1,8 @@
-export default function (el, onScroll = false) {
-  const scroll = shallowReactive({});
+const scroll = shallowReactive({});
+function initLocomotive(el, onScroll = false) {
   const nuxtApp = useNuxtApp();
   onMounted(() => {
+    console.log("instantiating");
     nextTick(() => {
       scroll.value = new nuxtApp.$locomotiveScroll({
         el: el.value,
@@ -24,4 +25,10 @@ export default function (el, onScroll = false) {
     scroll.value.destroy();
   });
   return scroll;
+}
+export default function () {
+  return {
+    scroll,
+    initLocomotive
+  }; 
 }
