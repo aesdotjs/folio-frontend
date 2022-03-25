@@ -9,14 +9,14 @@ function initLocomotive(el, onScroll = false) {
         smooth: true,
         getDirection: true,
         multiplier: 0.8,
-        mobile: {
-          breakpoint: 0,
-          smooth: true,
-        },
-        tablet: {
-          breakpoint: 0,
-          smooth: true,
-        },
+        // mobile: {
+        //   breakpoint: 0,
+        //   smooth: true,
+        // },
+        // tablet: {
+        //   breakpoint: 0,
+        //   smooth: true,
+        // },
       });
       if(onScroll) scroll.value.on("scroll", onScroll)
     });    
