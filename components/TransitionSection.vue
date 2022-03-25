@@ -1,8 +1,8 @@
 <template>
   <section 
-    class="w-full bg-aesblue"
+    class="w-full"
     data-scroll-section>
-    <canvas ref="canvas" data-scroll data-scroll-id="transitionSection" data-scroll-offset="25%"></canvas>
+    <canvas ref="canvas" data-scroll :data-scroll-id="`${props.blok._uid}`" data-scroll-offset="100"></canvas>
   </section>
 </template>
 <style scoped>
@@ -44,18 +44,20 @@ const fragment = `
   uniform vec3 endColor;
   uniform float progress;
   uniform float insetSquare;
+  uniform float rotate;
+  uniform float squareQty;
   void main()
   {
     float aspect = resolution.y/resolution.x;
     float value;
     vec2 uv = gl_FragCoord.xy / resolution.x;
     vec2 uv2 = uv - vec2(0.5, 0.5*aspect);
-    float rot = radians(60.0 * progress); 
+    float rot = radians(rotate * progress); 
     mat2 m = mat2(cos(rot), -sin(rot), sin(rot), cos(rot));
    	uv2  = m * uv2;
     uv2 += vec2(0.5, 0.5*aspect);
     uv2.y+=0.5*(1.0-aspect);
-    vec2 pos = 10.0*uv2;
+    vec2 pos = squareQty*uv2;
     vec2 rep = fract(pos);
     float dist = 2.0*min(min(rep.x, 1.0-rep.x), min(rep.y, 1.0-rep.y));
     float edge = min(max(0.0, progress)*(2.0-uv.y), 1.0);
@@ -85,6 +87,8 @@ const render = function() {
     endColor: hexToRgb(props.blok.endColor.color) || [0,0,0],
     progress: progress.value,
     insetSquare: parseFloat(props.blok.insetSquare) || 1.0,
+    squareQty: parseFloat(props.blok.squareQty) || 10.0,
+    rotate: parseFloat(props.blok.rotate) || 10.0,
   };
   gl.useProgram(programInfo.program);
   twgl.setBuffersAndAttributes(gl, programInfo, bufferInfo);
@@ -96,10 +100,11 @@ watch(progress, () => {
 });
 onMounted(() => {
   const { scroll } = useLocomotive();
+  scroll.value.update();
   scroll.value.on("scroll", (args) => {
     // Get all current elements : args.currentElements
-    if(typeof args.currentElements['transitionSection'] === 'object') {
-        progress.value = args.currentElements['transitionSection'].progress;
+    if(typeof args.currentElements[props.blok._uid] === 'object') {
+        progress.value = args.currentElements[props.blok._uid].progress;
     }
   });
   initiate();

@@ -1,7 +1,7 @@
 <template>
 <section
     id="about"
-    class="min-h-screen w-full relative py-32 bg-aesblue"
+    class="min-h-screen w-full relative py-32 bg-aeswhite"
     data-scroll-section
   >
   <!-- <h1 class="text-2xl lg:text-4xl">{{ aboutSection.title }}</h1> -->
