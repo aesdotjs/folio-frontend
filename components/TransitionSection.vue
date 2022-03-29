@@ -1,11 +1,15 @@
 <template>
   <section 
-    class="w-full"
+    class="w-full bg-aeswhite"
+    :class="blok.cssClasses"
     data-scroll-section>
-    <canvas ref="canvas" data-scroll :data-scroll-id="`${props.blok._uid}`" data-scroll-offset="100"></canvas>
+    <canvas ref="canvas" data-scroll :data-scroll-id="`${blok._uid}`" data-scroll-offset="100"></canvas>
   </section>
 </template>
 <style scoped>
+section {
+  margin-top: -1px;
+}
 canvas {
   width: 100%;
   height: 100vh;
