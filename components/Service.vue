@@ -21,17 +21,14 @@
 .service-card:before {
   content:'';
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 5px;
+  left: -5px;
   width: 100%;
   height: 100%;
   z-index: -1;
-  transition: all 250ms ease;
   @apply bg-aespurple2;
 }
-.service-card:hover:before{
-  transform: translate(-5px, 5px);
-}
+
 </style>
 
 <script setup>
