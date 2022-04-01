@@ -1,5 +1,21 @@
 <template>
   <canvas ref="heropixi" class="hero-pixi" data-scroll data-scroll-id="heropixi" data-scroll-offset="100%,-20%"/>
+  <StarGL id="starcmp" class="invisible pointer-events-none absolute w-full h-full"></StarGL>
+  <SnowGL id="snowcmp"
+    :count="4000"
+    :size="1"
+    :depth="80"
+    :gravity="30"
+    :wind="{
+      current: 0,
+      force: -0.1,
+      target: -0.05,
+      min: -0.01,
+      max: -0.1,
+      easing: 0.005,
+    }"
+    class="invisible pointer-events-none absolute w-full h-full"
+  ></SnowGL>
 </template>
 <script setup>
 import cloudsPNG from "~/assets/img/clouds.png";
@@ -24,9 +40,8 @@ const progress = ref(0);
 const { $PIXI } = useNuxtApp();
 const heropixi = ref(null);
 const pixiApp = reactive({});
-
+let starTexture, snowTexture;
 const initPixi = function () {
-  console.dir(heropixi.value);
   const width = heropixi.value.offsetWidth / props.ratio;
   const height = heropixi.value.offsetHeight / props.ratio;
   pixiApp.value = new $PIXI.Application({
@@ -44,12 +59,18 @@ const initPixi = function () {
 
     const parallaxLayerSky = new $PIXI.Container();
     const bgTex = drawDiagonalGrad(bgColors, 172.2, width, height);
-    console.log(bgTex);
     const bg =  new $PIXI.Sprite(bgTex);
     bg.width = width;
     bg.height = height;
-    console.log(bg);
     parallaxLayerSky.addChild(bg);
+    const starCanvas =  document.getElementById("starcmp").querySelector("canvas");
+    // starCanvas.width = width;
+    // starCanvas.height = height;
+    starTexture = new $PIXI.Texture.from(starCanvas);
+    const starSprite = new $PIXI.Sprite(starTexture);
+    starSprite.width = width;
+    starSprite.height = height;
+    parallaxLayerSky.addChild(starSprite);
 
     const parallaxLayerMountain = new $PIXI.Container();
     const mountain = new $PIXI.Sprite(loader.resources.mountainSVG.texture);
@@ -68,7 +89,6 @@ const initPixi = function () {
     cloudsStrip.height = (height * 4) / 5;
     cloudsStrip.tileScale.x = 1/props.ratio;
     cloudsStrip.tileScale.y = 1/props.ratio;
-    console.log(cloudsStrip);
     parallaxLayerClouds.addChild(cloudsStrip);
 
     const parallaxLayerPl3 = new $PIXI.Container();
@@ -82,6 +102,14 @@ const initPixi = function () {
     pl2.width = width;
     pl2.height = height;
     parallaxLayerPl2.addChild(pl2);
+    const snowCanvas =  document.getElementById("snowcmp").querySelector("canvas");
+    snowCanvas.style.width, snowCanvas.width = heropixi.value.offsetWidth;
+    snowCanvas.style.height, snowCanvas.height = heropixi.value.offsetHeight;
+    snowTexture = new $PIXI.Texture.from(snowCanvas);
+    const snowSprite = new $PIXI.Sprite(snowTexture);
+    snowSprite.width = width;
+    snowSprite.height = height;
+    parallaxLayerPl2.addChild(snowSprite);
 
     const parallaxLayerPl1 = new $PIXI.Container();
     const pl1 = new $PIXI.Sprite(loader.resources.parallax1SVG.texture);
@@ -134,7 +162,8 @@ const initPixi = function () {
       const scale = height/props.perspective;
       parallaxContext.setPosition((1-progress.value) * scale - scale);
       cloudsStrip.tilePosition.x = cloudsX;
-      //cloudsStrip.tilePosition.x %= cloudsStrip.width;
+      starTexture.update();
+      snowTexture.update();
     });
     loading.value = false;
   });
