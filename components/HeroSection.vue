@@ -5,9 +5,9 @@
     :class="blok.cssClasses"
     data-scroll-section
   >
-    <div class="bg-hero absolute inset-0" data-scroll data-scroll-speed="-9"></div>
+    <!-- <div class="bg-hero absolute inset-0" data-scroll data-scroll-speed="-9"></div> -->
     <StarGL class="absolute inset-0" data-scroll data-scroll-speed="-9"></StarGL>
-    <div class="mtn" data-scroll data-scroll-speed="-8"></div>
+    <!-- <div class="mtn" data-scroll data-scroll-speed="-8"></div>
     <div class="clouds" data-scroll data-scroll-speed="-7"></div>
     <div class="pl3" data-scroll data-scroll-speed="-6"></div>
     <div class="pl2" data-scroll data-scroll-speed="-4"></div>
@@ -37,8 +37,9 @@
       class="absolute inset-0 w-full h-full pointer-events-none"
       data-scroll
       data-scroll-speed="-2"
-    ></SnowGL>
-    <div class="pl1"></div>
+    ></SnowGL> -->
+    <HeroPixi :ratio="parseFloat(blok.pixelationRatio)" :perspective="parseFloat(blok.perspective)"/>
+    <!-- <div class="pl1"></div> -->
     <div class="absolute top-0 w-full">
       <div class="hero-content">
         <h1>
@@ -63,31 +64,20 @@
 
 <script setup>
 import shuffleLetters from "shuffle-letters/dist/shuffle-letters.esm";
-// import clouds from "~/assets/img/clouds.png";
-// import mountain from "~/assets/img/mountain.svg";
-// import parallax1 from "~/assets/img/parallax1.svg";
-// import parallax2 from "~/assets/img/parallax2.svg";
-// import parallax3 from "~/assets/img/parallax3.svg";
+
 const props = defineProps({
   blok: {
     type: Object,
     required: true,
   },
-})
+});
+
 const shuffle1 = ref(null);
 const shuffle2 = ref(null);
 const shuffle3 = ref(null);
 const showBtns = ref(false);
 const { $bus } = useNuxtApp();
 onMounted(() => {
-  // const preload = [clouds, mountain, parallax1, parallax2, parallax3];
-  // preload.forEach((el) => {
-  //   let img = new Image();
-  //   img.onload = function () {
-  //     updateLoco();
-  //   };
-  //   img.src = el;
-  // });
   updateLoco();
   shuffleLetters(shuffle1.value, {
     onComplete: () => {

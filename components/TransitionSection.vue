@@ -3,12 +3,12 @@
     class="w-full bg-aeswhite"
     :class="blok.cssClasses"
     data-scroll-section>
-    <canvas ref="canvas" data-scroll :data-scroll-id="`${blok._uid}`" data-scroll-offset="100"></canvas>
+    <canvas ref="canvas" data-scroll :data-scroll-id="`${blok._uid}`"></canvas>
   </section>
 </template>
 <style scoped>
 section {
-  margin-top: -1px;
+  margin-top: -10vh;
 }
 canvas {
   width: 100%;
@@ -47,6 +47,7 @@ const fragment = `
   uniform vec3 startColor;
   uniform vec3 endColor;
   uniform float progress;
+  uniform bool rotateProgress;
   uniform float insetSquare;
   uniform float rotate;
   uniform float squareQty;
@@ -56,7 +57,11 @@ const fragment = `
     float value;
     vec2 uv = gl_FragCoord.xy / resolution.x;
     vec2 uv2 = uv - vec2(0.5, 0.5*aspect);
-    float rot = radians(rotate * progress); 
+    float rot;
+    if(rotateProgress)
+      rot = radians(rotate * progress);
+    else
+      rot = radians(rotate);
     mat2 m = mat2(cos(rot), -sin(rot), sin(rot), cos(rot));
    	uv2  = m * uv2;
     uv2 += vec2(0.5, 0.5*aspect);
@@ -93,6 +98,7 @@ const render = function() {
     insetSquare: parseFloat(props.blok.insetSquare) || 1.0,
     squareQty: parseFloat(props.blok.squareQty) || 10.0,
     rotate: parseFloat(props.blok.rotate) || 10.0,
+    rotateProgress: props.blok.rotateProgress|| false,
   };
   gl.useProgram(programInfo.program);
   twgl.setBuffersAndAttributes(gl, programInfo, bufferInfo);

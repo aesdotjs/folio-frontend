@@ -8,7 +8,7 @@ function initLocomotive(el, onScroll = false) {
         el: el.value,
         smooth: true,
         getDirection: true,
-        multiplier: 0.8,
+        multiplier: 0.65,
         mobile: {
           breakpoint: 0,
           smooth: true,
