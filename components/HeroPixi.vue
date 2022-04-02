@@ -131,7 +131,7 @@ const initPixi = function () {
         { container: parallaxLayerClouds, weight: 0.3 },
         { container: parallaxLayerPl3, weight: 0.4 },
         { container: parallaxLayerPl2, weight: 0.6 },
-        { container: parallaxLayerPl1, weight: 1.0 },
+        { container: parallaxLayerPl1, weight: 0.9 },
       ],
       setPosition: function (y) {
         this.layer.forEach((layer) => {
