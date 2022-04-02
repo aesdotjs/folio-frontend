@@ -8,7 +8,6 @@
 </template>
 <style scoped>
 section {
-  margin-top: -30vh;
 }
 canvas {
   width: 100%;

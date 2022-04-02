@@ -1,6 +1,13 @@
 <template>
-  <canvas ref="heropixi" class="hero-pixi" data-scroll data-scroll-id="heropixi" data-scroll-offset="100%,-20%"/>
-  <SnowGL id="snowcmp"
+  <canvas
+    ref="heropixi"
+    class="hero-pixi"
+    data-scroll
+    data-scroll-id="heropixi"
+    data-scroll-offset="100%,-20%"
+  />
+  <SnowGL
+    id="snowcmp"
     :count="4000"
     :size="1"
     :depth="80"
@@ -35,11 +42,14 @@ const props = defineProps({
     default: 2.2,
   },
 });
-
+const gameWidth = 1920;
+const gameHeight = 1534;
 const progress = ref(0);
 const { $PIXI, $PixelateFilter } = useNuxtApp();
 const heropixi = ref(null);
 const pixiApp = reactive({});
+let starFilter;
+let pixelateFilter;
 const initPixi = function () {
   const width = heropixi.value.offsetWidth;
   const height = heropixi.value.offsetHeight;
@@ -58,7 +68,7 @@ const initPixi = function () {
 
     const parallaxLayerSky = new $PIXI.Container();
     const bgTex = drawDiagonalGrad(bgColors, 172.2, width, height);
-    const bg =  new $PIXI.Sprite(bgTex);
+    const bg = new $PIXI.Sprite(bgTex);
     bg.width = width;
     bg.height = height;
     parallaxLayerSky.addChild(bg);
@@ -66,7 +76,7 @@ const initPixi = function () {
     const starSprite = new $PIXI.Sprite();
     starSprite.width = width;
     starSprite.height = height;
-    const starFilter = new $PIXI.Filter(null, starFragment, { time: 0.0 });
+    starFilter = new $PIXI.Filter(null, starFragment, { time: 0.0 });
     starSprite.filters = [starFilter];
     parallaxLayerSky.addChild(starSprite);
 
@@ -86,7 +96,7 @@ const initPixi = function () {
     cloudsStrip.height = (height * 4) / 5;
     cloudsStrip.tileScale.x = 1;
     cloudsStrip.tileScale.y = 1;
-    cloudsStrip.tilePosition.x = -width/2;
+    cloudsStrip.tilePosition.x = -width / 2;
     parallaxLayerClouds.addChild(cloudsStrip);
 
     const parallaxLayerPl3 = new $PIXI.Container();
@@ -109,8 +119,10 @@ const initPixi = function () {
     fill.width = width;
     fill.height = height;
     fill.position.y = height;
-    fill.tint = 0xFFE3D8;
+    fill.tint = 0xffe3d8;
     parallaxLayerPl1.addChild(fill);
+
+    pixelateFilter = new $PixelateFilter(props.ratio);
 
     parallaxContainer.addChild(parallaxLayerSky);
     parallaxContainer.addChild(parallaxLayerMountain);
@@ -118,8 +130,7 @@ const initPixi = function () {
     parallaxContainer.addChild(parallaxLayerPl3);
     parallaxContainer.addChild(parallaxLayerPl2);
     parallaxContainer.addChild(parallaxLayerPl1);
-
-    parallaxContainer.filters = [new $PixelateFilter(props.ratio)];
+    parallaxContainer.filters = [pixelateFilter];
 
     pixiApp.value.stage.addChild(parallaxContainer);
     const parallaxContext = {
@@ -145,19 +156,24 @@ const initPixi = function () {
     pixiApp.value.ticker.add((elapsedTime) => {
       let deltaTime = elapsedTime / 180;
       time += deltaTime;
-      const scale = height/props.perspective;
-      parallaxContext.setPosition((1-progress.value) * scale - scale);
+      const scale = height / props.perspective;
+      parallaxContext.setPosition((1 - progress.value) * scale - scale);
       cloudsStrip.tilePosition.x -= elapsedTime * 0.2;
       starFilter.uniforms.time += elapsedTime * 0.002;
     });
     loading.value = false;
+    resizePixi();
   });
 };
 const resizePixi = function () {
-  pixiApp.value.resize(
-    heropixi.value.offsetWidth,
-    heropixi.value.offsetHeight,
-  );
+  // Determine which screen dimension is most constrained
+  const canvasWidth = heropixi.value.offsetWidth;
+  const gameRatio = (gameWidth / gameHeight);
+  const canvasRatio = (canvasWidth / heropixi.value.offsetHeight)
+  const ratio = gameRatio / canvasRatio;
+  // Scale the view appropriately to fill that dimension
+  pixiApp.value.stage.scale.x = ratio;
+  pixiApp.value.stage.position.x =  ( 1 - ratio) * canvasWidth / 2;
 };
 const bgColors = [
   {
@@ -177,13 +193,14 @@ const bgColors = [
     color: "#dc3c00",
   },
 ];
-const drawDiagonalGrad = function(colors, angDeg, w, h) {
+const drawDiagonalGrad = function (colors, angDeg, w, h) {
   const c = document.createElement("canvas");
   c.width = w;
   c.height = h;
   const ctx = c.getContext("2d");
   var cssAng = angDeg;
-  var cx = w/2, cy = h/2;
+  var cx = w / 2,
+    cy = h / 2;
   var canAng = cssAng - 90;
   var ang = (canAng - 90) * (Math.PI / 180);
   var hypt = cy / Math.cos(ang);
@@ -193,25 +210,24 @@ const drawDiagonalGrad = function(colors, angDeg, w, h) {
 
   var topX = cx + Math.cos(-Math.PI / 2 + ang) * len;
   var topY = cy + Math.sin(-Math.PI / 2 + ang) * len;
-  var botX = cx + Math.cos( Math.PI / 2 + ang) * len;
-  var botY = cy + Math.sin( Math.PI / 2 + ang) * len;
+  var botX = cx + Math.cos(Math.PI / 2 + ang) * len;
+  var botY = cy + Math.sin(Math.PI / 2 + ang) * len;
 
-  var grad = ctx.createLinearGradient(topX,topY,botX,botY);
+  var grad = ctx.createLinearGradient(topX, topY, botX, botY);
   colors.forEach((color) => {
     grad.addColorStop(color.stop, color.color);
   });
 
   ctx.fillStyle = grad;
   ctx.fillRect(0, 0, w, h);
-  return new $PIXI.Texture.from(c)
- }
+  return new $PIXI.Texture.from(c);
+};
 onMounted(() => {
   const { scroll } = useLocomotive();
-  console.log(scroll);
   scroll.value.on("scroll", (args) => {
     // Get all current elements : args.currentElements
-    if(typeof args.currentElements["heropixi"] === 'object') {
-        progress.value = args.currentElements["heropixi"].progress;
+    if (typeof args.currentElements["heropixi"] === "object") {
+      progress.value = args.currentElements["heropixi"].progress;
     }
   });
   const loader = $PIXI.Loader.shared;
@@ -220,11 +236,11 @@ onMounted(() => {
     loader.add(key, value);
   }
   initPixi();
-  heropixi.value.addEventListener("resize", resizePixi);
+  window.addEventListener("resize", resizePixi);
 });
 
 onUnmounted(() => {
-  heropixi.value.removeEventListener("resize", resizePixi);
+  window.removeEventListener("resize", resizePixi);
 });
 
 watch(
