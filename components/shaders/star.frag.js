@@ -87,9 +87,4 @@ void main()
     // Output to screen
     gl_FragColor = vec4(col,1.0);
     if(col.r + col.g + col.b < 1.) gl_FragColor.a = .0;
-    //vec4 frag = mix(texture2D(uSampler, vTextureCoord),vec4(col,1.0),0);
-    //vec4 frag = vec4(col,1.0);
-    // gl_FragColor = texture2D(uSampler, vTextureCoord) * vec4(col,1.0);
-    // if(col.r + col.g + col.b < 1.) gl_FragColor.a = .0;
-    
 }`;

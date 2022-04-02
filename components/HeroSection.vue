@@ -6,7 +6,6 @@
     data-scroll-section
   >
     <HeroPixi :ratio="parseFloat(blok.pixelationRatio)" :perspective="parseFloat(blok.perspective)"/>
-    <!-- <div class="pl1"></div> -->
     <div class="absolute top-0 w-full">
       <div class="hero-content">
         <h1>
