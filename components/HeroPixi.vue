@@ -49,7 +49,6 @@ const { $PIXI, $PixelateFilter } = useNuxtApp();
 const heropixi = ref(null);
 const pixiApp = reactive({});
 let starFilter;
-let pixelateFilter;
 const initPixi = function () {
   const width = heropixi.value.offsetWidth;
   const height = heropixi.value.offsetHeight;
@@ -122,15 +121,12 @@ const initPixi = function () {
     fill.tint = 0xffe3d8;
     parallaxLayerPl1.addChild(fill);
 
-    pixelateFilter = new $PixelateFilter(props.ratio);
-
     parallaxContainer.addChild(parallaxLayerSky);
     parallaxContainer.addChild(parallaxLayerMountain);
     parallaxContainer.addChild(parallaxLayerClouds);
     parallaxContainer.addChild(parallaxLayerPl3);
     parallaxContainer.addChild(parallaxLayerPl2);
     parallaxContainer.addChild(parallaxLayerPl1);
-    parallaxContainer.filters = [pixelateFilter];
 
     pixiApp.value.stage.addChild(parallaxContainer);
     const parallaxContext = {
@@ -174,6 +170,7 @@ const resizePixi = function () {
   // Scale the view appropriately to fill that dimension
   pixiApp.value.stage.scale.x = ratio;
   pixiApp.value.stage.position.x =  ( 1 - ratio) * canvasWidth / 2;
+  pixiApp.value.stage.filters = [new $PixelateFilter(props.ratio)];
 };
 const bgColors = [
   {
