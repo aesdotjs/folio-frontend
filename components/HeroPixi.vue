@@ -172,10 +172,7 @@ const resizePixi = function () {
   } else {
     heropixi.value.width = gameWidth / (gameHeight / windowHeight);
   }
-  // pixiApp.value.stage.scale.x = windowWidth / gameWidth;
-  // pixiApp.value.stage.scale.y = windowWidth / gameWidth;
-  const ratio = Math.min(1,heropixi.value.width/heropixi.value.height);
-  console.log(ratio*gameHeight);
+  const ratio = Math.min(1,heropixi.value.width/gameHeight);
   heropixi.value.height = ratio*gameHeight;
   pixiApp.value.stage.scale.x = pixiApp.value.stage.scale.y = ratio;
   pixiApp.value.stage.position.x = (windowWidth - heropixi.value.width )/ 2;
