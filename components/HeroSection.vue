@@ -1,7 +1,7 @@
 <template>
   <section
     id="hero"
-    class="pb-[80%] min-h-screen w-full overflow-hidden relative parallax-container"
+    class="min-h-screen overflow-hidden relative parallax-container"
     :class="blok.cssClasses"
     data-scroll-section
   >

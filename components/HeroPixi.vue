@@ -50,13 +50,13 @@ const heropixi = ref(null);
 const pixiApp = reactive({});
 let starFilter;
 const initPixi = function () {
-  const width = heropixi.value.offsetWidth;
-  const height = heropixi.value.offsetHeight;
+  const width = gameWidth;
+  const height = gameHeight;
   pixiApp.value = new $PIXI.Application({
     width: width,
     height: height,
     view: heropixi.value,
-    resolution: window.devicePixelRatio || 1,
+    resolution: 1,
     backgroundAlpha: 0,
     antialias: true,
   });
@@ -127,7 +127,7 @@ const initPixi = function () {
     parallaxContainer.addChild(parallaxLayerPl3);
     parallaxContainer.addChild(parallaxLayerPl2);
     parallaxContainer.addChild(parallaxLayerPl1);
-
+    pixiApp.value.stage.filters = [new $PixelateFilter(props.ratio)];
     pixiApp.value.stage.addChild(parallaxContainer);
     const parallaxContext = {
       container: parallaxContainer,
@@ -163,14 +163,26 @@ const initPixi = function () {
 };
 const resizePixi = function () {
   // Determine which screen dimension is most constrained
-  const canvasWidth = heropixi.value.offsetWidth;
-  const gameRatio = (gameWidth / gameHeight);
-  const canvasRatio = (canvasWidth / heropixi.value.offsetHeight)
-  const ratio = gameRatio / canvasRatio;
-  // Scale the view appropriately to fill that dimension
-  pixiApp.value.stage.scale.x = ratio;
-  pixiApp.value.stage.position.x =  ( 1 - ratio) * canvasWidth / 2;
-  pixiApp.value.stage.filters = [new $PixelateFilter(props.ratio)];
+  const windowWidth = window.innerWidth;
+  const windowHeight = window.innerHeight;
+  const imageRatio = gameWidth/gameHeight;
+  const windowRatio = windowWidth/windowHeight;
+  if(windowRatio > imageRatio){
+    heropixi.value.width = windowWidth;
+  } else {
+    heropixi.value.width = gameWidth / (gameHeight / windowHeight);
+  }
+  // pixiApp.value.stage.scale.x = windowWidth / gameWidth;
+  // pixiApp.value.stage.scale.y = windowWidth / gameWidth;
+  heropixi.value.height = gameHeight;
+  const ratio = Math.min(1,heropixi.value.width/heropixi.value.height);
+  pixiApp.value.stage.scale.x = pixiApp.value.stage.scale.y = ratio;
+  pixiApp.value.stage.position.x = (windowWidth - heropixi.value.width )/ 2;
+  if(windowWidth > gameWidth)
+  {
+    pixiApp.value.stage.width = windowWidth;
+    pixiApp.value.renderer.resize(windowWidth,gameHeight);
+  }  
 };
 const bgColors = [
   {
@@ -251,11 +263,7 @@ watch(
 
 <style lang="postcss" scoped>
 .hero-pixi {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
   image-rendering: pixelated;
+  //width: 100%;
 }
 </style>
