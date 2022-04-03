@@ -174,8 +174,9 @@ const resizePixi = function () {
   }
   // pixiApp.value.stage.scale.x = windowWidth / gameWidth;
   // pixiApp.value.stage.scale.y = windowWidth / gameWidth;
-  heropixi.value.height = gameHeight;
   const ratio = Math.min(1,heropixi.value.width/heropixi.value.height);
+  console.log(ratio*gameHeight);
+  heropixi.value.height = ratio*gameHeight;
   pixiApp.value.stage.scale.x = pixiApp.value.stage.scale.y = ratio;
   pixiApp.value.stage.position.x = (windowWidth - heropixi.value.width )/ 2;
   if(windowWidth > gameWidth)
@@ -264,6 +265,5 @@ watch(
 <style lang="postcss" scoped>
 .hero-pixi {
   image-rendering: pixelated;
-  //width: 100%;
 }
 </style>
