@@ -1,6 +1,6 @@
 <template>
   <ul
-    class="flex flex-col items-end justify-end p-4 text-lg list-reset lg:flex-row lg:items-center"
+    class="flex flex-col items-end justify-end py-4 text-lg list-reset lg:flex-row lg:items-center"
   >
     <li
       v-for="route in routes"
@@ -15,6 +15,11 @@
         data-cursor-hover
         @click.native="handleToggleMenu()"
       />
+    </li>
+    <li>
+      <div class="items-center ml-4 hidden lg:flex">
+        <LanguageSwitcher />
+      </div>
     </li>
   </ul>
 </template>
