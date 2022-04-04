@@ -42,9 +42,7 @@ const shuffle1 = ref(null);
 const shuffle2 = ref(null);
 const shuffle3 = ref(null);
 const showBtns = ref(false);
-const { $bus } = useNuxtApp();
 onMounted(() => {
-  updateLoco();
   shuffleLetters(shuffle1.value, {
     onComplete: () => {
       shuffle2.value.classList.remove("hidden");
@@ -61,9 +59,6 @@ onMounted(() => {
     },
   });
 });
-const updateLoco = function () {
-  $bus.$emit("update-locomotive");
-};
 </script>
 
 <style lang="postcss" scoped>

@@ -1,8 +1,7 @@
-const scroll = shallowReactive({});
+const scroll = reactive({});
 function initLocomotive(el, onScroll = false) {
   const nuxtApp = useNuxtApp();
   onMounted(() => {
-    console.log("instantiating");
     nextTick(() => {
       scroll.value = new nuxtApp.$locomotiveScroll({
         el: el.value,
@@ -18,10 +17,10 @@ function initLocomotive(el, onScroll = false) {
           smooth: true,
         },
       });
-      if(onScroll) scroll.value.on("scroll", onScroll)
-    });    
+      if(onScroll) scroll.value.on("scroll", onScroll);
+    });
   });
-  onUnmounted(() => {
+  onUnmounted(() => { 
     scroll.value.destroy();
   });
   return scroll;

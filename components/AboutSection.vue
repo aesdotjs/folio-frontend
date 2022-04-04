@@ -48,7 +48,6 @@ const props = defineProps({
     required: true,
   },
 });
-console.log(props.blok);
 const shuffleTitle = function () {
   shuffleLetters(shuffle.value, {
     onComplete: () => {

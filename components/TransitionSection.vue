@@ -7,8 +7,6 @@
   </section>
 </template>
 <style scoped>
-section {
-}
 canvas {
   width: 100%;
   height: 100vh;

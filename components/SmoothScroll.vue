@@ -10,18 +10,6 @@ const scrollY = useStateScrollY();
 const { initLocomotive } = useLocomotive();
 const scroll = initLocomotive(target, (args) => {
   scrollY.value = args.scroll.y;
-  // const {currentElements} = args;
-  // for (const elemName in currentElements){
-  //   console.log(currentElements[elemName].el.style.transform);
-  // }
-});
-const { $bus } = useNuxtApp()
-onMounted(() => {
-  $bus.$on('update-locomotive', () => {
-    nextTick(() => {
-      scroll.value.update();
-    });
-  });
 });
 
 </script>

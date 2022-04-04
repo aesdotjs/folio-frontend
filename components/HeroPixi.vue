@@ -60,127 +60,126 @@ const initPixi = function () {
     backgroundAlpha: 0,
     antialias: true,
   });
-  loading.value = true;
   const loader = $PIXI.Loader.shared;
-  loader.load(() => {
-    const parallaxContainer = new $PIXI.Container();
+  console.log("init layers");
+  const parallaxContainer = new $PIXI.Container();
 
-    const parallaxLayerSky = new $PIXI.Container();
-    const bgTex = drawDiagonalGrad(bgColors, 172.2, width, height);
-    const bg = new $PIXI.Sprite(bgTex);
-    bg.width = width;
-    bg.height = height;
-    parallaxLayerSky.addChild(bg);
+  const parallaxLayerSky = new $PIXI.Container();
+  const bgTex = drawDiagonalGrad(bgColors, 172.2, width, height);
+  const bg = new $PIXI.Sprite(bgTex);
+  bg.width = width;
+  bg.height = height;
+  parallaxLayerSky.addChild(bg);
 
-    const starSprite = new $PIXI.Sprite();
-    starSprite.width = width;
-    starSprite.height = height;
-    starFilter = new $PIXI.Filter(null, starFragment, { time: 0.0 });
-    starSprite.filters = [starFilter];
-    parallaxLayerSky.addChild(starSprite);
+  const starSprite = new $PIXI.Sprite();
+  starSprite.width = width;
+  starSprite.height = height;
+  starFilter = new $PIXI.Filter(null, starFragment, { time: 0.0 });
+  starSprite.filters = [starFilter];
+  parallaxLayerSky.addChild(starSprite);
 
-    const parallaxLayerMountain = new $PIXI.Container();
-    const mountain = new $PIXI.Sprite(loader.resources.mountainSVG.texture);
-    mountain.width = width;
-    mountain.height = height;
-    parallaxLayerMountain.addChild(mountain);
+  const parallaxLayerMountain = new $PIXI.Container();
+  const mountain = new $PIXI.Sprite(loader.resources.mountainSVG.texture);
+  mountain.width = width;
+  mountain.height = height;
+  parallaxLayerMountain.addChild(mountain);
 
-    const parallaxLayerClouds = new $PIXI.Container();
-    const cloudsStrip = new $PIXI.TilingSprite(
-      loader.resources.cloudsPNG.texture,
-      width,
-      height
-    );
-    cloudsStrip.width = width;
-    cloudsStrip.height = (height * 4) / 5;
-    cloudsStrip.tileScale.x = 1;
-    cloudsStrip.tileScale.y = 1;
-    cloudsStrip.tilePosition.x = -width / 2;
-    parallaxLayerClouds.addChild(cloudsStrip);
+  const parallaxLayerClouds = new $PIXI.Container();
+  const cloudsStrip = new $PIXI.TilingSprite(
+    loader.resources.cloudsPNG.texture,
+    width,
+    height
+  );
+  cloudsStrip.width = width;
+  cloudsStrip.height = (height * 4) / 5;
+  cloudsStrip.tileScale.x = 1;
+  cloudsStrip.tileScale.y = 1;
+  cloudsStrip.tilePosition.x = -width / 2;
+  parallaxLayerClouds.addChild(cloudsStrip);
 
-    const parallaxLayerPl3 = new $PIXI.Container();
-    const pl3 = new $PIXI.Sprite(loader.resources.parallax3SVG.texture);
-    pl3.width = width;
-    pl3.height = height;
-    parallaxLayerPl3.addChild(pl3);
+  const parallaxLayerPl3 = new $PIXI.Container();
+  const pl3 = new $PIXI.Sprite(loader.resources.parallax3SVG.texture);
+  pl3.width = width;
+  pl3.height = height;
+  parallaxLayerPl3.addChild(pl3);
 
-    const parallaxLayerPl2 = new $PIXI.Container();
-    const pl2 = new $PIXI.Sprite(loader.resources.parallax2SVG.texture);
-    pl2.width = width;
-    pl2.height = height;
-    parallaxLayerPl2.addChild(pl2);
-    const parallaxLayerPl1 = new $PIXI.Container();
-    const pl1 = new $PIXI.Sprite(loader.resources.parallax1SVG.texture);
-    pl1.width = width;
-    pl1.height = height;
-    parallaxLayerPl1.addChild(pl1);
-    const fill = new $PIXI.Sprite.from($PIXI.Texture.WHITE);
-    fill.width = width;
-    fill.height = height;
-    fill.position.y = height;
-    fill.tint = 0xffe3d8;
-    parallaxLayerPl1.addChild(fill);
+  const parallaxLayerPl2 = new $PIXI.Container();
+  const pl2 = new $PIXI.Sprite(loader.resources.parallax2SVG.texture);
+  pl2.width = width;
+  pl2.height = height;
+  parallaxLayerPl2.addChild(pl2);
+  const parallaxLayerPl1 = new $PIXI.Container();
+  const pl1 = new $PIXI.Sprite(loader.resources.parallax1SVG.texture);
+  pl1.width = width;
+  pl1.height = height;
+  parallaxLayerPl1.addChild(pl1);
+  const fill = new $PIXI.Sprite.from($PIXI.Texture.WHITE);
+  fill.width = width;
+  fill.height = height;
+  fill.position.y = height;
+  fill.tint = 0xffe3d8;
+  parallaxLayerPl1.addChild(fill);
 
-    parallaxContainer.addChild(parallaxLayerSky);
-    parallaxContainer.addChild(parallaxLayerMountain);
-    parallaxContainer.addChild(parallaxLayerClouds);
-    parallaxContainer.addChild(parallaxLayerPl3);
-    parallaxContainer.addChild(parallaxLayerPl2);
-    parallaxContainer.addChild(parallaxLayerPl1);
-    pixiApp.value.stage.filters = [new $PixelateFilter(props.ratio)];
-    pixiApp.value.stage.addChild(parallaxContainer);
-    const parallaxContext = {
-      container: parallaxContainer,
-      position: { x: 0, y: 0 },
-      layer: [
-        { container: parallaxLayerSky, weight: 0.05 },
-        { container: parallaxLayerMountain, weight: 0.1 },
-        { container: parallaxLayerClouds, weight: 0.3 },
-        { container: parallaxLayerPl3, weight: 0.4 },
-        { container: parallaxLayerPl2, weight: 0.6 },
-        { container: parallaxLayerPl1, weight: 0.9 },
-      ],
-      setPosition: function (y) {
-        this.layer.forEach((layer) => {
-          let posX = layer.container.position.x;
-          let posY = y * layer.weight;
-          layer.container.position.set(posX, posY);
-        });
-      },
-    };
-    let time = 0;
-    pixiApp.value.ticker.add((elapsedTime) => {
-      let deltaTime = elapsedTime / 180;
-      time += deltaTime;
-      const scale = height / props.perspective;
-      parallaxContext.setPosition((1 - progress.value) * scale - scale);
-      cloudsStrip.tilePosition.x -= elapsedTime * 0.2;
-      starFilter.uniforms.time += elapsedTime * 0.002;
-    });
-    loading.value = false;
-    resizePixi();
+  parallaxContainer.addChild(parallaxLayerSky);
+  parallaxContainer.addChild(parallaxLayerMountain);
+  parallaxContainer.addChild(parallaxLayerClouds);
+  parallaxContainer.addChild(parallaxLayerPl3);
+  parallaxContainer.addChild(parallaxLayerPl2);
+  parallaxContainer.addChild(parallaxLayerPl1);
+  pixiApp.value.stage.filters = [new $PixelateFilter(props.ratio)];
+  pixiApp.value.stage.addChild(parallaxContainer);
+  const parallaxContext = {
+    container: parallaxContainer,
+    position: { x: 0, y: 0 },
+    layer: [
+      { container: parallaxLayerSky, weight: 0.05 },
+      { container: parallaxLayerMountain, weight: 0.1 },
+      { container: parallaxLayerClouds, weight: 0.3 },
+      { container: parallaxLayerPl3, weight: 0.4 },
+      { container: parallaxLayerPl2, weight: 0.6 },
+      { container: parallaxLayerPl1, weight: 0.9 },
+    ],
+    setPosition: function (y) {
+      this.layer.forEach((layer) => {
+        let posX = layer.container.position.x;
+        let posY = y * layer.weight;
+        layer.container.position.set(posX, posY);
+      });
+    },
+  };
+  let time = 0;
+  pixiApp.value.ticker.add((elapsedTime) => {
+    let deltaTime = elapsedTime / 180;
+    time += deltaTime;
+    const scale = height / props.perspective;
+    parallaxContext.setPosition((1 - progress.value) * scale - scale);
+    cloudsStrip.tilePosition.x -= elapsedTime * 0.2;
+    starFilter.uniforms.time += elapsedTime * 0.002;
   });
+  loading.value = false;
+  const { scroll } = useLocomotive();
+  scroll.value.update();
+  resizePixi();
 };
 const resizePixi = function () {
   // Determine which screen dimension is most constrained
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
-  const imageRatio = gameWidth/gameHeight;
-  const windowRatio = windowWidth/windowHeight;
-  if(windowRatio > imageRatio){
+  const imageRatio = gameWidth / gameHeight;
+  const windowRatio = windowWidth / windowHeight;
+  if (windowRatio > imageRatio) {
     heropixi.value.width = windowWidth;
   } else {
     heropixi.value.width = gameWidth / (gameHeight / windowHeight);
   }
-  const ratio = Math.min(1,heropixi.value.width/gameHeight);
-  heropixi.value.height = ratio*gameHeight;
+  const ratio = Math.min(1, heropixi.value.width / gameHeight);
+  heropixi.value.height = ratio * gameHeight;
   pixiApp.value.stage.scale.x = pixiApp.value.stage.scale.y = ratio;
-  pixiApp.value.stage.position.x = (windowWidth - heropixi.value.width )/ 2;
-  if(windowWidth > gameWidth)
-  {
+  pixiApp.value.stage.position.x = (windowWidth - heropixi.value.width) / 2;
+  if (windowWidth > gameWidth) {
     pixiApp.value.stage.width = windowWidth;
-    pixiApp.value.renderer.resize(windowWidth,gameHeight);
-  }  
+    pixiApp.value.renderer.resize(windowWidth, gameHeight);
+  }
 };
 const bgColors = [
   {
@@ -240,9 +239,10 @@ onMounted(() => {
   const loader = $PIXI.Loader.shared;
   const assets = { cloudsPNG, mountainSVG, parallax1SVG, parallax2SVG, parallax3SVG };
   for (const [key, value] of Object.entries(assets)) {
-    loader.add(key, value);
+    if (!loader.resources[key]) loader.add(key, value);
   }
-  initPixi();
+  loading.value = true;
+  loader.load(initPixi);
   window.addEventListener("resize", resizePixi);
 });
 

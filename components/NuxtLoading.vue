@@ -26,32 +26,6 @@
 const loading = useStateLoading();
 </script>
 <style lang="postcss">
-/* body.is-loading {
-  overflow: hidden;
-}
-.loading {
-  background: linear-gradient(
-    to top,
-    #ffba96 9%,
-    #f4ab94 31%,
-    #d7848f 74%,
-    #c3698c 100%
-  );
-}
-.logo-loading {
-  max-width: 17.5rem;
-  width: 100%;
-  padding: 30px;
-  opacity: 0;
-}
-.loading .logo-loading .text-logo path {
-  opacity: 0;
-}
-
-.loading .logo-loading .icon-svg path {
-  stroke: transparent;
-  stroke-width: 2px;
-} */
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity 1s;

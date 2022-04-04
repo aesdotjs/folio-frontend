@@ -7,17 +7,16 @@
 </template>
 
 <script setup>
-const { layout } = await useGetLayout();
-const { home } = await useGetHomePage();
+const { layout } = await useGetLayout("fr");
+const { home } = await useGetHomePage("fr");
 onMounted(() => {
   useStoryBridge(home.story.id, event => {
     home.story = event
   });
   setTimeout(() => {
     const { scroll } = useLocomotive();
-
     scroll.value.update();
-  },500);  
+  }, 500); 
 });
 const pageSEO = home.story.content.body.find(i => i.component === "SEO");
 useSEO(layout.story.content, pageSEO);

@@ -1,8 +1,11 @@
 <template>
   <div class="w-full bg-aeswhite">
     <NavBar :site="layout.story.content.site[0]" :routes="layout.story.content.routes"/>
-    <slot />
+    <SmoothScroll>
+      <slot></slot>
+    </SmoothScroll>
     <Footer :global="layout.story.content" />
+    <BugToast />
     <div class="hidden">
       <BugSvg />
     </div>
