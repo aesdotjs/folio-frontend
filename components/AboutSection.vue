@@ -14,18 +14,18 @@
           :class="glitchClasses"
           data-scroll
           data-scroll-call="shuffleTitle"
-          data-scroll-offset="100"
         >
           <span ref="shuffle">{{ blok.title }}</span>
         </h1>
       </div>
-      <div class="flex flex-wrap items-stretch mt-16 -mx-2" data-scroll>
+      <div class="flex flex-wrap items-stretch mt-16 -mx-2">
         <Service
           v-for="(service, i) in blok.services"
           :key="service._uid"
           :blok="service"
-          class="w-full sm:w-1/2 lg:w-1/4 transition-opacity duration-300 opacity-0 inview-child:opacity-100"
+          class="w-full sm:w-1/2 lg:w-1/4 transition-opacity duration-300 opacity-0 inview:opacity-100"
           :style="{ transitionDelay: (i+1) * 150 + 'ms' }"
+          data-scroll
         />
       </div>
       <div class="flex flex-wrap mt-16">
@@ -51,12 +51,11 @@ const props = defineProps({
   },
 });
 const shuffleTitle = function () {
-  nextTick(() => {
-    shuffleLetters(shuffle.value, {
-      onComplete: () => {
-        glitchClasses.value = "hero glitch layers";
-      },
-    });
+  if(!shuffle.value) return;
+  shuffleLetters(shuffle.value, {
+    onComplete: () => {
+      glitchClasses.value = "hero glitch layers";
+    },
   });
 };
 onMounted(() => {
