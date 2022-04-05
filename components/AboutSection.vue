@@ -23,9 +23,10 @@
           v-for="(service, i) in blok.services"
           :key="service._uid"
           :blok="service"
-          class="w-full sm:w-1/2 lg:w-1/4 transition-opacity duration-300 opacity-0 inview:opacity-100"
-          :style="{ transitionDelay: (i+1) * 150 + 'ms' }"
+          class="service"
+          :style="{ '--i': i+1}"
           data-scroll
+          data-scroll-offset="30%"
         />
       </div>
       <div class="flex flex-wrap mt-16">
@@ -60,6 +61,7 @@ const shuffleTitle = function () {
 };
 onMounted(() => {
   const { scroll } = useLocomotive();
+  scroll.value.update();
   scroll.value.on("call", (value, way, obj) => {
     if (value === "shuffleTitle" && glitchClasses.value.length === 0) {
       shuffleTitle();
@@ -67,7 +69,17 @@ onMounted(() => {
   });
 });
 </script>
-<style scoped>
+<style lang="postcss" scoped>
+.service {
+  @apply w-full sm:w-1/2 lg:w-1/4 transition-opacity duration-300 opacity-0 inview:opacity-100;
+  transition-delay: 150ms;
+}
+
+@media (min-width: 768px){
+  .service {
+    transition-delay: calc(var(--i)* 150ms);
+  }
+}
 .glitch span {
   animation: paths 5s step-end 1;
 }
