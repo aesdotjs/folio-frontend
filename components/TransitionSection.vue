@@ -3,15 +3,10 @@
     class="w-full bg-aeswhite"
     :class="blok.cssClasses"
     data-scroll-section>
-    <canvas ref="canvas" data-scroll :data-scroll-id="`${blok._uid}`"></canvas>
+    <canvas ref="canvas" class="w-full h-screen lg:h-[150vh]" data-scroll :data-scroll-id="`${blok._uid}`"></canvas>
   </section>
 </template>
 <style scoped>
-canvas {
-  width: 100%;
-  height: 100vh;
-  
-}
 </style>
 <script setup>
 import * as twgl from "twgl.js/dist/4.x/twgl-full.js";
@@ -116,4 +111,7 @@ onMounted(() => {
   });
   initiate();
 });
+onUnmounted(() => {
+
+})
 </script>

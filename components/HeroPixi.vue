@@ -61,7 +61,6 @@ const initPixi = function () {
     antialias: true,
   });
   const loader = $PIXI.Loader.shared;
-  console.log("init layers");
   const parallaxContainer = new $PIXI.Container();
 
   const parallaxLayerSky = new $PIXI.Container();
@@ -180,6 +179,8 @@ const resizePixi = function () {
     pixiApp.value.stage.width = windowWidth;
     pixiApp.value.renderer.resize(windowWidth, gameHeight);
   }
+  const { scroll } = useLocomotive();
+  scroll.value.update();
 };
 const bgColors = [
   {
@@ -248,6 +249,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   window.removeEventListener("resize", resizePixi);
+  pixiApp.value.destroy(false);
 });
 
 watch(

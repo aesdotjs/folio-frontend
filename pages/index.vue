@@ -15,9 +15,8 @@ onMounted(() => {
   });
   setTimeout(() => {
     const { scroll } = useLocomotive();
-
     scroll.value.update();
-  },500);  
+  }, 1000);
 });
 const pageSEO = home.story.content.body.find(i => i.component === "SEO");
 useSEO(layout.story.content, pageSEO);

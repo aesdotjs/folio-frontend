@@ -3,8 +3,8 @@
     <NavBar :site="layout.story.content.site[0]" :routes="layout.story.content.routes"/>
     <SmoothScroll>
       <slot></slot>
+      <Footer :global="layout.story.content" />
     </SmoothScroll>
-    <Footer :global="layout.story.content" />
     <BugToast />
     <div class="hidden">
       <BugSvg />

@@ -1,6 +1,6 @@
 <template>
-  <footer>
-    <div class="bg-red-dotted text-bwhite border-t border-bwhite">
+  <footer data-scroll-section>
+    <div class="bg-aespurple1 text-bwhite border-t border-bwhite">
       <div
         class="container flex flex-col items-center w-full p-4 mx-auto lg:flex-row"
       >

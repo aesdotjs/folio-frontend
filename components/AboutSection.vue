@@ -21,18 +21,20 @@
       </div>
       <div class="flex flex-wrap items-stretch mt-16 -mx-2" data-scroll>
         <Service
-          v-for="(service,i) in blok.services"
+          v-for="(service, i) in blok.services"
           :key="service._uid"
           :blok="service"
           class="w-full sm:w-1/2 lg:w-1/4 transition-opacity duration-300 opacity-0 inview-child:opacity-100"
-          :style="{ transitionDelay : i * 150 + 'ms'}"
+          :style="{ transitionDelay: (i+1) * 150 + 'ms' }"
         />
       </div>
       <div class="flex flex-wrap mt-16">
-        <MyselfSection v-if="blok.myselfSection" :blok="blok.myselfSection" class="w-full lg:w-2/5" />
-        <div v-if="blok.techGroups.length > 0" class="w-full lg:w-3/5">
-
-        </div>
+        <MyselfSection
+          v-if="blok.myselfSection"
+          :blok="blok.myselfSection"
+          class="w-full lg:w-2/5"
+        />
+        <div v-if="blok.techGroups.length > 0" class="w-full lg:w-3/5"></div>
       </div>
     </div>
   </section>
@@ -49,10 +51,12 @@ const props = defineProps({
   },
 });
 const shuffleTitle = function () {
-  shuffleLetters(shuffle.value, {
-    onComplete: () => {
-      glitchClasses.value = "hero glitch layers";
-    },
+  nextTick(() => {
+    shuffleLetters(shuffle.value, {
+      onComplete: () => {
+        glitchClasses.value = "hero glitch layers";
+      },
+    });
   });
 };
 onMounted(() => {
