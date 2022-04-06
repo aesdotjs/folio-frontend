@@ -1,9 +1,9 @@
 <template>
   <div class="w-full bg-aeswhite">
-    <NavBar :site="layout.story.content.site[0]" :routes="layout.story.content.routes"/>
+    <NavBar v-if="layout.story" :site="layout.story.content.site[0]" :routes="layout.story.content.routes"/>
     <SmoothScroll>
       <slot></slot>
-      <Footer :global="layout.story.content" />
+      <Footer v-if="layout.story" :global="layout.story.content" />
     </SmoothScroll>
     <BugToast />
     <div class="hidden">
@@ -24,7 +24,12 @@
 </style>
 
 <script setup>
-const { layout } = await useGetLayout();
+const  route  = useRoute();
+const lg = computed(() => route.path.split("/")[1]);
+const { layout, fetchLayout } = await useGetLayout(lg.value);
+watch(route, () => {
+  fetchLayout(lg.value);
+});
 onMounted(() => {
   useStoryBridge(layout.story.id, story => (layout.story = story));
 });
