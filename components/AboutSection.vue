@@ -36,7 +36,7 @@
           :blok="blok.myselfSection[0]"
           class="w-full lg:w-1/2"
         />
-        <div v-if="blok.techGroups.length > 0" class="w-full lg:w-1/2 flex flex-col lg:pl-4 mt-12 lg:mt-0">
+        <div v-if="blok.techGroups.length > 0" class="w-full lg:w-1/2 flex flex-col lg:pl-12">
           <TechGroup
             v-for="techGroup in blok.techGroups"
             :key="techGroup._uid"
