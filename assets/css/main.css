@@ -78,18 +78,14 @@ html, body {
     font 7s step-end infinite, movement 8s step-end infinite;
 }
 
-.filter-purple1 {
-  filter: drop-shadow(-3px 3px 0px var(--color-aespurple1));
-}
+
 .filter-purple2 {
   filter: drop-shadow(-3px 3px 0px var(--color-aespurple2));
 }
-.filter-blue {
-  filter: drop-shadow(-3px 3px 0px var(--color-aesblue));
+.filter-purple2-s {
+  filter: drop-shadow(-2px 2px 0px var(--color-aespurple2));
 }
-.filter-orange {
-  filter: drop-shadow(-3px 3px 0px var(--color-aesorange));
-}
+
 .drop-purple2 {
   position: relative;
 }

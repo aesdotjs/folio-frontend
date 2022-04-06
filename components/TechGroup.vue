@@ -1,7 +1,7 @@
 <template>
   <div class="mt-12 lg:mt-0" data-scroll data-scroll-offset="20%">
     <h2
-      class="text-xl text-aeswhite font-retro filter-purple2 text-center lg:text-right transition-opacity opacity-0 inview-child:opacity-100"
+      class="text-xl text-aeswhite font-retro filter-purple2-s text-center lg:text-right transition-opacity opacity-0 inview-child:opacity-100"
     >
       {{ blok.title }}
     </h2>
