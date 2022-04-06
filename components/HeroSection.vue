@@ -7,7 +7,7 @@
   >
     <HeroPixi :ratio="parseFloat(blok.pixelationRatio)" :perspective="parseFloat(blok.perspective)"/>
     <div class="absolute top-0 w-full z-10">
-      <div class="hero-content">
+      <div class="hero-content" data-scroll>
         <h1>
           <span ref="shuffle1">{{ blok.title }}</span>
           <span ref="shuffle2" class="text-aesorange whitespace-nowrap hidden">{{ blok.title2 }}</span>
@@ -63,7 +63,7 @@ onMounted(() => {
 
 <style lang="postcss" scoped>
 .hero-content {
-  @apply container mx-auto flex flex-col mt-40 px-4 text-2xl lg:text-4xl font-retro text-white;
+  @apply container mx-auto flex flex-col mt-40 px-6 text-2xl lg:text-4xl font-retro text-white;
   text-shadow: 0 0 3px black;
 }
 .btn-hero {

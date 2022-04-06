@@ -9,7 +9,7 @@
     }"
   >
     <div
-      class="container flex flex-wrap items-center w-full p-4 mx-auto text-aeswhite font-retro"
+      class="container flex flex-wrap items-center w-full px-6 py-4 lg:py-6 mx-auto text-aeswhite font-retro"
     >
       <div class="-ml-1">
         <nuxt-link
@@ -28,9 +28,6 @@
         </nuxt-link>
       </div>
       <NavBugs class="flex flex-wrap flex-1 mx-6"/>
-      <div class="ml-auto flex items-center mx-4 lg:hidden">
-        <LanguageSwitcher />
-      </div>
       <div class="ml-auto lg:hidden">
         <NavToggle />
       </div>

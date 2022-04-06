@@ -5,7 +5,7 @@
     :class="blok.cssClasses"
     data-scroll-section
   >
-    <div class="container mx-auto px-4">
+    <div class="container mx-auto px-6">
       <div class="flex justify-center">
         <h1
           v-if="blok.title"
@@ -19,7 +19,7 @@
           <span ref="shuffle">{{ blok.title }}</span>
         </h1>
       </div>
-      <div class="flex flex-wrap items-stretch mt-16 -mx-2">
+      <div class="flex flex-wrap items-stretch mt-16">
         <Service
           v-for="(service, i) in blok.services"
           :key="service._uid"
@@ -30,7 +30,7 @@
           data-scroll-offset="30%"
         />
       </div>
-      <div class="flex flex-wrap mt-16">
+      <div class="flex flex-wrap mt-8">
         <MyselfSection
           v-if="blok.myselfSection[0]"
           :blok="blok.myselfSection[0]"
@@ -83,7 +83,7 @@ onMounted(() => {
   margin-top: -34vh;
 }
 .service {
-  @apply w-full sm:w-1/2 lg:w-1/4 transition-opacity duration-300 opacity-0 inview:opacity-100;
+  @apply w-80 mx-auto mb-8 lg:mb-0 lg:w-1/4 transition-opacity duration-300 opacity-0 inview:opacity-100;
   transition-delay: 150ms;
 }
 
