@@ -6,7 +6,7 @@
     data-scroll-section
   >
     <HeroPixi :ratio="parseFloat(blok.pixelationRatio)" :perspective="parseFloat(blok.perspective)"/>
-    <div class="absolute top-0 w-full">
+    <div class="absolute top-0 w-full z-10">
       <div class="hero-content">
         <h1>
           <span ref="shuffle1">{{ blok.title }}</span>
