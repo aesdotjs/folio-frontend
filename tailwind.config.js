@@ -8,7 +8,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        aeswhite: "#FFE3D8",
+        aeswhite: "#f8f6ff",
         aesgray: "#C8B5B7",
         aesblue: "#200E4F",
         aespurple1: "#500366",
