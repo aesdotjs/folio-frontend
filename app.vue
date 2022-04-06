@@ -13,7 +13,7 @@ nuxtApp.hook("page:start", () => {
   loading.value = true;
 })
 
-nuxtApp.hook("page:finish", () => {
-  loading.value = false;
-})
+// nuxtApp.hook("page:finish", () => {
+//   loading.value = false;
+// })
 </script>
