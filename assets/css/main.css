@@ -77,6 +77,32 @@ html, body {
   animation: paths 5s step-end infinite, opacity 5s step-end infinite,
     font 7s step-end infinite, movement 8s step-end infinite;
 }
+
+.filter-purple1 {
+  filter: drop-shadow(-3px 3px 0px var(--color-aespurple1));
+}
+.filter-purple2 {
+  filter: drop-shadow(-3px 3px 0px var(--color-aespurple2));
+}
+.filter-blue {
+  filter: drop-shadow(-3px 3px 0px var(--color-aesblue));
+}
+.filter-orange {
+  filter: drop-shadow(-3px 3px 0px var(--color-aesorange));
+}
+.drop-purple2 {
+  position: relative;
+}
+.drop-purple2:before {
+  content:'';
+  position: absolute;
+  top: 5px;
+  left: -5px;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: var(--color-aespurple2);
+}
 @keyframes paths {
   0% {
     clip-path: polygon(

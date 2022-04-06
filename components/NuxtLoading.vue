@@ -30,6 +30,9 @@ const loading = useStateLoading();
 .fade-leave-active {
   transition: opacity 1s;
 }
+.fade-leave-active {
+  transition-delay: 200ms;
+}
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
 }

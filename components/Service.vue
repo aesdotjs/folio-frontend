@@ -1,6 +1,6 @@
 <template>
   <div class="p-2">
-    <div class="service-card">
+    <div class="service-card drop-purple2">
       <img
         v-if="blok.icon"
         :src="blok.icon.filename"
@@ -16,18 +16,9 @@
 </template>
 <style lang="postcss" scoped>
 .service-card {
-  @apply flex flex-col h-full items-center text-aesblue bg-aeswhite p-3 relative;
+  @apply flex flex-col h-full items-center text-aesblue bg-aeswhite p-3;
 }
-.service-card:before {
-  content:'';
-  position: absolute;
-  top: 5px;
-  left: -5px;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  @apply bg-aespurple2;
-}
+
 
 </style>
 

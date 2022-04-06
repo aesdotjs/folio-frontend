@@ -1,7 +1,7 @@
 <template>
   <section
     id="about"
-    class="min-h-screen w-full relative -mt-8 pt-8 pb-32 bg-aesblue"
+    class="min-h-screen w-full relative pt-8 pb-32 bg-aesblue"
     :class="blok.cssClasses"
     data-scroll-section
   >
@@ -13,6 +13,7 @@
           :data-text="blok.title"
           :class="glitchClasses"
           data-scroll
+          data-scroll-offset="20%"
           data-scroll-call="shuffleTitle"
         >
           <span ref="shuffle">{{ blok.title }}</span>
@@ -24,18 +25,24 @@
           :key="service._uid"
           :blok="service"
           class="service"
-          :style="{ '--i': i+1}"
+          :style="{ '--i': i + 1 }"
           data-scroll
           data-scroll-offset="30%"
         />
       </div>
       <div class="flex flex-wrap mt-16">
         <MyselfSection
-          v-if="blok.myselfSection"
-          :blok="blok.myselfSection"
-          class="w-full lg:w-2/5"
+          v-if="blok.myselfSection[0]"
+          :blok="blok.myselfSection[0]"
+          class="w-full lg:w-1/2"
         />
-        <div v-if="blok.techGroups.length > 0" class="w-full lg:w-3/5"></div>
+        <div v-if="blok.techGroups.length > 0" class="w-full lg:w-1/2 flex flex-col lg:pl-4 mt-12 lg:mt-0">
+          <TechGroup
+            v-for="techGroup in blok.techGroups"
+            :key="techGroup._uid"
+            :blok="techGroup"
+          />
+        </div>
       </div>
     </div>
   </section>
@@ -44,15 +51,17 @@
 <script setup>
 import shuffleLetters from "shuffle-letters/dist/shuffle-letters.esm";
 const shuffle = ref(null);
-const glitchClasses = ref("");
+const glitchClasses = ref("opacity-0");
 const props = defineProps({
   blok: {
     type: Object,
     required: true,
   },
 });
+console.log(props.blok);
 const shuffleTitle = function () {
-  if(!shuffle.value) return;
+  if (!shuffle.value) return;
+  glitchClasses.value = "opacity-100";
   shuffleLetters(shuffle.value, {
     onComplete: () => {
       glitchClasses.value = "hero glitch layers";
@@ -63,21 +72,24 @@ onMounted(() => {
   const { scroll } = useLocomotive();
   scroll.value.update();
   scroll.value.on("call", (value, way, obj) => {
-    if (value === "shuffleTitle" && glitchClasses.value.length === 0) {
+    if (value === "shuffleTitle" && glitchClasses.value !== "hero glitch layers") {
       shuffleTitle();
     }
   });
 });
 </script>
 <style lang="postcss" scoped>
+#about {
+  margin-top: -34vh;
+}
 .service {
   @apply w-full sm:w-1/2 lg:w-1/4 transition-opacity duration-300 opacity-0 inview:opacity-100;
   transition-delay: 150ms;
 }
 
-@media (min-width: 768px){
+@media (min-width: 768px) {
   .service {
-    transition-delay: calc(var(--i)* 150ms);
+    transition-delay: calc(var(--i) * 150ms);
   }
 }
 .glitch span {
