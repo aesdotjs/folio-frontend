@@ -19,7 +19,7 @@
           <span ref="shuffle">{{ blok.title }}</span>
         </h1>
       </div>
-      <div class="flex flex-wrap items-stretch mt-16">
+      <div class="flex flex-wrap items-stretch mt-16 -mx-2">
         <Service
           v-for="(service, i) in blok.services"
           :key="service._uid"
@@ -34,7 +34,7 @@
         <MyselfSection
           v-if="blok.myselfSection[0]"
           :blok="blok.myselfSection[0]"
-          class="w-full lg:w-1/2"
+          class="w-full lg:w-1/2 lg:pr-12"
         />
         <div v-if="blok.techGroups.length > 0" class="w-full lg:w-1/2 flex flex-col lg:pl-12">
           <TechGroup
