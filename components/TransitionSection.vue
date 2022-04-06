@@ -3,7 +3,7 @@
     class="w-full bg-aeswhite"
     :class="blok.cssClasses"
     data-scroll-section>
-    <canvas ref="canvas" class="w-full h-screen lg:h-[150vh]" data-scroll :data-scroll-id="`${blok._uid}`"></canvas>
+    <canvas ref="canvas" class="w-full h-screen" data-scroll :data-scroll-id="`${blok._uid}`"></canvas>
   </section>
 </template>
 <style scoped>
@@ -46,6 +46,7 @@ const fragment = `
   void main()
   {
     float aspect = resolution.y/resolution.x;
+    float aspect2 = resolution.x/resolution.y;
     float value;
     vec2 uv = gl_FragCoord.xy / resolution.x;
     vec2 uv2 = uv - vec2(0.5, 0.5*aspect);
@@ -61,7 +62,7 @@ const fragment = `
     vec2 pos = squareQty*uv2;
     vec2 rep = fract(pos);
     float dist = 2.0*min(min(rep.x, 1.0-rep.x), min(rep.y, 1.0-rep.y));
-    float edge = min(max(0.0, progress)*(2.5-uv.y), 1.0);
+    float edge = min(max(0.0, progress)*(aspect2-uv.y/aspect2), 1.0);
     value = fract (dist * insetSquare);
     value = mix(value, 1.0-value, step(1.0, edge));
     edge = abs(1.0-edge);
