@@ -58,7 +58,6 @@ const props = defineProps({
     required: true,
   },
 });
-console.log(props.blok);
 const shuffleTitle = function () {
   if (!shuffle.value) return;
   glitchClasses.value = "opacity-100";
