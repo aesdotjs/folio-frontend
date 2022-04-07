@@ -5,7 +5,7 @@
     :class="blok.cssClasses"
     data-scroll-section
   >
-    <div class="container mx-auto px-6">
+    <div>
       <div class="flex justify-center">
         <h1
           v-if="blok.title"
@@ -19,11 +19,29 @@
           <span ref="shuffle">{{ blok.title }}</span>
         </h1>
       </div>
+      <div class="h-screen">
+        <swiper
+          :modules="[Pagination, Navigation]"
+          :space-between="50"
+          :lazy="true"
+          :pagination="{
+            clickable: true,
+          }"
+          :navigation="true"
+        >
+          <swiper-slide v-for="work in blok.works" :key="work.content._uid">
+            <work :blok="work.content" />
+          </swiper-slide>
+        </swiper>
+      </div>
     </div>
   </section>
 </template>
 <script setup>
 import shuffleLetters from "shuffle-letters/dist/shuffle-letters.esm";
+import { Pagination, Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/vue";
+import 'swiper/css';
 const shuffle = ref(null);
 const glitchClasses = ref("opacity-0");
 const props = defineProps({
@@ -41,6 +59,7 @@ const shuffleTitle = function () {
     },
   });
 };
+console.log(props.blok);
 onMounted(() => {
   const { scroll } = useLocomotive();
   scroll.value.update();

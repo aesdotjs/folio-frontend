@@ -13,7 +13,7 @@ onMounted(() => {
   useStoryBridge(home.story.id, event => {
     home.story = event
   }, {
-    resolveRelations: "techGroup.technos",
+    resolveRelations: ["techGroup.technos","WorkSection.works"],
     language: "",
   });
   setTimeout(() => {
