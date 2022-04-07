@@ -152,7 +152,7 @@ const initPixi = function () {
     let deltaTime = elapsedTime / 180;
     time += deltaTime;
     const scale = height / props.perspective;
-    const progress = scroll.value.scroll.currentElements["heropixi"]?.progress
+    const progress = scroll.value.scroll.currentElements["heropixi"]?.progress || 0.0001;
     parallaxContext.setPosition((1 - progress) * scale - scale);
     cloudsStrip.tilePosition.x -= elapsedTime * 0.2;
     starFilter.uniforms.time += elapsedTime * 0.002;
