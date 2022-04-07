@@ -12,6 +12,9 @@ const { home } = await useGetHomePage();
 onMounted(() => {
   useStoryBridge(home.story.id, event => {
     home.story = event
+  }, {
+    resolveRelations: "techGroup.technos",
+    language: "",
   });
   setTimeout(() => {
     const { scroll } = useLocomotive();
