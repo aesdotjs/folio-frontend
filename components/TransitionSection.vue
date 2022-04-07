@@ -1,6 +1,6 @@
 <template>
   <section 
-    class="w-full bg-aeswhite"
+    class="w-full -mt-2"
     :class="blok.cssClasses"
     data-scroll-section>
     <canvas ref="canvas" class="w-full h-screen" data-scroll :data-scroll-id="`${blok._uid}`"></canvas>
@@ -10,13 +10,13 @@
 </style>
 <script setup>
 import * as twgl from "twgl.js/dist/4.x/twgl-full.js";
+const { scroll } = useLocomotive();
 const props = defineProps({
   blok: {
     type: Object,
     required: true,
   },
 });
-const progress = ref(0);
 const hexToRgb = function(hex) {
   var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   return result ? [
@@ -83,12 +83,11 @@ const initiate = function(){
 const render = function() {
   twgl.resizeCanvasToDisplaySize(gl.canvas);
   gl.viewport(0, 0, gl.canvas.width, gl.canvas.height);
-
   const uniforms = {
     resolution: [gl.canvas.width, gl.canvas.height],
     startColor: hexToRgb(props.blok.startColor.color) || [255,255,255],
     endColor: hexToRgb(props.blok.endColor.color) || [0,0,0],
-    progress: progress.value,
+    progress: scroll.value.scroll.currentElements[props.blok._uid]?.progress,
     insetSquare: parseFloat(props.blok.insetSquare) || 1.0,
     squareQty: parseFloat(props.blok.squareQty) || 10.0,
     rotate: parseFloat(props.blok.rotate) || 10.0,
@@ -98,22 +97,11 @@ const render = function() {
   twgl.setBuffersAndAttributes(gl, programInfo, bufferInfo);
   twgl.setUniforms(programInfo, uniforms);
   twgl.drawBufferInfo(gl, bufferInfo);
-}
-watch(progress, () => {
   requestAnimationFrame(render);
-});
+}
+
 onMounted(() => {
-  const { scroll } = useLocomotive();
   scroll.value.update();
-  scroll.value.on("scroll", (args) => {
-    // Get all current elements : args.currentElements
-    if(typeof args.currentElements[props.blok._uid] === 'object') {
-        progress.value = args.currentElements[props.blok._uid].progress;
-    }
-  });
   initiate();
 });
-onUnmounted(() => {
-
-})
 </script>

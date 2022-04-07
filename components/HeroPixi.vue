@@ -42,6 +42,7 @@ const props = defineProps({
     default: 2.2,
   },
 });
+const { scroll } = useLocomotive();
 const gameWidth = 1920;
 const gameHeight = 1534;
 const progress = ref(0);
@@ -151,12 +152,12 @@ const initPixi = function () {
     let deltaTime = elapsedTime / 180;
     time += deltaTime;
     const scale = height / props.perspective;
-    parallaxContext.setPosition((1 - progress.value) * scale - scale);
+    const progress = scroll.value.scroll.currentElements["heropixi"]?.progress
+    parallaxContext.setPosition((1 - progress) * scale - scale);
     cloudsStrip.tilePosition.x -= elapsedTime * 0.2;
     starFilter.uniforms.time += elapsedTime * 0.002;
   });
   loading.value = false;
-  const { scroll } = useLocomotive();
   scroll.value.update();
   resizePixi();
 };
@@ -230,13 +231,6 @@ const drawDiagonalGrad = function (colors, angDeg, w, h) {
   return new $PIXI.Texture.from(c);
 };
 onMounted(() => {
-  const { scroll } = useLocomotive();
-  scroll.value.on("scroll", (args) => {
-    // Get all current elements : args.currentElements
-    if (typeof args.currentElements["heropixi"] === "object") {
-      progress.value = args.currentElements["heropixi"].progress;
-    }
-  });
   const loader = $PIXI.Loader.shared;
   const assets = { cloudsPNG, mountainSVG, parallax1SVG, parallax2SVG, parallax3SVG };
   for (const [key, value] of Object.entries(assets)) {
