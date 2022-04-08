@@ -22,7 +22,7 @@
         </swiper-slide>
       </swiper>
     </div>
-    <div class="w-full lg:w-1/2 px-6 -mt-8 lg:mt-0 relative z-10 text-aeswhite" data-scroll>
+    <div class="w-full lg:w-1/3 lg:ml-auto px-6 -mt-8 lg:mt-0 relative z-10 text-aeswhite" data-scroll>
       <div class="flex justify-center opacity-0 sw-active:opacity-100 delay-300">
         <a v-if="blok.url" :href="blok.url.url" class="text-2xl font-semibold tracking-wide text-center">
         {{ blok.name }} 🔗
