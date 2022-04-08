@@ -11,7 +11,6 @@
       <div
         class="drop-purple2 mx-auto w-1/2 mb-12 sm:mb-2 sm:w-1/3 sm:float-left sm:mr-4 sm:ml-0 transition-opacity opacity-0 inview:opacity-100"
         data-scroll
-        data-scroll-offset="30%"
       >
         <img
           :src="blok.photo.filename"
@@ -23,7 +22,6 @@
         v-html="richText"
         class="transition-opacity delay-150 opacity-0 inview:opacity-100"
         data-scroll
-        data-scroll-offset="30%"
       ></div>
     </div>
   </div>

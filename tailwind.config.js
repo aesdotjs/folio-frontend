@@ -22,6 +22,7 @@ module.exports = {
     plugin(function ({ addVariant }) {
       addVariant("inview", "&.is-inview");
       addVariant("inview-child", ".is-inview &");
+      addVariant("sw-active", ".swiper-slide-active .is-inview &");
     }),
     function({ addBase, theme }) {
       function extractColorVars(colorObj, colorGroup = '') {

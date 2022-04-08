@@ -19,29 +19,30 @@
           <span ref="shuffle">{{ blok.title }}</span>
         </h1>
       </div>
-      <div class="h-screen">
-        <swiper
-          :modules="[Pagination, Navigation]"
-          :space-between="50"
-          :lazy="true"
-          :pagination="{
-            clickable: true,
-          }"
-          :navigation="true"
+      <swiper
+        :modules="[Pagination, Navigation, Lazy]"
+        :lazy="{ loadPrevNext: true }"
+        :pagination="{
+          clickable: true,
+        }"
+        :navigation="true"
+        class="container mx-auto mt-16 px-6"
+      >
+        <swiper-slide
+          v-for="work in blok.works"
+          :key="work.content._uid"
         >
-          <swiper-slide v-for="work in blok.works" :key="work.content._uid">
-            <work :blok="work.content" />
-          </swiper-slide>
-        </swiper>
-      </div>
+          <work :blok="work.content" />
+        </swiper-slide>
+      </swiper>
     </div>
   </section>
 </template>
 <script setup>
 import shuffleLetters from "shuffle-letters/dist/shuffle-letters.esm";
-import { Pagination, Navigation } from "swiper";
+import { Pagination, Navigation, Lazy } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
-import 'swiper/css';
+import "swiper/css";
 const shuffle = ref(null);
 const glitchClasses = ref("opacity-0");
 const props = defineProps({
