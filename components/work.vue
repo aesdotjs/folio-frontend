@@ -10,7 +10,7 @@
         :navigation="true"
         class="opacity-0 sw-active:opacity-100 delay-150"
       >
-        <swiper-slide v-for="(photo, id) in photos" :key="id" class="pb-[140%] relative">
+        <swiper-slide v-for="(photo, id) in photos" :key="id" class="pb-[140%] lg:pb-[100%] relative">
           <img
             :data-srcset="getImageSrcSet(photo.filename)"
             :data-src="transformImage(photo.filename, '0x640')"
@@ -47,7 +47,9 @@
   @apply py-2 px-4 m-px bg-aeswhite flex-1 text-center font-retro transition-all duration-150 transform scale-125 opacity-0 sw-active:scale-100 sw-active:opacity-100;
   text-shadow: 0 0 2px black;
 }
-
+.object-cover {
+  object-position: top;
+}
 </style>
 <script setup>
 import { Pagination, Navigation, EffectCards } from "swiper";

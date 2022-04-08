@@ -14,7 +14,7 @@
           :class="glitchClasses"
           data-scroll
           data-scroll-offset="20%"
-          data-scroll-call="shuffleTitle"
+          data-scroll-call="shuffleTitleWork"
         >
           <span ref="shuffle">{{ blok.title }}</span>
         </h1>
@@ -65,7 +65,7 @@ onMounted(() => {
   const { scroll } = useLocomotive();
   scroll.value.update();
   scroll.value.on("call", (value, way, obj) => {
-    if (value === "shuffleTitle" && glitchClasses.value !== "hero glitch layers") {
+    if (value === "shuffleTitleWork" && glitchClasses.value !== "hero glitch layers") {
       shuffleTitle();
     }
   });
