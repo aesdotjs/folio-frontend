@@ -81,7 +81,7 @@ onMounted(() => {
 </script>
 <style lang="postcss" scoped>
 #about {
-  margin-top: -2px;
+  margin-top: -30vh;
 }
 .service {
   @apply w-80 mx-auto mb-8 lg:mb-0 lg:w-1/4 transition-opacity duration-300 opacity-0 inview:opacity-100;

@@ -8,7 +8,7 @@
           clickable: true,
         }"
         :navigation="true"
-        class="opacity-0 sw-active:opacity-100 delay-150"
+        class="transition opacity-0 sw-active:opacity-100 duration-300"
       >
         <swiper-slide v-for="(photo, id) in photos" :key="id" class="pb-[140%] lg:pb-[100%] relative">
           <img
@@ -23,13 +23,13 @@
       </swiper>
     </div>
     <div class="w-full lg:w-1/3 lg:ml-auto px-6 -mt-8 lg:mt-0 relative z-10 text-aeswhite" data-scroll>
-      <div class="flex justify-center opacity-0 sw-active:opacity-100 delay-300">
+      <div class="flex justify-center transition opacity-0 sw-active:opacity-100 delay-200 duration-300">
         <a v-if="blok.url" :href="blok.url.url" class="text-2xl font-semibold tracking-wide text-center">
         {{ blok.name }} 🔗
         </a>
         <h2 v-else class="text-2xl font-semibold tracking-wide">{{ blok.name }}</h2>
       </div>
-      <div v-html="richText" class="mt-4 px-0 opacity-0 sw-active:opacity-100 delay-500"></div>
+      <div v-html="richText" class="mt-4 px-0 transition opacity-0 sw-active:opacity-100 delay-300 duration-300"></div>
       <div class="flex flex-wrap py-2 justify-center sm:justify-end mt-4">
         <component
           v-for="techno in blok.technos"

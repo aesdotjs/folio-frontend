@@ -73,6 +73,6 @@ onMounted(() => {
 </script>
 <style lang="postcss" scoped>
 #work {
-  margin-top: -2px;
+  margin-top: -30vh;
 }
 </style>
