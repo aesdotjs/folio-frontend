@@ -18,7 +18,7 @@
             :alt="photo.alt"
             class="swiper-lazy absolute h-full w-full object-cover"
           />
-          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-aeswhite"></div>
+          <div class="absolute w-full h-full top-12 bg-gradient-to-b from-transparent via-transparent to-aeswhite"></div>
         </swiper-slide>
       </swiper>
     </div>
