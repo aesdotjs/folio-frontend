@@ -1,6 +1,6 @@
 <template>
-  <div class="flex flex-col lg:flex-row">
-    <div class="w-full lg:w-1/2 px-6" data-scroll>
+  <div class="flex flex-col sm:flex-row">
+    <div class="w-full sm:w-1/2 px-6" data-scroll>
       <swiper
         :modules="[Pagination, Navigation, EffectCards]"
         :effect="'cards'"
@@ -10,7 +10,7 @@
         :navigation="true"
         class="transition opacity-0 sw-active:opacity-100 duration-300"
       >
-        <swiper-slide v-for="(photo, id) in photos" :key="id" class="pb-[140%] lg:pb-[100%] relative">
+        <swiper-slide v-for="(photo, id) in photos" :key="id" class="pb-[140%] sm:pb-[120%] lg:pb-[100%] relative">
           <img
             :data-srcset="getImageSrcSet(photo.filename)"
             :data-src="transformImage(photo.filename, '0x640')"
@@ -18,11 +18,11 @@
             :alt="photo.alt"
             class="swiper-lazy absolute h-full w-full object-cover"
           />
-          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-aespurple1"></div>
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-aeswhite"></div>
         </swiper-slide>
       </swiper>
     </div>
-    <div class="w-full lg:w-1/3 lg:ml-auto px-6 -mt-8 lg:mt-0 relative z-10 text-aeswhite" data-scroll>
+    <div class="w-full px-6 sm:pl-16 -mt-8 sm:mt-0 relative z-10 text-aesblue sm:w-1/2 lg:w-1/3 sm:ml-auto lg:px-6" data-scroll>
       <div class="flex justify-center transition opacity-0 sw-active:opacity-100 delay-200 duration-300">
         <a v-if="blok.url" :href="blok.url.url" class="text-2xl font-semibold tracking-wide text-center">
         {{ blok.name }} 🔗

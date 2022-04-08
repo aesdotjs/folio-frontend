@@ -1,7 +1,7 @@
 <template>
   <section
     id="work"
-    class="min-h-screen w-full relative pt-8 pb-32 bg-aespurple1"
+    class="min-h-screen w-full relative pt-8 pb-32 bg-aeswhite text-aesblue"
     :class="blok.cssClasses"
     data-scroll-section
   >
@@ -9,7 +9,7 @@
       <div class="flex justify-center">
         <h1
           v-if="blok.title"
-          class="text-2xl lg:text-4xl text-aeswhite font-retro"
+          class="text-2xl lg:text-4xl font-retro"
           :data-text="blok.title"
           :class="glitchClasses"
           data-scroll
