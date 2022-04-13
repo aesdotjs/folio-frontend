@@ -11,9 +11,10 @@ const { layout } = await useGetLayout();
 const { home } = await useGetHomePage();
 onMounted(() => {
   useStoryBridge(home.story.id, event => {
+    console.log(event);
     home.story = event
   }, {
-    resolveRelations: ["techGroup.technos","WorkSection.works","work.technos"],
+    resolveRelations: ["techGroup.technos","work.technos","WorkSection.works"],
     language: "",
   });
   setTimeout(() => {

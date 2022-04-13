@@ -1,7 +1,7 @@
 <template>
   <section 
     class="w-full -mt-2"
-    :class="blok.cssClasses"
+    :class="blok.class"
     data-scroll-section>
     <canvas ref="canvas" class="w-full h-screen" data-scroll :data-scroll-id="`${blok._uid}`"></canvas>
   </section>

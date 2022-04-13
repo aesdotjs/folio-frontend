@@ -1,8 +1,8 @@
 <template>
   <section
     id="work"
-    class="min-h-screen w-full relative pt-8 pb-32 bg-aeswhite text-aesblue"
-    :class="blok.cssClasses"
+    class="w-full relative pt-8 pb-32"
+    :class="blok.class"
     data-scroll-section
   >
     <div>

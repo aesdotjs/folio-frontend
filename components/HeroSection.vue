@@ -2,7 +2,7 @@
   <section
     id="hero"
     class="min-h-screen overflow-hidden relative parallax-container"
-    :class="blok.cssClasses"
+    :class="blok.class"
     data-scroll-section
   >
     <HeroPixi :ratio="parseFloat(blok.pixelationRatio)" :perspective="parseFloat(blok.perspective)"/>
