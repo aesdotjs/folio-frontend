@@ -5,7 +5,7 @@ export default function (layout, SEO) {
     ...defaultSEO[0],
     ...SEO
   };
-  return useMeta({
+  return useHead({
     title: `${fullSEO.metaTitle} | ${siteName}`,
     meta: getMetaTags(fullSEO),
     link: [

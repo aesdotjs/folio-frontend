@@ -15,5 +15,6 @@ const props = defineProps({
     type: Object,
     required: true,
   },
-})
+});
+console.log(props.blok)
 </script>

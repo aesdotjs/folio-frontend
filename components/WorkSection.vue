@@ -19,30 +19,13 @@
           <span ref="shuffle">{{ blok.title }}</span>
         </h1>
       </div>
-      <swiper
-        :modules="[Pagination, Navigation, Lazy]"
-        :lazy="{ loadPrevNext: true }"
-        :pagination="{
-          clickable: true,
-        }"
-        :navigation="true"
-        class="container mx-auto mt-16 px-6"
-      >
-        <swiper-slide
-          v-for="work in blok.works"
-          :key="work.content._uid"
-        >
-          <work :blok="work.content" />
-        </swiper-slide>
-      </swiper>
+      <WorkSwiper></WorkSwiper>
     </div>
   </section>
 </template>
 <script setup>
 import shuffleLetters from "shuffle-letters/dist/shuffle-letters.esm";
-import { Pagination, Navigation, Lazy } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/vue";
-import "swiper/css";
+
 const shuffle = ref(null);
 const glitchClasses = ref("opacity-0");
 const props = defineProps({
@@ -60,7 +43,6 @@ const shuffleTitle = function () {
     },
   });
 };
-console.log(props.blok);
 onMounted(() => {
   const { scroll } = useLocomotive();
   scroll.value.update();

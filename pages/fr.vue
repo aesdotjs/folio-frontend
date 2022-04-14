@@ -9,11 +9,13 @@
 <script setup>
 const { layout } = await useGetLayout("fr");
 const { home } = await useGetHomePage("fr");
+const lg = useStateLanguage();
+lg.value = "fr";
 onMounted(() => {
-  useStoryBridge(home.story.id, event => {
+  useStoryBridge2(home.story.id, event => {
     home.story = event
   }, {
-    resolveRelations: ["techGroup.technos","WorkSection.works","work.technos"],
+    resolveRelations: ["techGroup.technos"],
     language: "fr",
   });
   setTimeout(() => {

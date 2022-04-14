@@ -92,4 +92,13 @@ const transformImage = function (image, option) {
   let path = image.replace("https://a.storyblok.com", "");
   return imageService + option + path;
 };
+// onMounted(() => {
+//   useStoryBridge(props.blok.id, event => {
+//     console.log(event);
+//     props.blok = event
+//   }, {
+//     resolveRelations: ["technos"],
+//     language: "",
+//   });
+// });
 </script>
