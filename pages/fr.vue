@@ -13,10 +13,9 @@ const lg = useStateLanguage();
 lg.value = "fr";
 onMounted(() => {
   useStoryBridge2(home.story.id, event => {
-    console.log(event);
     home.story = event
   }, {
-    resolveRelations: ["techgroup.technos","work.technos"],
+    resolveRelations: ["Techgroup.technos","work.technos"],
   });
   setTimeout(() => {
     const { scroll } = useLocomotive();
