@@ -9,13 +9,6 @@ export default defineNuxtConfig({
   components: {
     global: true
   },
-  hooks: {
-    'components:dirs' (dirs) {
-      dirs.push({
-          path: '~/components'
-      });
-    },
-  },
     modules: [
     ["@storyblok/nuxt", { 
       accessToken: storyBlokToken ,
