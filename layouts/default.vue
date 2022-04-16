@@ -7,7 +7,7 @@
     />
     <SmoothScroll>
       <slot></slot>
-      <Footer v-if="layout.story" :global="layout.story.content" />
+      <Footer v-if="layout.story" :blok="layout.story.content" />
     </SmoothScroll>
     <BugToast />
     <div class="hidden">

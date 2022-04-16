@@ -10,8 +10,8 @@
           data-cursor-hover
         >
           <img
-            v-if="global.site.siteIcon"
-            :src="global.site.siteIcon.filename"
+            v-if="blok.site.siteIcon"
+            :src="blok.site.siteIcon.filename"
             alt="aes's Logo"
             width="50"
             height="58"
@@ -23,7 +23,7 @@
             class="flex flex-wrap items-end justify-end py-6 font-light list-reset sm:items-center lg:py-0"
           >
             <li
-              v-for="link in global.socials"
+              v-for="link in blok.socials"
               :key="link._uid"
               class="w-1/2 sm:w-auto p-1"
             >
@@ -49,5 +49,5 @@
   </footer>
 </template>
 <script setup>
-const props = defineProps({ global: Object });
+const props = defineProps({ blok: Object });
 </script>
