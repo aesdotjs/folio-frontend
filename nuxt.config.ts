@@ -47,7 +47,9 @@ export default defineNuxtConfig({
       Sitemap: `${baseUrl}/sitemap.xml`,
     }], //not working yet
     ["nuxt-canonical", { baseUrl}],
-    "@aceforth/nuxt-netlify",
+    ["@aceforth/nuxt-netlify", {
+      mergeSecurityHeaders: true
+    }],
   ],
   publicRuntimeConfig: {
     baseUrl,
