@@ -1,22 +1,15 @@
 import { defineNuxtConfig } from 'nuxt3';
 import svgLoader from "vite-svg-loader";
-const strapiBaseUri = process.env.API_URL || "http://localhost:1337";
 const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 const storyBlokToken = process.env.STORYBLOK_TOKEN || "eoi2cPdx8FrnWRRqRFaeTwtt";
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
   css: ["@/assets/css/main.css"],
   components: {
-    global: true
+    global: true,
+    dirs: ['~/components'],
   },
-  hooks: {
-    'components:dirs' (dirs) {
-      dirs.push({
-          path: '~/components'
-      });
-    },
-  },
-    modules: [
+  modules: [
     ["@storyblok/nuxt", { 
       accessToken: storyBlokToken ,
       cache: {
@@ -57,7 +50,6 @@ export default defineNuxtConfig({
     "@aceforth/nuxt-netlify",
   ],
   publicRuntimeConfig: {
-    strapiBaseUri,
     baseUrl,
     storyBlokToken,
   },
