@@ -6,10 +6,8 @@ const storyBlokToken = process.env.STORYBLOK_TOKEN || "eoi2cPdx8FrnWRRqRFaeTwtt"
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
   css: ["@/assets/css/main.css"],
-  components: {
-    global: true
-  },
-    modules: [
+  components: true,
+  modules: [
     ["@storyblok/nuxt", { 
       accessToken: storyBlokToken ,
       cache: {
