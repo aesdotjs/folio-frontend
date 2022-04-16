@@ -11,7 +11,6 @@ const { layout } = await useGetLayout();
 const { home } = await useGetHomePage();
 onMounted(() => {
   useStoryBridge2(home.story.id, event => {
-    console.log(event);
     home.story = event
   }, {
     resolveRelations: ["Techgroup.technos","Work.technos"],
