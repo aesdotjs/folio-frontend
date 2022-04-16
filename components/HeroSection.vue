@@ -4,6 +4,7 @@
     class="min-h-screen overflow-hidden relative parallax-container"
     :class="blok.class"
     data-scroll-section
+    v-editable="blok"
   >
     <HeroPixi :ratio="parseFloat(blok.pixelationRatio)" :perspective="parseFloat(blok.perspective)"/>
     <div class="absolute top-0 w-full z-10">

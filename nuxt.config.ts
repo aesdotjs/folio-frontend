@@ -17,7 +17,13 @@ export default defineNuxtConfig({
     },
   },
     modules: [
-    ["@storyblok/nuxt", { accessToken: storyBlokToken, cacheProvider: "memory" }],
+    ["@storyblok/nuxt", { 
+      accessToken: storyBlokToken ,
+      cache: {
+        clear: "auto",
+        type: "memory",
+      },
+    }],
     '@vueuse/nuxt',
     '@nuxtjs/tailwindcss',
     ["@nuxtjs/pwa",

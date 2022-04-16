@@ -4,6 +4,7 @@
     class="min-h-screen w-full relative pt-8 pb-32"
     :class="blok.class"
     data-scroll-section
+    v-editable="blok"
   >
     <div class="container mx-auto px-6">
       <div class="flex justify-center">
@@ -36,12 +37,13 @@
           :blok="blok.myselfSection[0]"
           class="w-full lg:w-1/2 lg:pr-12"
         />
-        <div v-if="blok.techGroups.length > 0" class="w-full lg:w-1/2 flex flex-col lg:pl-12">
+        <div v-if="blok.techgroups.length > 0" class="w-full lg:w-1/2 flex flex-col lg:pl-12">
           <component
-            v-for="techGroup in blok.techGroups"
-            :key="techGroup._uid"
-            :blok="techGroup"
-            :is="techGroup.component"
+            v-editable="techgroup"
+            v-for="techgroup in blok.techgroups"
+            :key="techgroup._uid"
+            :blok="techgroup"
+            :is="techgroup.component"
           />
         </div>
       </div>
@@ -53,7 +55,7 @@
 import shuffleLetters from "shuffle-letters/dist/shuffle-letters.esm";
 const shuffle = ref(null);
 const glitchClasses = ref("opacity-0");
-console.log(props.blok.techGroups)
+console.log(props.blok.techgroups)
 const props = defineProps({
   blok: {
     type: Object,

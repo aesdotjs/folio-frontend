@@ -8,10 +8,7 @@
     :navigation="true"
     class="container mx-auto mt-16 px-6"
   >
-    <swiper-slide
-      v-for="work in works"
-      :key="work.content._uid"
-    >
+    <swiper-slide v-for="work in works" :key="work.content._uid">
       <work :blok="work.content" />
     </swiper-slide>
   </swiper>
@@ -24,12 +21,15 @@ const lg = useStateLanguage();
 const { works } = await useGetWorks(lg.value);
 onMounted(() => {
   works.forEach((work, i) => {
-    useStoryBridge2(work.id, event => {
-      works[i] = event;
-    }, {
-      resolveRelations: ["work.technos"],
-      language: lg.value,
-    });
+    useStoryBridge2(
+      work.id,
+      (event) => {
+        works[i] = event;
+      },
+      {
+        resolveRelations: ["techgroup.technos","work.technos"],
+      }
+    );
   });
 });
 </script>

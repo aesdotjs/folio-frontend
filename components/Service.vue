@@ -1,5 +1,5 @@
 <template>
-  <div class="p-2">
+  <div class="p-2" v-editable="blok">
     <div class="service-card drop-purple2">
       <img
         v-if="blok.icon"

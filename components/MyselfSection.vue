@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col text-aeswhite text-justify">
+  <div class="flex flex-col text-aeswhite text-justify" v-editable="blok">
     <h2
       class="font-retro text-2xl lg:text-3xl filter-purple2 text-center transition-opacity opacity-0 inview:opacity-100"
       data-scroll

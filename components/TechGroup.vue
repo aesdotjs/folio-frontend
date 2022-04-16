@@ -8,7 +8,7 @@
     <div class="flex flex-wrap py-2 justify-center sm:justify-end">
       <component
         v-for="techno in blok.technos"
-        :key="techno.content._uid"
+        :key="techno.uuid"
         :blok="techno.content"
         :is="techno.content.component"
         class="techno"

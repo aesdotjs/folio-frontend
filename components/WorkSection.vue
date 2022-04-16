@@ -4,6 +4,7 @@
     class="w-full relative pt-8 pb-32"
     :class="blok.class"
     data-scroll-section
+    v-editable="blok"
   >
     <div>
       <div class="flex justify-center">

@@ -1,4 +1,3 @@
-import { useNuxtApp } from "#app";
 var useStoryBridge2 = (id, cb, options = {}) => {
   if (typeof window === "undefined")
     return;
