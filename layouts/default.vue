@@ -34,7 +34,7 @@ const { layout, fetchLayout } = await useGetLayout(lg.value);
 watch(route, () => {
   fetchLayout(lg.value);
 });
-onMounted(() => {
-  useStoryBridge2(layout.story.id, (story) => (layout.story = story));
-});
+// onMounted(() => {
+//   useStoryBridge2(layout.story.id, (story) => (layout.story = story));
+// });
 </script>
