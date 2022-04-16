@@ -6,11 +6,10 @@
       {{ blok.title }}
     </h2>
     <div class="flex flex-wrap py-2 justify-center sm:justify-end">
-      <component
+      <techno
         v-for="techno in blok.technos"
-        :key="techno.uuid"
+        :key="techno.content._uid"
         :blok="techno.content"
-        :is="techno.content.component"
         class="techno"
       />
     </div>

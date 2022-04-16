@@ -54,7 +54,6 @@
 import shuffleLetters from "shuffle-letters/dist/shuffle-letters.esm";
 const shuffle = ref(null);
 const glitchClasses = ref("opacity-0");
-console.log(props.blok.techgroups)
 const props = defineProps({
   blok: {
     type: Object,
