@@ -27,7 +27,7 @@ onMounted(() => {
         works[i] = event;
       },
       {
-        resolveRelations: ["Techgroup.technos","work.technos"],
+        resolveRelations: ["Techgroup.technos","Work.technos"],
       }
     );
   });

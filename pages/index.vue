@@ -14,7 +14,7 @@ onMounted(() => {
     console.log(event);
     home.story = event
   }, {
-    resolveRelations: ["Techgroup.technos","work.technos"],
+    resolveRelations: ["Techgroup.technos","Work.technos"],
   });
   setTimeout(() => {
     const { scroll } = useLocomotive();
