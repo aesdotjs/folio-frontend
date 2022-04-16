@@ -7,7 +7,14 @@ export default defineNuxtConfig({
   css: ["@/assets/css/main.css"],
   components: {
     global: true,
-    dirs: ['~/components'],
+    //dirs: ['~/components'],
+  },
+  hooks: {
+    'components:dirs' (dirs) {
+      dirs.push({
+        path: 'components'
+      })
+    }
   },
   modules: [
     ["@storyblok/nuxt", { 
