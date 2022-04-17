@@ -37,14 +37,14 @@
           :blok="blok.myselfSection[0]"
           class="w-full lg:w-1/2 lg:pr-12"
         />
-        <!-- <div v-if="blok.techgroups.length > 0" class="w-full lg:w-1/2 flex flex-col lg:pl-12">
+        <div v-if="blok.techgroups.length > 0" class="w-full lg:w-1/2 flex flex-col lg:pl-12">
           <Techgroup
             v-editable="techgroup"
             v-for="techgroup in blok.techgroups"
             :key="techgroup._uid"
             :blok="techgroup"
           />
-        </div> -->
+        </div>
       </div>
     </div>
   </section>

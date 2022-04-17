@@ -6,12 +6,12 @@
       {{ blok.title }}
     </h2>
     <div class="flex flex-wrap py-2 justify-center sm:justify-end">
-      <Techno
+      <!-- <Techno
         v-for="techno in blok.technos.filter(i => i.content)"
         :key="techno.content._uid"
         :blok="techno.content"
         class="techno"
-      />
+      /> -->
     </div>
   </div>
 </template>
