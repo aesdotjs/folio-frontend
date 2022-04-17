@@ -18,6 +18,7 @@ module.exports = {
       },
     },
   },
+  safelist: ["bg-black", "text-red-500"],
   plugins: [
     plugin(function ({ addVariant }) {
       addVariant("inview", "&.is-inview");

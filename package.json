@@ -23,8 +23,6 @@
     "@vuelidate/validators": "^2.0.0-alpha.28",
     "@vueuse/core": "^8.2.6",
     "axios": "^0.26.1",
-    "gsap": "^3.9.1",
-    "highlight.js": "^11.4.0",
     "locomotive-scroll": "^4.1.4",
     "mitt": "^3.0.0",
     "nuxt-canonical": "^1.0.6",
