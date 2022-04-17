@@ -1,9 +1,5 @@
 <template>
-  <component
-    :is="home.story.content.component"
-    :key="home.story.content._uid"
-    :blok="home.story.content"
-  />
+  <div>test</div>
 </template>
 
 <script setup>
