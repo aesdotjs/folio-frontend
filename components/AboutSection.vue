@@ -6,7 +6,7 @@
     data-scroll-section
     v-editable="blok"
   >
-    <!-- <div class="container mx-auto px-6">
+    <div class="container mx-auto px-6">
       <div class="flex justify-center">
         <h1
           v-if="blok.title"
@@ -37,16 +37,16 @@
           :blok="blok.myselfSection[0]"
           class="w-full lg:w-1/2 lg:pr-12"
         />
-        <div v-if="blok.techgroups.length > 0" class="w-full lg:w-1/2 flex flex-col lg:pl-12">
+        <!-- <div v-if="blok.techgroups.length > 0" class="w-full lg:w-1/2 flex flex-col lg:pl-12">
           <Techgroup
             v-editable="techgroup"
             v-for="techgroup in blok.techgroups"
             :key="techgroup._uid"
             :blok="techgroup"
           />
-        </div>
+        </div> -->
       </div>
-    </div> -->
+    </div>
   </section>
 </template>
 
