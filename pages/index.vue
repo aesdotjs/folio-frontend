@@ -13,7 +13,7 @@ onMounted(() => {
   useStoryBridge2(home.story.id, event => {
     home.story = event
   }, {
-    resolveRelations: ["Techgroup.technos","Work.technos"],
+    resolveRelations: ["TechGroup.technos","Work.technos"],
   });
   setTimeout(() => {
     const { scroll } = useLocomotive();
