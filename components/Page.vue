@@ -1,7 +1,11 @@
 <template>
   <div
     v-editable="blok">
-    test
+    <component
+      v-for="blok in blok.body.filter(i => i.component !== 'SEO')"
+      :key="blok._uid"
+      :blok="blok"
+      :is="blok.component" />
   </div>
 </template>
  

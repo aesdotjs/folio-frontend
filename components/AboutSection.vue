@@ -6,7 +6,7 @@
     data-scroll-section
     v-editable="blok"
   >
-    <div class="container mx-auto px-6">
+    <!-- <div class="container mx-auto px-6">
       <div class="flex justify-center">
         <h1
           v-if="blok.title"
@@ -46,7 +46,7 @@
           />
         </div>
       </div>
-    </div>
+    </div> -->
   </section>
 </template>
 
