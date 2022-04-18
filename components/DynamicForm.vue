@@ -7,9 +7,10 @@
     :class="blok.class"
     method="post"
     name="contact"
-    data-netlify="true"
+    netlify
     @submit.prevent="formSubmit"
   >
+    <input type="hidden" name="form-name" value="contact" />
     <div
       v-for="(inputField, i) in blok.inputs"
       :key="inputField.name"
