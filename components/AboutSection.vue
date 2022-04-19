@@ -6,6 +6,7 @@
     data-scroll-section
     data-scroll
     data-scroll-id="about"
+    data-scroll-class="about-inview"
     v-editable="blok"
   >
     <div class="container mx-auto px-6">
