@@ -4,6 +4,8 @@
     class="min-h-screen w-full relative pt-8 pb-32"
     :class="blok.class"
     data-scroll-section
+    data-scroll
+    data-scroll-id="about"
     v-editable="blok"
   >
     <div class="container mx-auto px-6">

@@ -4,6 +4,8 @@
     class="w-full min-h-screen relative py-32 text-white"
     :class="blok.class"
     data-scroll-section
+    data-scroll
+    data-scroll-id="contact"
     v-editable="blok"
   >
     <CRTPixi class="absolute inset-0" />

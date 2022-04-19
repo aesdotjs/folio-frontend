@@ -4,6 +4,8 @@
     class="w-full relative pt-8 pb-32"
     :class="blok.class"
     data-scroll-section
+    data-scroll
+    data-scroll-id="work"
     v-editable="blok"
   >
     <div>

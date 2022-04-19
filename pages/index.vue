@@ -9,6 +9,8 @@
 <script setup>
 const { layout } = await useGetLayout();
 const { home } = await useGetHomePage();
+const lg = useStateLanguage();
+lg.value = "";
 onMounted(() => {
   useStoryBridge2(home.story.id, event => {
     home.story = event

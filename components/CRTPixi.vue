@@ -45,6 +45,7 @@ const initPixi = function () {
   });
   pixiApp.value.stage.filters = [crtFilter];
   resizePixi();
+  console.log(crtpixi.value)
   pixiApp.value.ticker.add((elapsedTime) => {
     crtFilter.seed = Math.random();
     crtFilter.time += elapsedTime;
@@ -58,7 +59,9 @@ const resizePixi = function () {
 };
 
 onMounted(() => {
-  initPixi();
+  setTimeout(() => {
+    initPixi();
+  }, 1000);
   window.addEventListener("resize", resizePixi);
 });
 

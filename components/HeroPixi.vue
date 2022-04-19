@@ -7,8 +7,7 @@
     data-scroll-offset="100%,-20%"
   />
   <SnowGL
-    id="snowcmp"
-    :count="4000"
+    :count="4090"
     :size="1"
     :depth="80"
     :gravity="30"

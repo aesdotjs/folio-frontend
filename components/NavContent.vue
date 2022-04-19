@@ -6,7 +6,7 @@
       v-for="route in routes"
       class="lg:mr-3"
       :class="{
-        active: isActive('hero'),
+        active: isActive(route.hash),
       }"
     >
       <StoryLink
@@ -54,11 +54,12 @@ li:hover a::after {
 <script setup>
 const props = defineProps({ routes: Array });
 const toggleMenu = useStateToggleMenu();
-const sectionInViewport = useStateSectionInViewport();
+const elementsInViewport = useStateElementsInViewport();
+const lg = useStateLanguage();
 const route = useRoute();
-const routeName = computed(() => route.value.name);
-const isActive = function (page) {
-  return routeName === "index" && sectionInViewport === page;
+const routeName = computed(() => route.name);
+const isActive = function (el) {
+  return routeName.value === (lg.value === "fr" ? "fr" : "index") && elementsInViewport.value.indexOf(el.slice(1)) > -1;
 };
 const handleToggleMenu = function () {
   toggleMenu.value = !toggleMenu.value;
