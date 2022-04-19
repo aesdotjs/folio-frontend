@@ -23,26 +23,26 @@
             class="swiper-lazy absolute h-full w-full object-cover"
           />
           <div
-            class="absolute w-full h-full top-12 bg-gradient-to-b from-transparent via-transparent to-aeswhite"
+            class="absolute w-full h-1/2 bottom-0 bg-gradient-to-b from-transparent via-transparent to-aeswhite pointer-events-none"
           ></div>
         </swiper-slide>
       </swiper>
     </div>
     <div
-      class="w-full px-6 sm:pl-16 -mt-8 sm:mt-0 relative z-10 text-aesblue sm:w-1/2 lg:w-1/3 sm:ml-auto lg:px-6"
+      class="w-full px-6 sm:pl-16 -mt-6 sm:mt-0 relative z-10 text-aesblue sm:w-1/2 lg:w-1/3 sm:ml-auto lg:px-6"
       data-scroll
     >
       <div
         class="flex justify-center transition opacity-0 sw-active:opacity-100 delay-200 duration-300"
       >
         <a
-          v-if="blok.url"
+          v-if="blok.url.url"
           :href="blok.url.url"
-          class="text-2xl font-semibold tracking-wide text-center"
+          class="text-2xl font-retro text-center"
         >
           {{ blok.name }} 🔗
         </a>
-        <h2 v-else class="text-2xl font-semibold tracking-wide">{{ blok.name }}</h2>
+        <h2 v-else class="text-2xl font-retro">{{ blok.name }}</h2>
       </div>
       <div
         v-html="richText"
@@ -64,6 +64,10 @@
 .techno {
   @apply py-2 px-4 m-px bg-aeswhite flex-1 text-center font-retro transition-all duration-150 transform scale-125 opacity-0 sw-active:scale-100 sw-active:opacity-100;
   text-shadow: 0 0 2px black;
+}
+.swiper-slide {
+  filter: drop-shadow(5px -15px 15px rgba(11, 2, 51, 0.2));
+  overflow: visible;
 }
 .object-cover {
   object-position: top;

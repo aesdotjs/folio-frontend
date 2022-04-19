@@ -6,7 +6,7 @@
       clickable: true,
     }"
     :navigation="true"
-    class="container mt-16"
+    class="container mt-16 !overflow-visible"
   >
     <swiper-slide v-for="work in works" :key="work.content._uid">
       <work :blok="work.content" />

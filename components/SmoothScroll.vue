@@ -13,3 +13,8 @@ const scroll = initLocomotive(target, (args) => {
 });
 
 </script>
+<style>
+[data-scroll-container] {
+  perspective : 1px;
+}
+</style>
