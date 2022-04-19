@@ -52,6 +52,7 @@ const initPixi = function () {
   });
 };
 const resizePixi = function () {
+  if(!pixiApp.value) return;
   const width = crtpixi.value.offsetWidth;
   const height = crtpixi.value.offsetHeight;
   pixiApp.value.renderer.resize(width,height);

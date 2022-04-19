@@ -1,5 +1,5 @@
 <template>
-  <footer data-scroll-section class="bg-black text-white -mt-px border-b border-black">
+  <footer data-scroll-section class="bg-black text-white -mt-1 border-b-4 border-black">
     <div
       class="container flex items-center justify-center w-full p-6 mx-auto"
       data-scroll

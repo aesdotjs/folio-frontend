@@ -162,6 +162,7 @@ const initPixi = function () {
 };
 const resizePixi = function () {
   // Determine which screen dimension is most constrained
+  if(!pixiApp.value) return;
   const windowWidth = window.innerWidth;
   const windowHeight = window.innerHeight;
   const imageRatio = gameWidth / gameHeight;

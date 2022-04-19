@@ -63,7 +63,7 @@ void drawMeteor(inout vec3 col, in vec2 uv,vec2 startP,vec2 endP,float linWidth)
 void drawMeteors(inout vec3 col,vec2 uv){
   
   vec2 dir = normalize(vec2(-1.0,-0.5));
-  vec2 mv  = -dir*cos(mod(time*2.,PI))*50.0;
+  vec2 mv  = -dir*cos(mod(time*2.,PI))*35.0;
   vec2 sp  = vec2(10.0+100.0*hash1(vec2(floor(time*2./PI))),10.0);
   vec2 ep  = sp+dir*5.0;
 

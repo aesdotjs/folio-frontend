@@ -13,7 +13,6 @@ const scroll = initLocomotive(target, (args) => {
   scrollY.value = args.scroll.y;
   elementsInViewport.value = Object.keys(args.currentElements);
 });
-
 </script>
 <style>
 [data-scroll-container] {

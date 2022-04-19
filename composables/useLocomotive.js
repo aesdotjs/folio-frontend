@@ -18,6 +18,9 @@ function initLocomotive(el, onScroll = false) {
         },
       });
       if(onScroll) scroll.value.on("scroll", onScroll);
+      setTimeout(() => {
+        scroll.value.update();
+      }, 1000);
     });
   });
   onUnmounted(() => { 

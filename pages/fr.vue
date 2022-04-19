@@ -18,9 +18,8 @@ onMounted(() => {
     resolveRelations: ["TechGroup.technos","Work.technos"],
   });
   setTimeout(() => {
-    const { scroll } = useLocomotive();
-    scroll.value.update();
-  }, 1000);
+    window.dispatchEvent(new Event('resize'));
+  }, 1500);
 });
 const pageSEO = home.story.content.body.find(i => i.component === "SEO");
 useSEO(layout.story.content, pageSEO);
