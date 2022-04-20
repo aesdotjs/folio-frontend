@@ -135,7 +135,5 @@ const formSubmit = (e) => {
     });
   }
 };
-onMounted(() => {
-  const v$ = useVuelidate(fieldRules.value, form);
-});
+const v$ = useVuelidate(fieldRules.value, form);
 </script>

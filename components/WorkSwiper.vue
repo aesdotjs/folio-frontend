@@ -17,6 +17,8 @@
 import { Pagination, Navigation, Lazy } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
 const modules = [Pagination, Navigation, Lazy];
 const lg = useStateLanguage();
 const { works } = await useGetWorks(lg.value);
