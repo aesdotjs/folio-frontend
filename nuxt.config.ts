@@ -1,4 +1,4 @@
-import { defineNuxtConfig } from 'nuxt3';
+import { defineNuxtConfig } from "nuxt";
 import svgLoader from "vite-svg-loader";
 const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 const storyBlokToken = process.env.STORYBLOK_TOKEN || "eoi2cPdx8FrnWRRqRFaeTwtt";
