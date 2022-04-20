@@ -84,6 +84,6 @@ export default defineNuxtConfig({
     ssrHandlers: true,
   },
   build: {
-    transpile: ['#app'],
+    transpile: ["#app", "swiper"],
   },
 });

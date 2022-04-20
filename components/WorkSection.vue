@@ -22,7 +22,7 @@
           <span ref="shuffle">{{ blok.title }}</span>
         </h1>
       </div>
-      <!-- <WorkSwiper></WorkSwiper> -->
+      <WorkSwiper></WorkSwiper>
     </div>
   </section>
 </template>
