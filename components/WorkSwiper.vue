@@ -1,5 +1,5 @@
 <template>
-  <swiper
+  <Swiper
     :modules="modules"
     :lazy="{ loadPrevNext: true }"
     :pagination="{
@@ -8,10 +8,10 @@
     :navigation="true"
     class="container mt-16 !overflow-visible"
   >
-    <swiper-slide v-for="work in works" :key="work.content._uid">
-      <work :blok="work.content" />
-    </swiper-slide>
-  </swiper>
+    <SwiperSlide v-for="work in works" :key="work.content._uid">
+      <Work :blok="work.content" />
+    </SwiperSlide>
+  </Swiper>
 </template>
 <script setup>
 import { Pagination, Navigation, Lazy } from "swiper";

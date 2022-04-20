@@ -1,12 +1,12 @@
 <template>
   <div class="flex flex-col sm:flex-row" v-editable="blok">
     <div class="w-full sm:w-1/2 px-6" data-scroll>
-      <swiper
+      <Swiper
         :modules="modules"
         :effect="'cards'"
         class="transition opacity-0 sw-active:opacity-100 duration-300"
       >
-        <swiper-slide
+        <SwiperSlide
           v-for="(photo, id) in photos"
           :key="id"
           class="pb-[140%] sm:pb-[120%] lg:pb-[100%] relative"
@@ -21,8 +21,8 @@
           <div
             class="absolute w-full h-1/2 bottom-0 bg-gradient-to-b from-transparent via-transparent to-aeswhite pointer-events-none"
           ></div>
-        </swiper-slide>
-      </swiper>
+        </SwiperSlide>
+      </Swiper>
     </div>
     <div
       class="w-full px-6 sm:pl-16 -mt-6 sm:mt-0 relative z-10 text-aesblue sm:w-1/2 lg:w-1/3 sm:ml-auto lg:px-6"
