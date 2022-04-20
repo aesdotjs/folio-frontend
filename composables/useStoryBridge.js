@@ -1,4 +1,4 @@
-var useStoryBridge2 = (id, cb, options = {}) => {
+var useStoryBridge = (id, cb, options = {}) => {
   if (typeof window === "undefined")
     return;
   const app = useNuxtApp();
@@ -12,4 +12,4 @@ var useStoryBridge2 = (id, cb, options = {}) => {
     console.error(error);
   });
 };
-export default useStoryBridge2;
+export default useStoryBridge;

@@ -35,6 +35,6 @@ watch(route, () => {
   fetchLayout(lg.value);
 });
 onMounted(() => {
-  useStoryBridge2(layout.story.id, (story) => (layout.story = story));
+  useStoryBridge(layout.story.id, (story) => (layout.story = story));
 });
 </script>

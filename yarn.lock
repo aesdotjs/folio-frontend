@@ -834,14 +834,6 @@
     estree-walker "^2.0.1"
     picomatch "^2.2.2"
 
-"@storyblok/nuxt@^3.0.0-beta.3":
-  version "3.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@storyblok/nuxt/-/nuxt-3.0.0-beta.3.tgz#31680a3df36549d40d26df2285e46fe98a54f47e"
-  integrity sha512-w5JnLbKL6031CYav+A85N30zFuHvp4E/I2pRwLifefMK5nmtr71t3PQ1rqB8yNPcdctB3tG7/A2KILwWt9RMnw==
-  dependencies:
-    "@storyblok/vue" "^3.0.0"
-    storyblok-js-client "^4.1.5"
-
 "@storyblok/vue@^3.0.0":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@storyblok/vue/-/vue-3.0.1.tgz#076a0deb6a68f95afe6cb354eea79c8c74d8ddf5"
@@ -5124,7 +5116,7 @@ std-env@^3.1.1:
   resolved "https://registry.yarnpkg.com/std-env/-/std-env-3.1.1.tgz#1f19c4d3f6278c52efd08a94574a2a8d32b7d092"
   integrity sha512-/c645XdExBypL01TpFKiG/3RAa/Qmu+zRi0MwAmrdEkwHNuN0ebo8ccAXBBDa5Z0QOJgBskUIbuCK91x0sCVEw==
 
-storyblok-js-client@^4.1.5:
+storyblok-js-client@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/storyblok-js-client/-/storyblok-js-client-4.3.1.tgz#fa17e9ce47cc827e7d835481a5f77d3d44580e19"
   integrity sha512-kdv7G0+0BsCzbVRjAnRC00GPRRWfP0YK0yE0gUj3waEc2ekwxV9iHQBR9cRxz3YYk/hLWn3zJg8lTTrQmzQsdg==

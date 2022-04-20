@@ -12,7 +12,7 @@ const { home } = await useGetHomePage();
 const lg = useStateLanguage();
 lg.value = "";
 onMounted(() => {
-  useStoryBridge2(home.story.id, event => {
+  useStoryBridge(home.story.id, event => {
     home.story = event
   }, {
     resolveRelations: ["TechGroup.technos","Work.technos"],

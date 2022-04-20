@@ -21,7 +21,7 @@ const lg = useStateLanguage();
 const { works } = await useGetWorks(lg.value);
 onMounted(() => {
   works.forEach((work, i) => {
-    useStoryBridge2(
+    useStoryBridge(
       work.id,
       (event) => {
         works[i] = event;

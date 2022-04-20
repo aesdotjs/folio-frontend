@@ -12,7 +12,7 @@ const { home } = await useGetHomePage("fr");
 const lg = useStateLanguage();
 lg.value = "fr";
 onMounted(() => {
-  useStoryBridge2(home.story.id, event => {
+  useStoryBridge(home.story.id, event => {
     home.story = event
   }, {
     resolveRelations: ["TechGroup.technos","Work.technos"],
