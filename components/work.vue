@@ -2,7 +2,7 @@
   <div class="flex flex-col sm:flex-row" v-editable="blok">
     <div class="w-full sm:w-1/2 px-6" data-scroll>
       <swiper
-        :modules="[EffectCards]"
+        :modules="modules"
         :effect="'cards'"
         class="transition opacity-0 sw-active:opacity-100 duration-300"
       >
@@ -74,6 +74,7 @@ import { EffectCards } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/effect-cards";
+const modules = [EffectCards];
 const storyapi = useStoryApi();
 const props = defineProps({
   blok: {
