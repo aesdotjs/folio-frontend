@@ -1,6 +1,6 @@
 <template>
   <swiper
-    :modules="[Pagination, Navigation, Lazy]"
+    :modules="[Lazy]"
     :lazy="{ loadPrevNext: true }"
     :pagination="{
       clickable: true,
@@ -14,7 +14,7 @@
   </swiper>
 </template>
 <script setup>
-import { Pagination, Navigation, Lazy } from "swiper";
+import { Lazy } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 const lg = useStateLanguage();

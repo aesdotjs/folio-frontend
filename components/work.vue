@@ -2,12 +2,8 @@
   <div class="flex flex-col sm:flex-row" v-editable="blok">
     <div class="w-full sm:w-1/2 px-6" data-scroll>
       <swiper
-        :modules="[Pagination, Navigation, EffectCards]"
+        :modules="[EffectCards]"
         :effect="'cards'"
-        :pagination="{
-          clickable: true,
-        }"
-        :navigation="true"
         class="transition opacity-0 sw-active:opacity-100 duration-300"
       >
         <swiper-slide
@@ -74,7 +70,7 @@
 }
 </style>
 <script setup>
-import { Pagination, Navigation, EffectCards } from "swiper";
+import { EffectCards } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/effect-cards";
