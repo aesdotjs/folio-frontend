@@ -5,8 +5,9 @@ export default function (layout, SEO, language = "en") {
     ...defaultSEO[0],
     ...SEO
   };
+  fullSEO.metaTitle = `${fullSEO.metaTitle} | ${siteName}`;
   return useHead({
-    title: `${fullSEO.metaTitle} | ${siteName}`,
+    title: fullSEO.metaTitle,
     htmlAttrs: {
       lang: language
     },
