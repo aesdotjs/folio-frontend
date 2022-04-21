@@ -8,6 +8,7 @@
         <nuxt-link
           :to="{ name: 'index', hash: '#hero'}"
           class="flex items-center py-2 cursor-pointer mr-8"
+          aria-label="Back to Top"
         >
           <BackToTop />
         </nuxt-link>

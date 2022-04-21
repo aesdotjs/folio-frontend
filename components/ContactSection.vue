@@ -46,7 +46,7 @@
               <img
                 v-if="link.icon"
                 :src="link.icon.filename"
-                :alt="link.alt"
+                :alt="link.icon.alt"
                 width="32"
                 height="32"
                 class="w-6 h-6 mr-4"

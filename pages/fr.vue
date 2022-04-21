@@ -24,5 +24,5 @@ onMounted(() => {
   }, 1500);
 });
 const pageSEO = home.story.content.body.find(i => i.component === "SEO");
-useSEO(layout.story.content, pageSEO);
+useSEO(layout.story.content, pageSEO, "fr");
 </script>

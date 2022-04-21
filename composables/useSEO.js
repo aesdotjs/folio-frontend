@@ -1,4 +1,4 @@
-export default function (layout, SEO) {
+export default function (layout, SEO, language = "en") {
   const { favIcon, siteName } = layout.site[0];
   const { defaultSEO } = layout;
   const fullSEO = {
@@ -7,6 +7,9 @@ export default function (layout, SEO) {
   };
   return useHead({
     title: `${fullSEO.metaTitle} | ${siteName}`,
+    htmlAttrs: {
+      lang: language
+    },
     meta: getMetaTags(fullSEO),
     link: [
       {
