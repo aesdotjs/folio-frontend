@@ -1,5 +1,5 @@
 <template>
-  <div class="p-2" v-editable="blok">
+  <div class="px-2 py-4" v-editable="blok">
     <div class="service-card drop-purple2">
       <img
         v-if="blok.icon"
@@ -9,8 +9,8 @@
         heigh="64"
         class="w-16 h-16 object-contain text-center"
       />
-      <h2 class="text-xl mt-4">{{ blok.name}}</h2>
-      <div v-html="richText" class="mt-4 px-2 text-sm"></div>
+      <h2 class="text-xl mt-4 font-semibold uppercase tracking-wide">{{ blok.name}}</h2>
+      <div v-html="richText" class="mt-4 px-2"></div>
     </div>
   </div>
 </template>

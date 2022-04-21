@@ -16,6 +16,8 @@
           :src="blok.photo.filename"
           :alt="blok.photo.alt"
           class="border-4 border-aeswhite"
+          width="256"
+          height="256"
         />
       </div>
       <div
