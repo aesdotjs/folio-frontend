@@ -24,6 +24,7 @@
 </template>
 <script setup>
 import cloudsPNG from "~/assets/img/clouds.png";
+import cloudsBackPNG from "~/assets/img/clouds-back.png";
 import mountainSVG from "~/assets/img/mountain.svg?url";
 import parallax1SVG from "~/assets/img/parallax1.svg?url";
 import parallax2SVG from "~/assets/img/parallax2.svg?url";
@@ -78,6 +79,11 @@ const initPixi = function () {
   parallaxLayerSky.addChild(starSprite);
 
   const parallaxLayerMountain = new $PIXI.Container();
+  const cloudsBack = new $PIXI.Sprite(loader.resources.cloudsBackPNG.texture);
+  cloudsBack.width = width;
+  cloudsBack.height = 1130;
+  cloudsBack.opacity = 0.5;
+  parallaxLayerMountain.addChild(cloudsBack);
   const mountain = new $PIXI.Sprite(loader.resources.mountainSVG.texture);
   mountain.width = width;
   mountain.height = height;
@@ -232,7 +238,7 @@ const drawDiagonalGrad = function (colors, angDeg, w, h) {
 };
 onMounted(() => {
   const loader = $PIXI.Loader.shared;
-  const assets = { cloudsPNG, mountainSVG, parallax1SVG, parallax2SVG, parallax3SVG };
+  const assets = { cloudsPNG, cloudsBackPNG, mountainSVG, parallax1SVG, parallax2SVG, parallax3SVG };
   for (const [key, value] of Object.entries(assets)) {
     if (!loader.resources[key]) loader.add(key, value);
   }

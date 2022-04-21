@@ -1,5 +1,5 @@
 <template>
-  <div class="px-2 py-4" v-editable="blok">
+  <div class="p-2" v-editable="blok">
     <div class="service-card drop-purple2">
       <img
         v-if="blok.icon"
@@ -16,7 +16,7 @@
 </template>
 <style lang="postcss" scoped>
 .service-card {
-  @apply flex flex-col h-full items-center text-aesblue bg-aeswhite p-3;
+  @apply flex flex-col h-full items-center text-aesblue bg-aeswhite p-4;
 }
 
 
