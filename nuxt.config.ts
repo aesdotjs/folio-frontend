@@ -22,7 +22,7 @@ export default defineNuxtConfig({
       })
     },
     "build:before": ({ nuxt }, config) => {
-      // If it's using Webpack
+      // FIX for SSR on v-editable
       const isWebpack = nuxt.options.vite === false
       const isProduction = nuxt.options.dev === false
       if (isWebpack || (!isWebpack && isProduction)) {
@@ -41,41 +41,16 @@ export default defineNuxtConfig({
   modules: [
     '@vueuse/nuxt',
     '@nuxtjs/tailwindcss',
-    ["@nuxtjs/pwa",
-    {
-      meta: {
-        title: "Sitename",
-        author: "Aes",
-      },
-      manifest: {
-        name: "Sitename",
-        short_name: "Sitename",
-        lang: "en",
-        theme_color: "#721626",
-      },
-    }],
-    ["@nuxtjs/sitemap",
-    {
-      hostname: baseUrl,
-      gzip: true,
-      defaults: {
-        changefreq: "daily",
-        priority: 1,
-        lastmod: new Date(),
-      },
-    }],
-    ["@nuxtjs/robots", 
-    {
-      Sitemap: `${baseUrl}/sitemap.xml`,
-    }], //not working yet
     ["nuxt-canonical", { baseUrl}],
     ["@aceforth/nuxt-netlify", {
       mergeSecurityHeaders: true
     }],
   ],
-  publicRuntimeConfig: {
-    baseUrl,
-    storyBlokToken,
+  runtimeConfig: {
+    public: {
+      baseUrl,
+      storyBlokToken,
+    },
   },
   vite: {
     plugins: [svgLoader()],

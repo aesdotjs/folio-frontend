@@ -4,7 +4,7 @@
       <Swiper
         :modules="modules"
         :effect="'cards'"
-        class="transition opacity-0 sw-active:opacity-100 duration-300"
+        class="transition opacity-0 sw-active:opacity-100 duration-300 delay-300"
       >
         <SwiperSlide
           v-for="(photo, id) in photos"
@@ -25,7 +25,7 @@
       </Swiper>
     </div>
     <div
-      class="w-full px-6 sm:pl-16 -mt-6 sm:mt-0 relative z-10 text-aesblue sm:w-1/2 lg:w-1/3 sm:ml-auto lg:px-6"
+      class="w-full px-6 sm:pl-8 -mt-6 sm:mt-0 relative z-10 text-aesblue sm:w-1/2 lg:w-1/2 sm:ml-auto lg:pl-16 xl:pl-6 xl:w-1/3"
       data-scroll
     >
       <div
@@ -36,13 +36,16 @@
           :href="blok.url.url"
           class="text-2xl font-retro text-center"
         >
-          {{ blok.name }} 🔗
+          {{ blok.name }} 
+          <div class="inline-block w-4 h-4 ml-2">
+            <ExternalLink class="inline w-full h-full" viewBox="0 0 8 8" />
+          </div>
         </a>
-        <h2 v-else class="text-2xl font-retro">{{ blok.name }}</h2>
+        <h2 v-else class="text-2xl font-retro text-center">{{ blok.name }}</h2>
       </div>
       <div
         v-html="richText"
-        class="mt-4 px-0 transition opacity-0 sw-active:opacity-100 delay-300 duration-300"
+        class="mt-8 px-0 transition opacity-0 sw-active:opacity-100 delay-300 duration-300"
       ></div>
       <div class="flex flex-wrap py-2 justify-center sm:justify-end mt-4">
         <component
@@ -65,8 +68,34 @@
   filter: drop-shadow(5px -15px 15px rgba(11, 2, 51, 0.2));
   overflow: visible;
 }
+
 .object-cover {
   object-position: top;
+}
+</style>
+<style>
+#work .swiper-button-next,
+#work .swiper-button-prev {
+  --swiper-navigation-color : var(--color-aesblue);
+  top: auto;
+  bottom: -2.5rem;
+  z-index: 20;
+}
+#work .swiper-pagination-bullet-active {
+  --swiper-theme-color : var(--color-aesblue);
+}
+
+#work .swiper-pagination {
+  bottom: -1.9rem;
+}
+@media (min-width: 768px) {
+  #work .swiper-pagination {
+    bottom: -3.4rem;
+  }
+  #work .swiper-button-next,
+  #work .swiper-button-prev {
+    bottom: -4rem;
+  }
 }
 </style>
 <script setup>
@@ -74,6 +103,7 @@ import { EffectCards } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import "swiper/css/effect-cards";
+import ExternalLink from '~/assets/img/external-link.svg';
 const modules = [EffectCards];
 const storyapi = useStoryApi();
 const props = defineProps({
