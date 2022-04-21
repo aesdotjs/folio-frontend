@@ -24,6 +24,7 @@
       </label>
       <textarea 
         v-if="inputField.type === 'textarea'"
+        :id="inputField._uid"
         v-model="v$[inputField.name].$model"
         :name="inputField.name"
         :placeholder="inputField.placeholder"
