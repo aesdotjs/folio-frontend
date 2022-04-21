@@ -19,6 +19,8 @@ onMounted(() => {
   });
   setTimeout(() => {
     window.dispatchEvent(new Event('resize'));
+    const { scroll } = useLocomotive();
+    scroll.value.update();
   }, 1500);
 });
 const pageSEO = home.story.content.body.find(i => i.component === "SEO");

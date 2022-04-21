@@ -12,7 +12,7 @@
     <div class="flex justify-center">
       <h1
         v-if="blok.title"
-        class="text-2xl lg:text-4xl font-retro transition-all opacity-0 inview:opacity-100"
+        class="text-2xl lg:text-4xl font-retro transition-all opacity-0 inview:opacity-100 duration-300 delay-300"
         :data-text="blok.title"
         data-scroll
       >

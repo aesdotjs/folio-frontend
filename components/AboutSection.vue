@@ -13,7 +13,7 @@
       <div class="flex justify-center">
         <h1
           v-if="blok.title"
-          class="text-2xl lg:text-4xl text-aeswhite font-retro"
+          class="text-2xl lg:text-4xl text-aeswhite font-retro filter-purple2"
           :data-text="blok.title"
           :class="glitchClasses"
           data-scroll
@@ -66,12 +66,7 @@ const props = defineProps({
 const shuffleTitle = function () {
   if (!shuffle.value) return;
   glitchClasses.value = "opacity-100";
-  shuffleLetters(shuffle.value, {
-    onComplete: () => {
-      console.log("about complete");
-      glitchClasses.value = "hero glitch layers";
-    },
-  });
+  shuffleLetters(shuffle.value);
 };
 onMounted(() => {
   const { scroll } = useLocomotive();
@@ -96,18 +91,5 @@ onMounted(() => {
   .service {
     transition-delay: calc(var(--i) * 150ms);
   }
-}
-.glitch span {
-  animation: paths 5s step-end 1;
-}
-
-.glitch::before {
-  animation: paths 5s step-end, opacity 5s step-end, font 5s step-end,
-    movement 5s step-end;
-}
-
-.glitch::after {
-  animation: paths 5s step-end, opacity 5s step-end, font 5s step-end,
-    movement 5s step-end;
 }
 </style>
