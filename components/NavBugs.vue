@@ -2,21 +2,21 @@
 <div>
   <svg 
     v-for="bug in bugsFound"
-    :key="bug.type"
+    :key="bug.name"
     :width="38.5 * 0.60"
     :height="50 * 0.60"
-    :style="{ color: bug.color }"
+    :style="{ color: bug.color.color }"
     class="cursor-default m-1">
     <use xlink:href="#bug_top"></use>
   </svg>
 </div>
 </template>
 <script setup>
-import bugTypes from "~/composables/bugTypes";
+//const bugTypes = useStateBugTypes();
 const bugsFound = useStateBugsFound();
-const isBugFound = function(bug) {
-  return bugsFound.value.filter( i => i.type === bug.type).length > 0;
-};
+// const isBugFound = function(bug) {
+//   return bugsFound.value.filter( i => i.gName === bug.gName).length > 0;
+// };
 </script>
 <style scoped>
 svg {

@@ -2,13 +2,13 @@
   <Transition name="toast">
     <div
       class="toast fixed top-0 z-40 w-full pointer-events-none transition-all"
-      v-if="isToastVisible"
+      v-if="state.isToastVisible"
     >
       <div class="w-full flex justify-center mt-12">
         <svg
           :width="38.7 * 2"
           :height="50 * 2"
-          :style="{ color : bug.color }"
+          :style="{ color : state.bug.color.color }"
           class="bug top angry"
           viewBox="0 0 387 500"
           fill="none"
@@ -81,15 +81,15 @@
         </svg>
       </div>
       <div class="toast-text mt-4 px-6 text-center text-2xl lg:text-3xl font-retro text-white">
-        You have found the
+        {{ state.bug.message }}
         <div
           class="hero glitch layers"
-          :data-text="`${bug.type} bug`"
+          :data-text="`${state.bug.name} bug`"
           :style="{
             color: shadedColor,
-            'text-shadow': `0 0 10px ${bug.color}`,
+            'text-shadow': `0 0 10px ${state.bug.color.color}`,
           }">
-          <span>{{ bug.type }} bug </span>
+          <span>{{ state.bug.name }}</span>
         </div>
         !
       </div>
@@ -112,6 +112,6 @@
 }
 </style>
 <script setup>
-const { isToastVisible, bug } = useBugToast();
-const shadedColor = computed(() => shadeColor(bug.value.color, 240));
+const { state } = useBugToast();
+const shadedColor = computed(() => shadeColor(state.bug.color, 240));
 </script>

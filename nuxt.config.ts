@@ -54,6 +54,9 @@ export default defineNuxtConfig({
   },
   vite: {
     plugins: [svgLoader()],
+    optimizeDeps: {
+      entries : ["~/plugins/"]
+    },
   },
   vueuse: {
     ssrHandlers: true,

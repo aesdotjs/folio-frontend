@@ -8,7 +8,9 @@
     data-scroll-id="contact"
     v-editable="blok"
   >
-    <CRTPixi class="absolute inset-0" />
+    <ClientOnly>
+      <CRTPixi class="absolute inset-0" />
+    </ClientOnly>
     <div class="flex justify-center">
       <h1
         v-if="blok.title"
@@ -66,7 +68,6 @@ const props = defineProps({
     required: true,
   },
 });
-console.log(props.blok);
 onMounted(() => {
   const { scroll } = useLocomotive();
   scroll.value.update();

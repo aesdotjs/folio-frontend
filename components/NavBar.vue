@@ -27,7 +27,9 @@
           />
         </nuxt-link>
       </div>
-      <NavBugs class="flex flex-wrap flex-1 mx-6"/>
+      <ClientOnly>
+        <NavBugs class="flex flex-wrap flex-1 mx-6"/>
+      </ClientOnly>
       <div class="ml-auto lg:hidden">
         <NavToggle />
       </div>

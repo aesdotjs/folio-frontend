@@ -3,8 +3,6 @@ const state = reactive({
   bug: {},
 });
 
-const isToastVisible = computed(() => state.isToastVisible);
-const bug = computed(() => state.bug);
 const showToast = (bug, duration = 5000) => {
   state.isToastVisible = true;
   state.bug = bug;
@@ -14,8 +12,7 @@ const showToast = (bug, duration = 5000) => {
 };
 export default function() {
   return {
-    isToastVisible,
-    bug,
+    state,
     showToast
   };
 };
