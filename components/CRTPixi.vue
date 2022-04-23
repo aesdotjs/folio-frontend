@@ -69,6 +69,7 @@ const initPixi = function () {
       bugSprite.on("mouseover", (e) => handleMouseOver(e, bugSprite));
       bugSprite.on("mouseout", (e) => handleMouseOut(e, bugSprite));
       bugSprite.on("click", (e) => handleMouseClick(e, bug, bugSprite));
+      bugSprite.on("tap", (e) => handleMouseClick(e, bug, bugSprite));
       bugContainer.addChild(bugSprite);
       bugSprites = [...bugSprites, bugSprite];
     };
@@ -145,6 +146,7 @@ const handleMouseOut = (event, bugSprite) => {
   }, 150);
 };
 const handleMouseClick = (event, bug, bugSprite) => {
+  if(bugSprite.dying) return;
   useBugFound(bug);
   bugSprite.dying = true;
 };
