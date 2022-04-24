@@ -1,4 +1,4 @@
-import { createGlobalState, useStorage } from '@vueuse/core';
+import { createGlobalState, useLocalStorage } from '@vueuse/core';
 export const useStateToggleMenu = () => useState('toggleMenu', () => false);
 export const useStateShowNavbar = () => useState('showNavbar', () => true);
 export const useStateLoading = () => useState('loading', () => true);
@@ -7,5 +7,5 @@ export const useStateElementsInViewport = () => useState('elementsInViewport', (
 export const useStateLanguage = () => useState('language', () => "");
 export const useStateBugTypes = () => useState('bugTypes', () => []);
 export const useStateBugsFound = createGlobalState(
-  () => useStorage('bugsFound', []),
+  () => useLocalStorage('bugsFound', []),
 );

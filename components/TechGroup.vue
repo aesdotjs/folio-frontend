@@ -6,9 +6,11 @@
       {{ blok.title }}
     </h2>
     <div class="flex flex-wrap py-2 justify-center sm:justify-end relative">
-      <div v-if="!hasAboutTechnoBugBeenFound && blok._uid === '3ee0b5fd-8d05-4187-90f5-f4aacde92913'" class="absolute left-0 top-5 hideandshow">
-        <Bug slug="about-techno" :beacon="true"/>
-      </div>
+      <ClientOnly>
+        <div v-if="!hasAboutTechnoBugBeenFound && blok._uid === '3ee0b5fd-8d05-4187-90f5-f4aacde92913'" class="absolute left-0 top-5 hideandshow">
+          <Bug slug="about-techno" :beacon="true"/>
+        </div>
+      </ClientOnly>
       <Techno
         v-for="techno in blok.technos.filter(i => i.content)"
         :key="techno.content._uid"
@@ -29,16 +31,16 @@
 }
 @keyframes hideandshow {
   0% {
-    transform: translateX(0);
+    transform: translateX(-50%);
   }
   30% {
-    transform: translateX(-50%);
+    transform: translateX(0);
   }
   70% {
-    transform: translateX(-50%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(0);
+    transform: translateX(-50%);
   }
 }
 </style>

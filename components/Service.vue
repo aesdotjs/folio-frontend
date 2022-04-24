@@ -1,6 +1,6 @@
 <template>
   <div class="p-2 relative" v-editable="blok">
-    <div class="service-card drop-purple2" :class="{ bugged : !hasAboutServiceBugBeenFound && curId === 2 }">
+    <div class="service-card drop-purple2" :class="{ bugged : (!hasAboutServiceBugBeenFound && curId === 2) }">
       <img
         v-if="blok.icon"
         :src="blok.icon.filename"
@@ -44,6 +44,8 @@
 </style>
 
 <script setup>
+const bugsFound = useStateBugsFound();
+const hasAboutServiceBugBeenFound = computed(() => bugsFound.value.findIndex((i) => i.gName === "about-service") > -1);
 const storyapi = useStoryApi();
 const props = defineProps({
   blok: {
@@ -55,6 +57,4 @@ const props = defineProps({
 const richText = computed(() => {
   return storyapi.richTextResolver.render(props.blok.content)
 });
-const bugsFound = useStateBugsFound();
-const hasAboutServiceBugBeenFound = computed(() => bugsFound.value.findIndex((i) => i.gName === "about-service") > -1);
 </script>
