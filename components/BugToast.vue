@@ -91,7 +91,7 @@
           }">
           <span>{{ state.bug.name }}</span>
         </div>
-        !
+        ! <span class="text-lg">{{ bugsFound.length }}/{{ bugTypes.length }}</span>
       </div>
     </div>
   </Transition>
@@ -113,5 +113,7 @@
 </style>
 <script setup>
 const { state } = useBugToast();
+const bugTypes = useStateBugTypes();
+const bugsFound = useStateBugsFound();
 const shadedColor = computed(() => shadeColor(state.bug.color.color, 240));
 </script>

@@ -34,7 +34,7 @@
         <NavToggle />
       </div>
       <div
-        class="flex-grow w-full overflow-hidden text-lg lg:items-center lg:w-auto lg:block lg:p-0"
+        class="w-full overflow-hidden text-lg lg:items-center lg:w-auto lg:block lg:p-0"
       >
         <NavContent class="hidden lg:flex" :routes="routes"/>
         <ClientOnly>

@@ -55,7 +55,7 @@ const gameHeight = 1534;
 const { $PIXI, $PixelateFilter } = useNuxtApp();
 const heropixi = ref(null);
 const pixiApp = reactive({});
-let starFilter;
+let starFilter, pixelateFilter;
 let bugSprites = [];
 const bugs = ref([]);
 bugs.value = bugTypes.value.filter((i) => {
@@ -64,6 +64,7 @@ bugs.value = bugTypes.value.filter((i) => {
     i.gName.search("hero") > -1
   );
 });
+const hasFoundAllBugs = computed(() => bugsFound.value.length === bugTypes.value.length);
 const initPixi = function () {
   const width = gameWidth;
   const height = gameHeight;
@@ -188,7 +189,8 @@ const initPixi = function () {
   parallaxContainer.addChild(parallaxLayerPl3);
   parallaxContainer.addChild(parallaxLayerPl2);
   parallaxContainer.addChild(parallaxLayerPl1);
-  pixiApp.value.stage.filters = [new $PixelateFilter(props.ratio)];
+  pixelateFilter = new $PixelateFilter(hasFoundAllBugs.value ? 1 : props.ratio);
+  pixiApp.value.stage.filters = [pixelateFilter];
   pixiApp.value.stage.addChild(parallaxContainer);
   const parallaxContext = {
     container: parallaxContainer,
@@ -236,6 +238,10 @@ const initPixi = function () {
           bug.y -= Math.sin(bug.rotation) * elapsedTime * 5;
         }
       }
+    }
+    if(pixelateFilter.uniforms.size[0] >= 1.05 && hasFoundAllBugs.value){
+      pixelateFilter.uniforms.size[0]-= 0.005;
+      pixelateFilter.uniforms.size[1]-= 0.005;
     }
   });
   loading.value = false;
