@@ -19,8 +19,14 @@
             class="swiper-lazy absolute h-full w-full object-cover"
           />
           <div
-            class="absolute w-full h-1/2 bottom-0 bg-gradient-to-b from-transparent via-transparent to-aeswhite pointer-events-none"
+            class="absolute w-full h-1/2 bottom-0 bg-gradient-to-b from-transparent via-transparent to-aeswhite/80 pointer-events-none"
           ></div>
+          {{ blok.name }}
+          <ClientOnly>
+            <div v-if="!hasWorkSlideBugBeenFound && id === 1 && blok.name === 'Plombier Parfait'" class="absolute right-3 transform -scale-x-100">
+              <Bug slug="work-slide" :beacon="true"/>
+            </div>
+          </ClientOnly>
         </SwiperSlide>
       </Swiper>
     </div>
@@ -112,10 +118,11 @@ const props = defineProps({
     required: true,
   },
 });
+const bugsFound = useStateBugsFound();
+const hasWorkSlideBugBeenFound = computed(() => bugsFound.value.findIndex((i) => i.gName === "work-slide") > -1);
 const photos = computed(() =>
   props.blok.photos instanceof Array ? props.blok.photos : [props.blok.photos]
 );
-const shadedColor = computed(() => shadeColor(props.blok.color.color, 245));
 const richText = computed(() => {
   return storyapi.richTextResolver.render(props.blok.content);
 });

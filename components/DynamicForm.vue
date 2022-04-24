@@ -15,7 +15,7 @@
       v-for="(inputField, i) in blok.inputs"
       :key="inputField.name"
       v-editable="inputField"
-      class="transition-all transform translate-y-5 opacity-0 inview-child:opacity-100 inview-child:translate-y-0"
+      class="transition-all transform translate-y-5 opacity-0 inview-child:opacity-100 inview-child:translate-y-0 pointer-events-auto"
       :style="{ transitionDelay : (i + 1) * 150 + 'ms'}"
       :class="inputField.wrapperClass"
     >
@@ -65,7 +65,7 @@
       type="submit"
       :disabled="formSubmitting"
       :form="blok._uid"
-      class="px-6 py-2 font-retro text-white bg-transparent mt-8 mx-auto border border-white hover:bg-white hover:text-black transition-colors disabled:bg-gray-500"
+      class="px-6 py-2 font-retro text-white bg-transparent mt-8 mx-auto border border-white hover:bg-white hover:text-black transition-colors disabled:bg-gray-500 pointer-events-auto"
       :class="blok.submitButtonClass"
     >
       {{ blok.submitButtonText }}

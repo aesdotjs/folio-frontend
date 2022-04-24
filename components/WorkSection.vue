@@ -40,11 +40,11 @@
   top: 0;
   right: 0;
   transform: translateX(100%);
-  animation: crunch 1000ms infinite linear;
+  animation: crunch 500ms infinite linear;
 }
 @keyframes crunch {
   0% {
-    transform: translateX(120%);
+    transform: translateX(110%);
   }
   100%{
     transform: translateX(100%);

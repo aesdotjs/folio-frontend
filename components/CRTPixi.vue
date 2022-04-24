@@ -59,9 +59,12 @@ const initPixi = function () {
       bugSprite.direction = Math.random() * Math.PI * 2;
       bugSprite.speed = 1 + Math.random();
       bugSprite.turnSpeed = Math.random() - 0.8;
+      bugSprite.turnDir = 1;
       bugSprite.x = Math.random() * width;
       bugSprite.y = Math.random() * height;
       bugSprite.scale.set(bug.size / 20);
+      bugSprite.bug = bug;
+      bugSprite.opacity = 0.9;
       bugSprite.interactive = true;
       bugSprite.fearVal = 1;
       bugSprite.buttonMode = true;
@@ -106,9 +109,10 @@ const initPixi = function () {
     for (var i = 0; i < bugSprites.length; i++) {
       var bug = bugSprites[i];
       if (!bug.dying) {
-        bug.fear && (bug.fearVal += 0.03);
-        !bug.fear && bug.fearVal > 1 && (bug.fearVal -= 0.03);
-        bug.direction += 0.01 * bug.turnSpeed;
+        bug.fear && (bug.fearVal += 0.02);
+        !bug.fear && bug.fearVal > 1 && (bug.fearVal -= 0.02);
+        Math.random() < 0.0005 && (bug.turnDir *= -1);
+        bug.direction += 0.01 * bug.turnSpeed * bug.turnDir;
         bug.x += Math.sin(bug.direction) * bug.speed * bug.fearVal;
         bug.y += Math.cos(bug.direction) * bug.speed * bug.fearVal;
         bug.rotation = -bug.direction - Math.PI;
@@ -139,6 +143,7 @@ const resizePixi = function () {
 };
 const handleMouseOver = (event, bugSprite) => {
   bugSprite.fear = true;
+  bugSprite.turnDir *= -1;
 };
 const handleMouseOut = (event, bugSprite) => {
   setTimeout(() => {
