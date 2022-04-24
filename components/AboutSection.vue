@@ -44,7 +44,7 @@
         <div v-if="blok.techgroups.length > 0" class="w-full lg:w-1/2 flex flex-col lg:pl-12">
           <TechGroup
             v-editable="techgroup"
-            v-for="techgroup in blok.techgroups"
+            v-for="(techgroup, id) in blok.techgroups"
             :key="techgroup._uid"
             :blok="techgroup"
           />
@@ -64,6 +64,7 @@ const props = defineProps({
     required: true,
   },
 });
+
 const shuffleTitle = function () {
   if (!shuffle.value) return;
   glitchClasses.value = "opacity-100";
