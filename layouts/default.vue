@@ -31,8 +31,6 @@
 const route = useRoute();
 const lg = computed(() => route.path.split("/")[1]);
 const { layout, fetchLayout } = await useGetLayout(lg.value);
-const bugsFound = useStateBugsFound();
-bugsFound.value = [];
 watch(route, () => {
   fetchLayout(lg.value);
 });
