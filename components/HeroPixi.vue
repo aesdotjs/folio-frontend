@@ -19,8 +19,13 @@
       max: -0.1,
       easing: 0.005,
     }"
-    class="top-0 absolute w-full h-full"
+    class="top-0 absolute w-full h-full pointer-events-none"
   ></SnowGL>
+  <div class="absolute visibility-hidden">
+    <div v-for="bug in bugs" :key="bug._uid" :class="bug.gName">
+      <Bug :options="bug" />
+    </div>
+  </div>
 </template>
 <script setup>
 import cloudsPNG from "~/assets/img/clouds.png";
@@ -42,14 +47,23 @@ const props = defineProps({
     default: 2.2,
   },
 });
+const bugTypes = useStateBugTypes();
+const bugsFound = useStateBugsFound();
 const { scroll } = useLocomotive();
 const gameWidth = 1920;
 const gameHeight = 1534;
-const progress = ref(0);
 const { $PIXI, $PixelateFilter } = useNuxtApp();
 const heropixi = ref(null);
 const pixiApp = reactive({});
 let starFilter;
+let bugSprites = [];
+const bugs = ref([]);
+bugs.value = bugTypes.value.filter((i) => {
+  return (
+    bugsFound.value.findIndex((b) => b.gName === i.gName) === -1 &&
+    i.gName.search("hero") > -1
+  );
+});
 const initPixi = function () {
   const width = gameWidth;
   const height = gameHeight;
@@ -113,6 +127,49 @@ const initPixi = function () {
   pl2.width = width;
   pl2.height = height;
   parallaxLayerPl2.addChild(pl2);
+
+  bugs.value.forEach((bug) => {
+    const svgElement = document.querySelector(`.${bug.gName} svg`);
+    const { width: svgWidth, height: svgHeight } = svgElement.getBBox();
+    const clonedSvgElement = svgElement.cloneNode(true);
+    const outerHTML = clonedSvgElement.outerHTML,
+      blob = new Blob([outerHTML], { type: "image/svg+xml;charset=utf-8" });
+    const URL = window.URL || window.webkitURL || window;
+    const blobURL = URL.createObjectURL(blob);
+    const image = new Image();
+    image.onload = () => {
+      let canvas = document.createElement("canvas");
+      canvas.width = svgWidth;
+      canvas.height = svgHeight;
+      let context = canvas.getContext("2d");
+      context.drawImage(image, 0, 0, svgWidth, svgHeight);
+      const bugSprite = new $PIXI.Sprite($PIXI.Texture.from(canvas));
+      bugSprite.anchor.set(0.5);
+      bugSprite.pivot.set(0.5);
+      if(bug.gName === "hero-white"){
+        bugSprite.x = width / 2 - 50;
+        bugSprite.y = height - 150;
+        bugSprite.scale.set(0.5);
+      }
+      if(bug.gName ==="hero-green"){
+        bugSprite.y = height - 400;
+        bugSprite.x = width / 2 - 70;
+        bugSprite.scale.set(0.22);
+        bugSprite.rotation = 0.23;
+      }
+      bugSprite.bug = bug;
+      bugSprite.interactive = true;
+      bugSprite.fearVal = 1;
+      bugSprite.buttonMode = true;
+      bugSprite.defaultCursor = "crosshair";
+      bugSprite.on("click", (e) => handleMouseClick(e, bug, bugSprite));
+      bugSprite.on("tap", (e) => handleMouseClick(e, bug, bugSprite));
+      parallaxLayerPl2.addChild(bugSprite);
+      bugSprites = [...bugSprites, bugSprite];
+    };
+    image.src = blobURL;
+  });
+
   const parallaxLayerPl1 = new $PIXI.Container();
   const pl1 = new $PIXI.Sprite(loader.resources.parallax1SVG.texture);
   pl1.width = width;
@@ -161,6 +218,25 @@ const initPixi = function () {
     parallaxContext.setPosition((1 - progress) * scale - scale);
     cloudsStrip.tilePosition.x -= elapsedTime * 0.2;
     starFilter.uniforms.time += elapsedTime * 0.002;
+
+    for (var i = 0; i < bugSprites.length; i++) {
+      var bug = bugSprites[i];
+      if(bug.dying && bug.bug.gName === "hero-white"){
+        bug.y += elapsedTime * 5;
+        if(bug.y > height) {
+          parallaxLayerPl2.removeChild(bug);
+        }
+      }
+      if(bug.dying && bug.bug.gName === "hero-green"){
+        if(bug.x < 100) {
+          parallaxLayerPl2.removeChild(bug);
+        }
+        else {
+          bug.x -= Math.cos(bug.rotation) * elapsedTime * 5;
+          bug.y -= Math.sin(bug.rotation) * elapsedTime * 5;
+        }
+      }
+    }
   });
   loading.value = false;
   scroll.value.update();
@@ -189,6 +265,13 @@ const resizePixi = function () {
   const { scroll } = useLocomotive();
   scroll.value.update();
 };
+
+const handleMouseClick = (event, bug, bugSprite) => {
+  if(bugSprite.dying) return;
+  useBugFound(bug);
+  bugSprite.dying = true;
+};
+
 const bgColors = [
   {
     stop: 0.1626,

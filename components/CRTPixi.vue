@@ -13,7 +13,6 @@ const bugTypes = useStateBugTypes();
 const bugsFound = useStateBugsFound();
 const { scroll } = useLocomotive();
 const { $PIXI, $CRTFilter, $SVG } = useNuxtApp();
-const bugsRef = ref([]);
 const crtpixi = ref(null);
 const pixiApp = reactive({});
 let crtFilter;
