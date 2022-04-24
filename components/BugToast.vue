@@ -113,5 +113,5 @@
 </style>
 <script setup>
 const { state } = useBugToast();
-const shadedColor = computed(() => shadeColor(state.bug.color, 240));
+const shadedColor = computed(() => shadeColor(state.bug.color.color, 240));
 </script>

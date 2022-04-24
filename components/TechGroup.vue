@@ -17,7 +17,7 @@
 </template>
 <style lang="postcss" scoped>
 .techno {
-  @apply py-2 px-4 m-px bg-aeswhite flex-1 text-center font-retro transition-all duration-150 transform scale-125 opacity-0 inview-child:scale-100 inview-child:opacity-100;
+  @apply py-2 px-6 m-px bg-aeswhite flex-1 text-center font-retro transition-all duration-150 transform scale-125 opacity-0 inview-child:scale-100 inview-child:opacity-100;
   text-shadow: 0 0 2px black;
 }
 </style>

@@ -425,7 +425,7 @@ html, body {
 @keyframes font {
   0% {
     font-weight: 100;
-    color: var(--color-aespurple1)!important;
+    color: var(--color-aespurple1) !important;
     filter: blur(3px);
   }
 
@@ -437,19 +437,19 @@ html, body {
 
   50% {
     font-weight: 300;
-    color: var(--color-aesblue)!important;
+    color: var(--color-aesblue) !important;
     filter: blur(2px);
   }
 
   60% {
     font-weight: 700;
-    color: #fff!important;
+    color: #fff !important;
     filter: blur(0);
   }
 
   90% {
     font-weight: 500;
-    color: var(--color-aespurple1)!important;
+    color: var(--color-aespurple1) !important;
     filter: blur(6px);
   }
 }

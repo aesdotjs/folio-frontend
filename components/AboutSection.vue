@@ -30,6 +30,7 @@
           :blok="service"
           class="service"
           :style="{ '--i': i + 1 }"
+          :curId="i"
           data-scroll
           data-scroll-offset="30%"
         />
