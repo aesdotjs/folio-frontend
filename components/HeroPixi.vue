@@ -21,11 +21,13 @@
     }"
     class="top-0 absolute w-full h-full pointer-events-none"
   ></SnowGL>
-  <div class="absolute visibility-hidden">
-    <div v-for="bug in bugs" :key="bug._uid" :class="bug.gName">
-      <Bug :options="bug" />
+  <ClientOnly>
+    <div class="absolute visibility-hidden top-0 -left-full">
+      <div v-for="bug in bugs" :key="bug._uid" :class="bug.gName">
+        <Bug :options="bug" />
+      </div>
     </div>
-  </div>
+  </ClientOnly>
 </template>
 <script setup>
 import cloudsPNG from "~/assets/img/clouds.png";

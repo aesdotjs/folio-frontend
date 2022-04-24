@@ -1,11 +1,13 @@
 <template>
   <div>
     <canvas ref="crtpixi" class="crt-pixi" />
-    <div class="absolute visibility-hidden">
-      <div v-for="bug in bugs" :key="bug._uid" :class="bug.gName">
-        <Bug :options="bug" />
+    <ClientOnly>
+      <div class="absolute visibility-hidden top-0 -left-full">
+        <div v-for="bug in bugs" :key="bug._uid" :class="bug.gName">
+          <Bug :options="bug"/>
+        </div>
       </div>
-    </div>
+    </ClientOnly>
   </div>
 </template>
 <script setup>
