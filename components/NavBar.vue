@@ -27,14 +27,11 @@
           />
         </nuxt-link>
       </div>
-      <ClientOnly>
-        <NavBugs class="flex flex-wrap flex-1 mx-6"/>
-      </ClientOnly>
       <div class="ml-auto lg:hidden">
         <NavToggle />
       </div>
       <div
-        class="w-full overflow-hidden text-lg lg:items-center lg:w-auto lg:block lg:p-0"
+        class="w-full ml-auto overflow-hidden text-lg lg:items-center lg:w-auto lg:block lg:p-0"
       >
         <NavContent class="hidden lg:flex" :routes="routes"/>
         <ClientOnly>
@@ -45,11 +42,22 @@
       </div>
     </div>
   </nav>
+  <ClientOnly>
+    <div class="fixed bottom-0 z-40 w-full transition-all navbar2 px-6 pb-1"
+      :class="{
+        'navbar--hidden': !showNavbar,
+      }">
+      <NavBugs class="flex flex-wrap flex-row-reverse"/>
+    </div>
+  </ClientOnly>
 </template>
 
 <style lang="postcss">
 .navbar.navbar--hidden {
   transform: translate3d(0, -105%, 0);
+}
+.navbar2.navbar--hidden {
+  transform: translate3d(0, 105%, 0);
 }
 </style>
 <script setup>

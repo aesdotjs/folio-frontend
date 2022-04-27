@@ -29,10 +29,9 @@
 
 <script setup>
 const route = useRoute();
-const lg = computed(() => route.path.split("/")[1]);
-const { layout, fetchLayout } = await useGetLayout(lg.value);
+const { layout, fetchLayout } = await useGetLayout();
 watch(route, () => {
-  fetchLayout(lg.value);
+  fetchLayout();
 });
 onMounted(() => {
   useStoryBridge(layout.story.id, (story) => (layout.story = story));

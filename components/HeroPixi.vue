@@ -241,9 +241,10 @@ const initPixi = function () {
         }
       }
     }
-    if(pixelateFilter.uniforms.size[0] >= 1.05 && hasFoundAllBugs.value){
-      pixelateFilter.uniforms.size[0]-= 0.009;
-      pixelateFilter.uniforms.size[1]-= 0.009;
+    const step = 0.009;
+    if(pixelateFilter.uniforms.size[0] >= 1 + step && hasFoundAllBugs.value){
+      pixelateFilter.uniforms.size[0]-= step;
+      pixelateFilter.uniforms.size[1]-= step;
     }
   });
   loading.value = false;
