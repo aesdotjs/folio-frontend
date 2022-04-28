@@ -6,7 +6,7 @@
     >
       <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full">
         <nuxt-link
-          :to="{ name: 'index', hash: '#hero'}"
+          :to="{ name: lg === 'fr'? 'fr' : 'index', hash: '#hero'}"
           class="flex items-center py-2 cursor-pointer mr-8"
           aria-label="Back to Top"
         >
@@ -14,7 +14,7 @@
         </nuxt-link>
       </div>
       <nuxt-link
-        :to="{ name: 'index', hash: '#hero'}"
+        :to="{ name: lg === 'fr'? 'fr' : 'index', hash: '#hero'}"
         class="flex items-center py-2 cursor-pointer mr-8"
       >
         <img
@@ -33,4 +33,5 @@
 </template>
 <script setup>
 const props = defineProps({ blok: Object });
+const lg = useStateLanguage();
 </script>
