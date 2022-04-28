@@ -7,3 +7,4 @@ nuxt.d.ts
 .vercel
 cert.pem
 key.pem
+dist

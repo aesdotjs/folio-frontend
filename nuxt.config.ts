@@ -10,6 +10,7 @@ const noopTransform = () => {
 }
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
+  ssr: false,
   css: ["@/assets/css/main.css"],
   components: {
     global: true,
