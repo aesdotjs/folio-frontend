@@ -5,16 +5,16 @@
       data-scroll
     >
       <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-full">
-        <nuxt-link
-          :to="{ name: lg === 'fr'? 'fr' : 'index', hash: '#hero'}"
+        <NuxtLink
+          :to="{ name: route.name, hash: '#hero'}"
           class="flex items-center py-2 cursor-pointer mr-8"
           aria-label="Back to Top"
         >
           <BackToTop />
-        </nuxt-link>
+        </NuxtLink>
       </div>
-      <nuxt-link
-        :to="{ name: lg === 'fr'? 'fr' : 'index', hash: '#hero'}"
+      <NuxtLink
+        :to="{ name: route.name, hash: '#hero'}"
         class="flex items-center py-2 cursor-pointer mr-8"
       >
         <img
@@ -24,7 +24,7 @@
           width="50"
           height="58"
         />
-      </nuxt-link>
+      </NuxtLink>
       <div>
         {{ blok.copyrightText }}
       </div>
@@ -33,5 +33,5 @@
 </template>
 <script setup>
 const props = defineProps({ blok: Object });
-const lg = useStateLanguage();
+const route = useRoute();
 </script>

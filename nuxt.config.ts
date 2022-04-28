@@ -1,4 +1,5 @@
 import { defineNuxtConfig } from "nuxt";
+import { VitePWA } from "vite-plugin-pwa";
 import svgLoader from "vite-svg-loader";
 const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 const storyBlokToken = process.env.STORYBLOK_TOKEN || "eoi2cPdx8FrnWRRqRFaeTwtt";
@@ -54,10 +55,104 @@ export default defineNuxtConfig({
     },
   },
   vite: {
-    plugins: [svgLoader()],
+    plugins: [
+      svgLoader(),
+      VitePWA({
+        includeAssets: ['favicon.png', 'favicon.ico', 'robots.txt', 'apple-icon-180.png'],  
+        manifest: {
+          name: 'Aes Portfolio',
+          short_name: 'aes',
+          description: 'Portfolio of Simon Skriabin (aes)',
+          theme_color: '#200E4F',
+          icons: [
+            {
+              "src": "manifest-icon-192.maskable.png",
+              "sizes": "192x192",
+              "type": "image/png",
+              "purpose": "any"
+            },
+            {
+              "src": "manifest-icon-192.maskable.png",
+              "sizes": "192x192",
+              "type": "image/png",
+              "purpose": "maskable"
+            },
+            {
+              "src": "manifest-icon-512.maskable.png",
+              "sizes": "512x512",
+              "type": "image/png",
+              "purpose": "any"
+            },
+            {
+              "src": "manifest-icon-512.maskable.png",
+              "sizes": "512x512",
+              "type": "image/png",
+              "purpose": "maskable"
+            }
+          ]
+        }
+      }),
+    ],
     optimizeDeps: {
       entries : ["~/plugins/"]
     },
+  },
+  app: {
+    head: {
+      meta: [
+        {
+          name: "theme-color",
+          content: "#200E4F",
+        },
+        {
+          name: "apple-mobile-web-app-capable",
+          content: "yes",
+        }
+      ],
+      link: [
+        {
+          rel: "alternate icon",
+          href: "favicon.ico",
+          type: "image/png",
+          sizes: "16x16",
+        },
+        {
+          rel: "apple-touch-icon",
+          href: "apple-icon-180.png",
+          type: "image/png",
+          sizes: "180x180",
+        },
+        { rel:"apple-touch-startup-image", href:"apple-splash-2048-2732.jpg", media:"(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-2732-2048.jpg", media:"(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-1668-2388.jpg", media:"(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-2388-1668.jpg", media:"(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-1536-2048.jpg", media:"(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-2048-1536.jpg", media:"(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-1668-2224.jpg", media:"(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-2224-1668.jpg", media:"(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-1620-2160.jpg", media:"(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-2160-1620.jpg", media:"(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-1284-2778.jpg", media:"(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-2778-1284.jpg", media:"(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-1170-2532.jpg", media:"(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-2532-1170.jpg", media:"(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-1125-2436.jpg", media:"(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-2436-1125.jpg", media:"(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-1242-2688.jpg", media:"(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-2688-1242.jpg", media:"(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-828-1792.jpg", media:"(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-1792-828.jpg", media:"(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-1242-2208.jpg", media:"(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-2208-1242.jpg", media:"(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-750-1334.jpg", media:"(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-1334-750.jpg", media:"(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-640-1136.jpg", media:"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"},
+        { rel:"apple-touch-startup-image", href:"apple-splash-1136-640.jpg", media:"(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"},
+      ],
+    },
+  },
+  generate: {
+    routes: ['/fr'],
   },
   vueuse: {
     ssrHandlers: true,
