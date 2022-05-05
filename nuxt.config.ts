@@ -10,7 +10,7 @@ const noopTransform = () => {
 }
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
-  css: ["@/assets/css/main.css"],
+  css: ["~/assets/css/main.css"],
   components: {
     global: true,
     dirs: ['~/components'],
@@ -54,7 +54,7 @@ export default defineNuxtConfig({
   },
   vite: {
     plugins: [
-      svgLoader(),
+      svgLoader()
     ],
     optimizeDeps: {
       entries : ["~/plugins/"]
