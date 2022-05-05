@@ -1,5 +1,4 @@
 import { defineNuxtConfig } from "nuxt";
-import { VitePWA } from "vite-plugin-pwa";
 import svgLoader from "vite-svg-loader";
 const baseUrl = process.env.BASE_URL || "http://localhost:3000";
 const storyBlokToken = process.env.STORYBLOK_TOKEN || "eoi2cPdx8FrnWRRqRFaeTwtt";
