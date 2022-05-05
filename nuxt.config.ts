@@ -11,7 +11,6 @@ const noopTransform = () => {
 }
 // https://v3.nuxtjs.org/docs/directory-structure/nuxt.config
 export default defineNuxtConfig({
-  ssr: false,
   css: ["@/assets/css/main.css"],
   components: {
     global: true,
@@ -57,41 +56,6 @@ export default defineNuxtConfig({
   vite: {
     plugins: [
       svgLoader(),
-      // VitePWA({
-      //   includeAssets: ['favicon.png', 'favicon.ico', 'robots.txt', 'apple-icon-180.png'],  
-      //   manifest: {
-      //     name: 'Aes Portfolio',
-      //     short_name: 'aes',
-      //     description: 'Portfolio of Simon Skriabin (aes)',
-      //     theme_color: '#200E4F',
-      //     icons: [
-      //       {
-      //         "src": "manifest-icon-192.maskable.png",
-      //         "sizes": "192x192",
-      //         "type": "image/png",
-      //         "purpose": "any"
-      //       },
-      //       {
-      //         "src": "manifest-icon-192.maskable.png",
-      //         "sizes": "192x192",
-      //         "type": "image/png",
-      //         "purpose": "maskable"
-      //       },
-      //       {
-      //         "src": "manifest-icon-512.maskable.png",
-      //         "sizes": "512x512",
-      //         "type": "image/png",
-      //         "purpose": "any"
-      //       },
-      //       {
-      //         "src": "manifest-icon-512.maskable.png",
-      //         "sizes": "512x512",
-      //         "type": "image/png",
-      //         "purpose": "maskable"
-      //       }
-      //     ]
-      //   }
-      // }),
     ],
     optimizeDeps: {
       entries : ["~/plugins/"]
