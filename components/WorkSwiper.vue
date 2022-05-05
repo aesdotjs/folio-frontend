@@ -13,6 +13,16 @@
     </SwiperSlide>
   </Swiper>
 </template>
+<style>
+#work .swiper-button-next,
+#work .swiper-button-prev {
+  --swiper-navigation-color : var(--color-aesblue);
+}
+#work .swiper-pagination-bullet-active {
+  --swiper-theme-color : var(--color-aesblue);
+}
+
+</style>
 <script setup>
 import { Pagination, Navigation, Lazy } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/vue";

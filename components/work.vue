@@ -40,6 +40,7 @@
         <a
           v-if="blok.url.url"
           :href="blok.url.url"
+          target="_blank"
           class="text-2xl font-retro text-center"
         >
           {{ blok.name }} 
@@ -77,31 +78,6 @@
 
 .object-cover {
   object-position: top;
-}
-</style>
-<style>
-#work .swiper-button-next,
-#work .swiper-button-prev {
-  --swiper-navigation-color : var(--color-aesblue);
-  top: auto;
-  bottom: -2.5rem;
-  z-index: 20;
-}
-#work .swiper-pagination-bullet-active {
-  --swiper-theme-color : var(--color-aesblue);
-}
-
-#work .swiper-pagination {
-  bottom: -1.9rem;
-}
-@media (min-width: 768px) {
-  #work .swiper-pagination {
-    bottom: -3.4rem;
-  }
-  #work .swiper-button-next,
-  #work .swiper-button-prev {
-    bottom: -4rem;
-  }
 }
 </style>
 <script setup>

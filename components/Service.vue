@@ -1,6 +1,6 @@
 <template>
   <div class="p-2 relative" v-editable="blok">
-    <div :class="{ bugged : !hasAboutServiceBugBeenFound && curId === 2 }" class="service-card drop-purple2">
+    <div :class="additionalClasses">
       <img
         v-if="blok.icon"
         :src="blok.icon.filename"
@@ -45,7 +45,10 @@
 
 <script setup>
 const bugsFound = useStateBugsFound();
-const hasAboutServiceBugBeenFound = computed(() => bugsFound.value.findIndex((i) => i.gName === "about-service") > -1);
+const hasAboutServiceBugBeenFound = computed(() => (bugsFound.value.findIndex((i) => i.gName === "about-service") > -1));
+const additionalClasses = computed(() => {
+  return (!hasAboutServiceBugBeenFound.value && props.curId === 2) ? "service-card drop-purple2 bugged" : "service-card drop-purple2";
+});
 const storyapi = useStoryApi();
 const props = defineProps({
   blok: {
