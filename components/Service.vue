@@ -1,6 +1,6 @@
 <template>
   <div class="p-2 relative" v-editable="blok">
-    <div class="service-card drop-purple2" :class="{ bugged : (!hasAboutServiceBugBeenFound && curId === 2) }">
+    <div :class="{ bugged : !hasAboutServiceBugBeenFound && curId === 2 }" class="service-card drop-purple2">
       <img
         v-if="blok.icon"
         :src="blok.icon.filename"
@@ -9,8 +9,8 @@
         heigh="64"
         class="w-16 h-16 object-contain text-center"
       />
-      <h2 class="text-xl mt-4 font-semibold uppercase tracking-wide">{{ blok.name}}</h2>
-      <div v-html="richText" class="mt-4 px-2"></div>
+      <h2 class="text-xl mt-4 !font-semibold uppercase tracking-wide">{{ blok.name}}</h2>
+      <div v-html="richText" class="mt-4 px-2 !font-normal"></div>
     </div>
     <ClientOnly>
       <div v-if="!hasAboutServiceBugBeenFound && curId === 2" class="absolute -right-5 -bottom-5 transform -rotate-45 shake">
