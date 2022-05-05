@@ -11,7 +11,6 @@
     "@nuxtjs/tailwindcss": "^5.0.0-4",
     "@vueuse/nuxt": "^8.2.6",
     "nuxt": "npm:nuxt3@latest",
-    "vite-plugin-pwa": "^0.12.0",
     "vite-svg-loader": "^3.1.2"
   },
   "dependencies": {
