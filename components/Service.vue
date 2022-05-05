@@ -45,7 +45,7 @@
 
 <script setup>
 const bugsFound = useStateBugsFound();
-const hasAboutServiceBugBeenFound = computed(() => (bugsFound.value.findIndex((i) => i.gName === "about-service") > -1));
+const hasAboutServiceBugBeenFound = computed(() => process.client ? (bugsFound.value.findIndex((i) => i.gName === "about-service") > -1) : true);
 const additionalClasses = computed(() => {
   return (!hasAboutServiceBugBeenFound.value && props.curId === 2) ? "service-card drop-purple2 bugged" : "service-card drop-purple2";
 });
