@@ -25,7 +25,9 @@
       <div 
         class="p-6 border-4 border-white border-double opacity-0 transition-all duration-500 inview:opacity-90 pointer-events-none"
         data-scroll>
-        <DynamicForm :blok="blok.form[0]"></DynamicForm>
+        <ClientOnly>
+          <DynamicForm :blok="blok.form[0]"></DynamicForm>
+        </ClientOnly>
       </div>
       <div 
         class="px-6 py-4 w-64 border-4 border-white border-double opacity-0 sm:ml-16 mt-16 sm:mt-0 transition-all duration-500 inview:opacity-90 pointer-events-none"
