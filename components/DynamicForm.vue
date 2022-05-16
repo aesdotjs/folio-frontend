@@ -7,8 +7,8 @@
     :class="blok.class"
     method="post"
     name="contact"
-    data-netlify="true"
     netlify
+    netlify-honeypot="bot-field"
     @submit.prevent="formSubmit"
   >
     <input type="hidden" name="form-name" value="contact" />
