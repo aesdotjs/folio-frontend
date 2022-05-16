@@ -7,6 +7,7 @@
     :class="blok.class"
     method="post"
     name="contact"
+    data-netlify="true"
     netlify
     @submit.prevent="formSubmit"
   >
