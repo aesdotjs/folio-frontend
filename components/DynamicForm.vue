@@ -132,7 +132,7 @@ const formSubmit = (e) => {
   }
   else {
     formSubmitting.value = true;
-    fetch("/dummyform.html", {
+    fetch("/dummyform", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode(formref.value),
