@@ -7,8 +7,7 @@
     :class="blok.class"
     method="post"
     name="contact"
-    netlify
-    netlify-honeypot="bot-field"
+    data-netlify="true"
     @submit.prevent="formSubmit"
   >
     <input type="hidden" name="form-name" value="contact" />
@@ -132,7 +131,6 @@ const formSubmit = (e) => {
     v$.value.$touch();
   }
   else {
-    console.log(encode(formref.value));
     formSubmitting.value = true;
     $fetch(props.blok.formEndpoint, {
       method: "POST",
