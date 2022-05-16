@@ -116,9 +116,14 @@ const generateFieldRules = (fieldValidators) => {
   );
 };
 const encode = (data) => {
-  return Object.keys(data)
+  let obj = {};
+  const formData = new FormData(data);
+  for (var key of formData.keys()) {
+		obj[key] = formData.get(key);
+	}
+  return Object.keys(obj)
     .map(
-      key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+      key => `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`
     )
     .join("&");
 };
@@ -127,12 +132,12 @@ const formSubmit = (e) => {
     v$.value.$touch();
   }
   else {
-    const formData = new FormData(formref.value);
+    console.log(encode(formref.value));
     formSubmitting.value = true;
     $fetch(props.blok.formEndpoint, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode(formData),
+      body: encode(formref.value),
       //body: new URLSearchParams(formData).toString(),
     })
     .then(() => {
