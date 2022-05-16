@@ -115,6 +115,13 @@ const generateFieldRules = (fieldValidators) => {
     {}
   );
 };
+const encode = (data) => {
+  return Object.keys(data)
+    .map(
+      key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+    )
+    .join("&");
+};
 const formSubmit = (e) => {
   if (v$.value.$invalid) {
     v$.value.$touch();
@@ -122,10 +129,11 @@ const formSubmit = (e) => {
   else {
     const formData = new FormData(formref.value);
     formSubmitting.value = true;
-    $fetch("/", {
+    $fetch(props.blok.formEndpoint, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams(formData).toString(),
+      body: encode(formData),
+      //body: new URLSearchParams(formData).toString(),
     })
     .then(() => {
       formSubmitted.value = true;
